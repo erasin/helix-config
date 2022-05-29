@@ -1,0 +1,67 @@
+[[language]]
+name = "bash"
+file-types = ["sh", "bash", "zsh", ".bash_login", ".bash_logout", ".bash_profile", ".bashrc", ".profile", ".zshenv", ".zlogin", ".zlogout", ".zprofile", ".zshrc", ".bash_alias", ".bash_path"]
+
+
+[[language]]
+name = "python"
+language-server = { command = "pyright-langserver", args = ["--stdio"] }
+config = """
+{
+  "python": {
+    "analysis": {
+      "autoSearchPaths": true,
+      "diagnosticMode": "workspace",
+      "useLibraryCodeForTypes": true
+    }
+  }
+}
+"""
+
+
+[[language]]
+name = "markdown"
+indent = { tab-width = 4, unit = "    " }
+# language-server = { command = "common-mark-language-server", args = [] }
+# language-server = { command = "remark-language-server", args = [] }
+# language-server = { command = "unified-language-server", args = ["--stdio"] }
+
+[[language]]
+name = "beancount"
+scope = "scope.bean"
+roots = []
+injection-regex = "bean"
+file-types = ["bean", "beancount"]
+comment-token = ";"
+indent = { tab-width = 2, unit = "  " }
+# language-server = { command = "beancount-language-server", args = ["--stdio"] }
+# auto-format = true
+
+[[language]]
+name = "plantuml"
+scope = "source.puml"
+injection-regex = "plantuml"
+file-types = ["puml","pu","wsd"]
+roots = []
+comment-token = "'"
+indent = { tab-width = 2, unit = "  " }
+
+# [[grammar]]
+# name = "plantuml"
+# source = { git = "https://github.com/lyndsysimon/tree-sitter-plantuml", rev = "fe25cf8592ea12ad6de00379a444d376ba32c7b5"  }
+
+[[language]]
+name = "haxe"
+scope = "source.hx"
+injection-regex = "haxe"
+file-types = ["hx"]
+roots = []
+comment-token = "//"
+indent = { tab-width = 4, unit = "    " }
+language-server = { command = "haxe-language-server", args = ["--stdio"] }
+auto-format = true
+# https://github.com/vshaxe/haxe-language-server
+
+[[grammar]]
+name = "haxe"
+source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "63f5fcc144444e66ad146094174680ec8d24e361"  }

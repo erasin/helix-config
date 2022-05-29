@@ -1,0 +1,57 @@
+theme = "onelight_local" 
+
+[editor]
+# line-number = "relative"
+# rulers = [80]
+
+# 使用 infocmp | rg color 检查是否支持 256color [终端控制命令 infocmp](http://manual.51yip.com/shell/terminalccmds.html)
+# 使用 tmux 的时候,追加配置 `set -ga terminal-overrides ',xterm-256color:Tc'`
+# 需要 export TERM=xterm-256color 
+true-color = true
+# editor.terminal = { cmd = "tmux", args = ["split-window"] }
+
+# gutters = ["diagnostics"] # default is ["diagnostics", "line-numbers"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.lsp]
+# 服务器语言信息提示
+display-messages = true
+
+[editor.whitespace]
+render = "all"
+
+# all / none
+# [editor.whitespace.render]
+# space = "all"
+# tab = "all"
+# newline = "all"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+
+[editor.status-line]
+left = ["mode", "spinner","file-name"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding", "file-type"]
+
+[keys.normal]
+C-s = ":w"
+C-r = ":reload"
+C-z = "normal_mode" # replace suspend
+C-q = "suspend"
+"A-/" = "toggle_comments"
+"esc" = [":sh macism com.apple.keylayout.ABC","normal_mode"]
+"X" = "extend_line_up"
+"Z" = { "Z" = ":q!"}
+
+[keys.insert]
+"A-x" = "normal_mode" # Maps Alt-X to enter normal mode
+# j = { k = "normal_mode" } # Maps `jk` to exit insert modes
+"esc" = [":sh macism com.apple.keylayout.ABC","normal_mode"]
