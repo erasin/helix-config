@@ -36,10 +36,11 @@ nbsp = "⍽"
 tab = "→"
 newline = "⏎"
 
-[editor.status-line]
-left = ["mode", "spinner","file-name"]
-center = []
-right = ["diagnostics", "selections", "position", "file-encoding", "file-type"]
+# DEV 
+# [editor.status-line]
+# left = ["mode", "spinner","file-name"]
+# center = []
+# right = ["diagnostics", "selections", "position", "file-encoding", "file-type"]
 
 [keys.normal]
 C-s = ":w"
