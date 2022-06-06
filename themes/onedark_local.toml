@@ -1,8 +1,10 @@
 # Author : Gokul Soumya <gokulps15@gmail.com>
 
+# modifiers bold italic underlined  dim reversed
+
 "attribute" = { fg = "yellow" }
-# "comment" = { fg = "light-gray", modifiers = ["italic"] }
-"comment" = { fg = "light-gray", modifiers = [] }
+"comment" = { fg = "light-gray", modifiers = ["italic"] }
+# "comment" = { fg = "light-gray", modifiers = [] }
 "constant" = { fg = "cyan" }
 "constant.numeric" = { fg = "gold" }
 "constant.builtin" = { fg = "gold" }
@@ -69,7 +71,7 @@ diagnostic = { modifiers = ["underlined"] }
 
 "ui.help" = { bg = "gray" }
 "ui.popup" = { bg = "gray" }
-"ui.window" = { bg = "gray" }
+"ui.window" = { bg = "black" }
 "ui.menu" = { fg = "white", bg = "gray" }
 "ui.menu.selected" = { fg = "black", bg = "blue" }
 
@@ -83,7 +85,7 @@ green = "#98C379"
 gold = "#D19A66"
 cyan = "#56B6C2"
 white = "#ABB2BF"
-black = "#212121"
+black = "#282C34"
 light-black = "#2C323C"
 gray = "#3E4452"
 light-gray = "#5C6370"

@@ -1,16 +1,20 @@
-theme = "onelight_local" 
+theme = "onedark_local" 
 
 [editor]
+# absolute / relative
 # line-number = "relative"
 # rulers = [80]
 
 # 使用 infocmp | rg color 检查是否支持 256color [终端控制命令 infocmp](http://manual.51yip.com/shell/terminalccmds.html)
-# 使用 tmux 的时候,追加配置 `set -ga terminal-overrides ',xterm-256color:Tc'`
+# 使用 tmux 的时候,追加配置 
+# set -g default-terminal "tmux-256color"
+# set -ga terminal-overrides ',xterm-256color:Tc'
 # 需要 export TERM=xterm-256color 
 true-color = true
-# editor.terminal = { cmd = "tmux", args = ["split-window"] }
-
+# terminal = { cmd = "tmux", args = ["split-window"] }
 # gutters = ["diagnostics"] # default is ["diagnostics", "line-numbers"]
+auto-completion = true
+
 
 [editor.cursor-shape]
 insert = "bar"
@@ -20,6 +24,7 @@ select = "underline"
 [editor.lsp]
 # 服务器语言信息提示
 display-messages = true
+
 
 [editor.whitespace]
 render = "all"

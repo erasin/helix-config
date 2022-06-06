@@ -1,8 +1,7 @@
 # One Light
 
 "attribute" = { fg = "yellow" }
-# "comment" = { fg = "gray", modifiers = ["italic"] }
-"comment" = { fg = "gray", modifiers = [] }
+"comment" = { fg = "gray", modifiers = ["italic"] }
 
 "constant" = { fg = "red" }
 "constant.numeric" = { fg = "gold" }
