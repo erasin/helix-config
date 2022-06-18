@@ -1,22 +1,40 @@
 [[language]]
 name = "bash"
-file-types = ["sh", "bash", "zsh", ".bash_login", ".bash_logout", ".bash_profile", ".bashrc", ".profile", ".zshenv", ".zlogin", ".zlogout", ".zprofile", ".zshrc", ".bash_alias", ".bash_path"]
+file-types = [
+  "sh",
+  "bash",
+  "zsh",
+  ".bash_login",
+  ".bash_logout",
+  ".bash_profile",
+  ".bashrc",
+  ".profile",
+  ".zshenv",
+  ".zlogin",
+  ".zlogout",
+  ".zprofile",
+  ".zshrc",
+  ".bash_alias",
+  ".bash_path",
+]
 
 
 [[language]]
 name = "python"
+file-types = ["py", "pyi"]
 language-server = { command = "pyright-langserver", args = ["--stdio"] }
-config = """
-{
-  "python": {
-    "analysis": {
-      "autoSearchPaths": true,
-      "diagnosticMode": "workspace",
-      "useLibraryCodeForTypes": true
-    }
-  }
-}
-"""
+config = { python = { "analysis" = { "autoSearchPaths" = true, "diagnosticMode" = "workspace", "useLibraryCodeForTypes" = true } } }
+# config = """
+# {
+#   "python": {
+#     "analysis": {
+#       "autoSearchPaths": true,
+#       "diagnosticMode": "workspace",
+#       "useLibraryCodeForTypes": true
+#     }
+#   }
+# }
+# """
 
 
 [[language]]
@@ -41,7 +59,7 @@ indent = { tab-width = 2, unit = "  " }
 name = "plantuml"
 scope = "source.puml"
 injection-regex = "plantuml"
-file-types = ["puml","pu","wsd"]
+file-types = ["puml", "pu", "wsd"]
 roots = []
 comment-token = "'"
 indent = { tab-width = 2, unit = "  " }
@@ -58,13 +76,18 @@ file-types = ["hx"]
 roots = []
 comment-token = "//"
 indent = { tab-width = 4, unit = "    " }
-language-server = { command = "haxe-language-server", args = ["-D", "display-stdin", "--wait", "stdio"] }
+language-server = { command = "haxe-language-server", args = [
+  "-D",
+  "display-stdin",
+  "--wait",
+  "stdio",
+] }
 auto-format = true
 # https://github.com/vshaxe/haxe-language-server
 
 [[grammar]]
 name = "haxe"
-source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "63f5fcc144444e66ad146094174680ec8d24e361"  }
+source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "63f5fcc144444e66ad146094174680ec8d24e361" }
 
 
 [[language]]
@@ -79,21 +102,49 @@ language-server = { command = "dot-language-server", args = ["--stdio"] }
 
 [[grammar]]
 name = "dot"
-source = { git = "https://github.com/rydesun/tree-sitter-dot", rev = "917230743aa10f45a408fea2ddb54bbbf5fbe7b7"  }
+source = { git = "https://github.com/rydesun/tree-sitter-dot", rev = "917230743aa10f45a408fea2ddb54bbbf5fbe7b7" }
 
 
 [[language]]
 name = "glsl"
-file-types = ["glsl", "vert", "tesc", "tese", "geom", "frag", "comp", "shader" ]
-
-
-# 项目如果使用deno,项目根目录下使用 .helix/languages.toml
-# [[language]]
-# name = "typescript"
-# file-types = ["ts","js"]
-# language-server = { command = "deno", args = [ "lsp", ], language-id = "typescript" }
-# config = { deno = { enable = true, lint = true, unstable = true, suggest.imports.hosts = { "https://deno.land" = true } } }
+file-types = ["glsl", "vert", "tesc", "tese", "geom", "frag", "comp", "shader"]
 
 [[grammar]]
 name = "svelte"
 source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "cfa3f0ac82cd680b4efaa090a0f78035ad43a7c6" }
+
+[[language]]
+name = "http"
+scope = "source.http"
+injection-regex = "http"
+file-types = ["http", "rest"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+# language-server = { command = "", args = ["--stdio"] }
+
+[[grammar]]
+name = "http"
+source = { git = "https://github.com/NTBBloodbath/tree-sitter-http", rev = "bfddd16b1cf78e0042fd1f6846a179f76a254e20" }
+
+[[language]]
+name = "gdscript"
+language-server = { command = "nc", args = ["127.0.0.1", "6008"] } # 通过 nc 转发
+
+
+# [[language]]
+# name = "just"
+# scope = ""
+# injection-regex = "just"
+# file-types = ["justfile", "Justfile", ".justfile", ".Justfile"]
+# roots = ["justfile"]
+# comment-token = "#"
+# indent = { tab-width = 4, unit = "\t" }
+
+# [[grammar]]
+# name = "just"
+# source = { git = "https://github.com/IndianBoy42/tree-sitter-just", rev = "5d5d4658aa856803aa6740e0527a33a7c2e028fb" }
+
+# [[language]]
+# name = "json"
+# indent = { tab-width = 4, unit = "    " }

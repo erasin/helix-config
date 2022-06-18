@@ -1,4 +1,4 @@
-theme = "onedark_local" 
+theme = "onelight_local" 
 
 [editor]
 # absolute / relative
@@ -26,14 +26,14 @@ select = "underline"
 display-messages = true
 
 
-[editor.whitespace]
-render = "all"
+# [editor.whitespace]
+# render = "all"
 
 # all / none
-# [editor.whitespace.render]
-# space = "all"
-# tab = "all"
-# newline = "all"
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+newline = "all"
 
 [editor.whitespace.characters]
 space = "·"
@@ -55,7 +55,9 @@ C-q = "suspend"
 "A-/" = "toggle_comments"
 "esc" = [":sh macism com.apple.keylayout.ABC","normal_mode"]
 "X" = "extend_line_up"
+"C-R" = ":config-reload"
 "Z" = { "Z" = ":q!"}
+"A-." = "completion"
 
 [keys.insert]
 "A-x" = "normal_mode" # Maps Alt-X to enter normal mode

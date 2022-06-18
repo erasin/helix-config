@@ -1,3 +1,6 @@
+
+# config = { deno = { enable = true, lint = true, unstable = true, suggest.imports.hosts = { "https://deno.land" = true } } }
+
 [[language]]
 name = "javascript"
 scope = "source.js"
@@ -44,3 +47,5 @@ roots = ["deno.json", "package.json", "tsconfig.json"]
 config = { enable = true, lint = true, unstable = true }
 language-server = { command = "deno", args = ["lsp"], language-id = "typescriptreact" }
 indent = { tab-width = 2, unit = "  " }
+
+
