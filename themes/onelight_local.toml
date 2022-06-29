@@ -36,8 +36,8 @@
 "punctuation.delimiter" = "black"
 # "punctuation.bracket" = "black"
 
-"variable" = { fg = "red" }
-"variable.builtin" = { fg = "blue" }
+"variable" = { fg = "black" }
+"variable.builtin" = { fg = "light-blue" }
 "variable.parameter" = { fg = "blue" }
 "variable.other.member" = { fg = "red" }
 
@@ -69,16 +69,20 @@
 
 "ui.background" = { bg = "white" }
 
-"ui.cursor" = { fg = "white", bg = "black" }
+"ui.cursor" = { fg = "white", bg = "gray" }
 "ui.cursor.primary" = { fg = "white", bg = "black" }
-"ui.cursor.match" = { fg = "white", bg = "purple" }
+"ui.cursor.match" = { bg="light-gray" }
+
+"ui.cursorline.primary" = { fg = "white", bg = "light-grey-50" }
+"ui.cursorline.secondary" = { fg = "white", bg = "light-white" }
 
 "ui.highlight" = { bg = "light-white" }
 
-"ui.selection" = { bg = "light-white" }
-"ui.selection.primary" = { bg = "light-white", modifiers = [] }
+"ui.selection" = { modifiers = ["reversed"] }
+"ui.selection.primary" = { bg = "light-white" }
 
 "ui.virtual" = { fg = "light-white" }
+"ui.virtual.indent-guide" = { fg = "linenr" }
 "ui.virtual.ruler" = { bg = "light-white" }
 "ui.virtual.whitespace" = { fg = "light-white" }
 
@@ -108,9 +112,7 @@ green = "#24A443"
 gold = "#F57F17"
 cyan = "#0086C1"
 black = "#282C34"
-light-white = "#EAEAEB"
+light-grey-50 = "#EEEEEE"
+light-white = "#E0E0E0"
 gray = "#5C6370"
-linenr = "#9D9D9F"
-
-
-# bg="#F6F6F6"
+linenr = "#9E9E9E"

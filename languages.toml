@@ -42,7 +42,7 @@ name = "markdown"
 indent = { tab-width = 4, unit = "    " }
 # language-server = { command = "common-mark-language-server", args = [] }
 # language-server = { command = "remark-language-server", args = [] }
-# language-server = { command = "unified-language-server", args = ["--stdio"] }
+language-server = { command = "unified-language-server", args = ["--parser=remark-parse","--stdio"] }
 
 [[language]]
 name = "beancount"
@@ -148,3 +148,4 @@ language-server = { command = "nc", args = ["127.0.0.1", "6008"] } # 通过 nc �
 # [[language]]
 # name = "json"
 # indent = { tab-width = 4, unit = "    " }
+
