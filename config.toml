@@ -15,7 +15,7 @@ true-color = true
 # gutters = ["diagnostics"] # default is ["diagnostics", "line-numbers"]
 auto-completion = true
 
-cursorline = true
+# cursorline = true
 
 [editor.cursor-shape]
 insert = "bar"
