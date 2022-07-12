@@ -1,4 +1,5 @@
 # One Light
+# Author : erasin<erasinoo@gmail.com>
 
 "attribute" = { fg = "yellow" }
 "comment" = { fg = "gray", modifiers = ["italic"] }
@@ -15,26 +16,28 @@
 "function.macro" = { fg = "red" }
 
 "keyword" = { fg = "purple" }
+"keyword.function" = { fg = "purple" }
 "keyword.control" = { fg = "purple" }
 "keyword.control.import" = { fg = "purple" }
 "keyword.directive" = { fg = "purple" }
 "keyword.operator" = { fg = "purple" }
+"keyword.storage.type" = { fg = "purple" }
 
-"tag" = "yellow"
+"tag" = "cyan"
 "label" = { fg = "cyan" }
 "namespace" = { fg = "red" }
 "operator" = { fg = "red" }
 "property" = { fg = "red" }
-"special" = { fg = "blue" }
+"special" = { fg = "purple" }
 "string" = { fg = "green" }
 "module" = { fg = "cyan" }
 
 "type" = { fg = "yellow" }
-"type.builtin" = "purple"
+"type.builtin" = { fg = "purple" }
 
-"punctuation" = "gray"
-"punctuation.delimiter" = "black"
-# "punctuation.bracket" = "black"
+"punctuation" = { fg = "gray" }
+"punctuation.delimiter" = { fg = "black" }
+"punctuation.bracket" = { fg = "gray" }
 
 "variable" = { fg = "black" }
 "variable.builtin" = { fg = "light-blue" }
@@ -42,12 +45,12 @@
 "variable.other.member" = { fg = "red" }
 
 "markup.heading" = { fg = "red" }
-# "markup.raw" = { bg = "light-white" }
-"markup.raw.inline" = { fg = "green", bg = "light-white" }
+"markup.raw" = { fg = "gray" }
+"markup.raw.inline" = { fg = "green", bg = "grey-200" }
 "markup.bold" = { fg = "yellow", modifiers = ["bold"] }
 "markup.italic" = { fg = "purple", modifiers = ["italic"] }
-"markup.list" = { fg = "red" }
-"markup.quote" = { fg = "yellow" }
+"markup.list" = { fg = "light-blue" }
+"markup.quote" = { fg = "gray" }
 "markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
 "markup.link.text" = { fg = "light-blue" }
 "markup.heading.1" = { fg = "red", modifiers = ["bold"] }
@@ -62,6 +65,10 @@
 "diff.minus" = "red"
 
 "diagnostic" = { modifiers = ["underlined"] }
+"diagnostic.info" = { modifiers = ["undercurled"] }
+"diagnostic.hint" = { modifiers = ["underlined"] }
+"diagnostic.warning" = { modifiers = ["underlined"] }
+"diagnostic.error" = { modifiers = ["undercurled"] }
 "info" = { fg = "blue", modifiers = ["bold"] }
 "hint" = { fg = "green", modifiers = ["bold"] }
 "warning" = { fg = "yellow", modifiers = ["bold"] }
@@ -78,7 +85,7 @@
 
 "ui.highlight" = { bg = "light-white" }
 
-"ui.selection" = { modifiers = ["reversed"] }
+"ui.selection" = { bg="light-white", modifiers = ["dim"] }
 "ui.selection.primary" = { bg = "light-white" }
 
 "ui.virtual" = { fg = "light-white" }
@@ -95,21 +102,21 @@
 "ui.text" = { fg = "black" }
 "ui.text.focus" = { fg = "red", bg = "light-white", modifiers = ["bold"] }
 
-"ui.help" = { bg = "light-white" }
-"ui.popup" = { bg = "grey-200" }
-"ui.window" = { bg = "grey-200" }
-"ui.menu" = { bg = "grey-200" }
+"ui.help" = { fg = "black", bg = "light-white" }
+"ui.popup" = { fg = "black", bg = "grey-200" }
+"ui.window" = { fg = "black", bg = "grey-200" }
+"ui.menu" = { fg = "black", bg = "grey-200" }
 "ui.menu.selected" = { fg = "white", bg = "light-blue" }
 
 [palette]
 white = "#FAFAFA"
-yellow = "#D35400"
+yellow = "#A06600"
 blue = "#0061FF"
 light-blue = "#1877F2"
 red = "#DC003F"
 purple = "#B500A9"
 green = "#24A443"
-gold = "#F39C12"
+gold = "#D35400"
 cyan = "#0086C1"
 black = "#282C34"
 light-white = "#E0E0E0"

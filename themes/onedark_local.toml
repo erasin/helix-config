@@ -17,10 +17,12 @@
 "function.macro" = { fg = "purple" }
 
 "keyword" = { fg = "purple" }
+"keyword.function" = { fg = "purple" }
 "keyword.control" = { fg = "purple" }
 "keyword.control.import" = { fg = "red" }
 "keyword.directive" = { fg = "purple" }
 "keyword.operator" = { fg = "purple" }
+"keyword.storage.type" = { fg = "purple" }
 
 "tag" = "yellow"
 "label" = { fg = "purple" }

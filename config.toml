@@ -1,5 +1,6 @@
 theme = "onelight_local"
 
+
 [editor]
 # absolute / relative
 # line-number = "relative"
@@ -17,6 +18,8 @@ auto-completion = true
 
 # cursorline = true
 
+idle-timeout = 40
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -25,7 +28,6 @@ select = "underline"
 [editor.lsp]
 # 服务器语言信息提示
 display-messages = true
-
 
 # [editor.whitespace]
 # render = "all"
@@ -44,21 +46,22 @@ newline = "⏎"
 
 [editor.indent-guides]
 render = true
-character = "╎"
+character = "│"
+# character = "╎"
 
-# DEV 
-# [editor.status-line]
-# left = ["mode", "spinner","file-name"]
-# center = []
-# right = ["diagnostics", "selections", "position", "file-encoding", "file-type"]
+# DEV
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+center = []
+right = ["diagnostics", "selections", "position", "file-encoding", "file-type"]
 
 [keys.normal]
-C-s = ":w"
 C-r = ":reload"
 C-z = "normal_mode"                                           # replace suspend
 C-q = "suspend"
 "A-/" = "toggle_comments"
-"esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
+# "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
+"esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
 "X" = "extend_line_up"
 "Z" = { "Z" = ":q!", "r" = ":config-reload" }
 "A-." = "completion"
@@ -70,4 +73,5 @@ x = ":bc"
 [keys.insert]
 "A-x" = "normal_mode" # Maps Alt-X to enter normal mode
 # j = { k = "normal_mode" } # Maps `jk` to exit insert modes
-"esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
+"esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
+
