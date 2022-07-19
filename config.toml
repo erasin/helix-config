@@ -1,6 +1,5 @@
 theme = "onelight_local"
 
-
 [editor]
 # absolute / relative
 # line-number = "relative"
@@ -15,8 +14,8 @@ true-color = true
 # terminal = { cmd = "tmux", args = ["split-window"] }
 # gutters = ["diagnostics"] # default is ["diagnostics", "line-numbers"]
 auto-completion = true
-
 # cursorline = true
+color-modes = true
 
 idle-timeout = 40
 
@@ -63,11 +62,11 @@ C-q = "suspend"
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
 "esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
 "X" = "extend_line_up"
-"Z" = { "Z" = ":q!", "r" = ":config-reload" }
 "A-." = "completion"
+Z = {"Z" = ":quit!"}
 
 [keys.normal.space]
-z = ":quit"
+# z = ":quit"
 x = ":bc"
 
 [keys.insert]
