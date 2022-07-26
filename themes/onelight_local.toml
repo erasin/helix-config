@@ -65,6 +65,7 @@
 "diff.minus" = "red"
 
 "diagnostic" = { modifiers = ["underlined"] }
+# dev: undercurled
 "diagnostic.info" = { modifiers = ["undercurled"] }
 "diagnostic.hint" = { modifiers = ["underlined"] }
 "diagnostic.warning" = { modifiers = ["underlined"] }
@@ -110,6 +111,13 @@
 "ui.window" = { fg = "black", bg = "grey-200" }
 "ui.menu" = { fg = "black", bg = "grey-200" }
 "ui.menu.selected" = { fg = "white", bg = "light-blue" }
+
+# dev: tree
+# "ui.explorer.dir" = { fg = "yellow" }
+# "ui.explorer.file" = { fg = "dark" }
+# "ui.explorer.guide" = { bg = "" }
+# "ui.explorer.border" = { fg = "dark" }
+# "ui.explorer.backgound" = { bg = "light-white" }
 
 [palette]
 white = "#FAFAFA"

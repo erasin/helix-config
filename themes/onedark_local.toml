@@ -60,6 +60,11 @@
 "diff.minus" = "red"
 
 "diagnostic" = { modifiers = ["underlined"] }
+# dev: undercurled
+"diagnostic.info" = { modifiers = ["undercurled"] }
+"diagnostic.hint" = { modifiers = ["underlined"] }
+"diagnostic.warning" = { modifiers = ["underlined"] }
+"diagnostic.error" = { modifiers = ["undercurled"] }
 "info" = { fg = "blue", modifiers = ["bold"] }
 "hint" = { fg = "green", modifiers = ["bold"] }
 "warning" = { fg = "yellow", modifiers = ["bold"] }

@@ -17,7 +17,17 @@ file-types = [
   ".bash_alias",
   ".bash_path",
 ]
+[[language]]
+name = "typescript"
+config = { hostInfo = "helix", locale = "zh-CN" }
 
+[[language]]
+name = "tsx"
+config = { hostInfo = "helix", locale = "zh-CN" }
+
+# [[language]]
+# name = "php"
+# config = { licenceKey= "", locale = "zh-CN" }
 
 [[language]]
 name = "python"
@@ -43,7 +53,10 @@ indent = { tab-width = 4, unit = "    " }
 file-types = ["md", "markdown"]
 # language-server = { command = "common-mark-language-server", args = [] }
 # language-server = { command = "remark-language-server", args = [] }
-language-server = { command = "unified-language-server", args = ["--parser=remark-parse","--stdio"], language-id = "markdown" }
+language-server = { command = "unified-language-server", args = [
+  "--parser=remark-parse",
+  "--stdio",
+], language-id = "markdown" }
 
 [[language]]
 name = "beancount"
@@ -77,12 +90,9 @@ file-types = ["hx"]
 roots = [".git"]
 comment-token = "//"
 indent = { tab-width = 4, unit = "    " }
-language-server = { command = "haxe-language-server", args = [
-  "-D",
-  "display-stdin",
-  "--wait",
-  "stdio",
-] }
+language-server = { command = "node", args = [
+  "/Users/erasin/.vscode/extensions/nadako.vshaxe-2.24.0/bin/server.js",
+], language-id = "Haxe" }
 auto-format = true
 # https://github.com/vshaxe/haxe-language-server
 
@@ -98,7 +108,7 @@ injection-regex = "dot"
 file-types = ["dot"]
 roots = []
 comment-token = "//"
-indent = { tab-width = 2, unit = "  " }
+indent = { tab-width = 4, unit = "    " }
 language-server = { command = "dot-language-server", args = ["--stdio"] }
 
 [[grammar]]
@@ -108,6 +118,10 @@ source = { git = "https://github.com/rydesun/tree-sitter-dot", rev = "917230743a
 [[language]]
 name = "glsl"
 file-types = ["glsl", "vert", "tesc", "tese", "geom", "frag", "comp", "shader"]
+
+[[grammar]]
+name = "svelte"
+source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "52e122ae68b316d3aa960a0a422d3645ba717f42" }
 
 [[language]]
 name = "ruby"
@@ -149,3 +163,24 @@ language-server = { command = "nc", args = ["127.0.0.1", "6008"] } # 通过 nc �
 # name = "json"
 # indent = { tab-width = 4, unit = "    " }
 
+# [[language]]
+# name = "nim"
+# scope = "source.nim"
+# injection-regex = "nim"
+# file-types = ["nim"]
+# roots = [".git"]
+# comment-token = "//"
+# indent = { tab-width = 4, unit = "    " }
+# language-server = { command = "nimlangserve", args = ["--stdio"] }
+
+# [[grammar]]
+# name = "nim"
+# source = { git = "https://github.com/aMOPel/tree-sitter-nim", rev = "ee473d02313040794e5b765f0a8e201bbc311b4b" }
+
+
+[[language]]
+name = "haskell"
+language-server = { command = "haskell-language-server-wrapper", args = [
+  "--lsp",
+  "-d",
+]}

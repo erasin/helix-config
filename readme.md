@@ -9,7 +9,6 @@
 
 使用 [infocmp][infocmp] | rg color 检查是否支持 256color 
 
-
 设定终端 
 
 ```bash
