@@ -17,6 +17,7 @@ file-types = [
   ".bash_alias",
   ".bash_path",
 ]
+
 [[language]]
 name = "typescript"
 config = { hostInfo = "helix", locale = "zh-CN" }
@@ -25,9 +26,9 @@ config = { hostInfo = "helix", locale = "zh-CN" }
 name = "tsx"
 config = { hostInfo = "helix", locale = "zh-CN" }
 
-# [[language]]
-# name = "php"
-# config = { licenceKey= "", locale = "zh-CN" }
+[[language]]
+name = "php"
+config = { licenceKey = "/Users/erasin/.config/php/intelephenser_licence.txt" }
 
 [[language]]
 name = "python"
@@ -127,19 +128,19 @@ source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "52e122
 name = "ruby"
 roots = [".git"]
 
-[[language]]
-name = "http"
-scope = "source.http"
-injection-regex = "http"
-file-types = ["http", "rest"]
-roots = []
-comment-token = "#"
-indent = { tab-width = 2, unit = "  " }
-# language-server = { command = "", args = ["--stdio"] }
+# [[language]]
+# name = "http"
+# scope = "source.http"
+# injection-regex = "http"
+# file-types = ["http", "rest"]
+# roots = []
+# comment-token = "#"
+# indent = { tab-width = 2, unit = "  " }
+# # language-server = { command = "", args = ["--stdio"] }
 
-[[grammar]]
-name = "http"
-source = { git = "https://github.com/NTBBloodbath/tree-sitter-http", rev = "bfddd16b1cf78e0042fd1f6846a179f76a254e20" }
+# [[grammar]]
+# name = "http"
+# source = { git = "/Users/erasin/Development/other/tree-sitter-http/.git", rev = "HEAD" }
 
 [[language]]
 name = "gdscript"
@@ -157,30 +158,5 @@ language-server = { command = "nc", args = ["127.0.0.1", "6008"] } # 通过 nc �
 
 # [[grammar]]
 # name = "just"
-# source = { git = "https://github.com/IndianBoy42/tree-sitter-just", rev = "5d5d4658aa856803aa6740e0527a33a7c2e028fb" }
+# source = { git = "https://github.com/IndianBoy42/tree-sitter-just", rev = "8af0aab79854aaf25b620a52c39485849922f766" }
 
-# [[language]]
-# name = "json"
-# indent = { tab-width = 4, unit = "    " }
-
-# [[language]]
-# name = "nim"
-# scope = "source.nim"
-# injection-regex = "nim"
-# file-types = ["nim"]
-# roots = [".git"]
-# comment-token = "//"
-# indent = { tab-width = 4, unit = "    " }
-# language-server = { command = "nimlangserve", args = ["--stdio"] }
-
-# [[grammar]]
-# name = "nim"
-# source = { git = "https://github.com/aMOPel/tree-sitter-nim", rev = "ee473d02313040794e5b765f0a8e201bbc311b4b" }
-
-
-[[language]]
-name = "haskell"
-language-server = { command = "haskell-language-server-wrapper", args = [
-  "--lsp",
-  "-d",
-]}

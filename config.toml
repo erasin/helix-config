@@ -1,33 +1,33 @@
-theme = "onelight_local"
+theme = "onelight_local"  
 
-[editor]
-# absolute / relative
-# line-number = "relative"
-# rulers = [80]
+[editor] 
+# absolute / relative 
+# line-number = "relative" 
+# rulers = [80]  
+# 使用 infocmp | rg color 检查是否支持 256color [终端控制命令 infocmp](http://manual.51yip.com/shell/terminalccmds.html) 
+# 使用 tmux 的时候,追加配置  
+# set -g default-terminal "tmux-256color" 
+# set -ga terminal-overrides ',xterm-256color:Tc' 
+# 需要 export TERM=xterm-256color  
 
-# 使用 infocmp | rg color 检查是否支持 256color [终端控制命令 infocmp](http://manual.51yip.com/shell/terminalccmds.html)
-# 使用 tmux 的时候,追加配置 
-# set -g default-terminal "tmux-256color"
-# set -ga terminal-overrides ',xterm-256color:Tc'
-# 需要 export TERM=xterm-256color 
-true-color = true
-# terminal = { cmd = "tmux", args = ["split-window"] }
-# gutters = ["diagnostics","padding"] # default is ["diagnostics", "line-numbers", "padding"]
-# gutters = ["diagnostics", "line-numbers", "padding"]
-auto-completion = true
-# cursorline = true
-color-modes = true
+true-color = true 
+# terminal = { cmd = "tmux", args = ["split-window"] } 
+# gutters = ["diagnostics","padding"] 
+# default is ["diagnostics", "line-numbers", "padding"] 
+# gutters = ["diagnostics", "line-numbers", "padding"] 
 
-idle-timeout = 40
+auto-completion = true 
+cursorline = true 
+color-modes = true  
+idle-timeout = 40  
 
-[editor.cursor-shape]
-insert = "bar"
-normal = "block"
+[editor.cursor-shape] 
+insert = "bar" 
+normal = "block" 
 select = "underline"
 
-[editor.lsp]
-# 服务器语言信息提示
-display-messages = true
+[editor.lsp] 
+# 服务器语言信息提示 display-messages = true  
 
 # [editor.whitespace]
 # render = "all"
@@ -50,9 +50,17 @@ character = "│"
 # character = "╎"
 
 [editor.statusline]
-left = ["mode", "spinner", "file-name"]
-center = []
-right = ["diagnostics", "selections", "position","file-line-ending", "file-encoding", "file-type"]
+left = ["mode", "spacer", "spinner", "file-name"]
+center = ["diagnostics"]
+right = [
+  "selections",
+  "position",
+  "position-percentage",
+  "file-encoding",
+  "file-line-ending",
+  "file-type",
+]
+separator = "│"
 
 # [editor.explorer]
 # style = "tree"
@@ -61,14 +69,14 @@ right = ["diagnostics", "selections", "position","file-line-ending", "file-encod
 
 [keys.normal]
 C-r = ":reload"
-C-z = "normal_mode"                                           # replace suspend
+C-z = "normal_mode"       # replace suspend
 C-q = ":quit"
 "A-/" = "toggle_comments"
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
 "esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
 "X" = "extend_line_above"
 "A-." = "completion"
-Z = {"Z" = ":quit!"}
+Z = { "Z" = ":quit!" }
 
 [keys.normal.space]
 # z = ":quit"
