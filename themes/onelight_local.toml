@@ -36,7 +36,7 @@
 "type.builtin" = { fg = "purple" }
 
 "punctuation" = { fg = "gray" }
-"punctuation.delimiter" = { fg = "black" }
+"punctuation.delimiter" = { fg = "purple" }
 "punctuation.bracket" = { fg = "gray" }
 
 "variable" = { fg = "black" }
@@ -46,7 +46,7 @@
 
 "markup.heading" = { fg = "red" }
 "markup.raw" = { fg = "gray" }
-"markup.raw.inline" = { fg = "green", bg = "grey-200" }
+"markup.raw.inline" = { fg = "green" }
 "markup.bold" = { fg = "yellow", modifiers = ["bold"] }
 "markup.italic" = { fg = "purple", modifiers = ["italic"] }
 "markup.list" = { fg = "light-blue" }
@@ -66,10 +66,16 @@
 
 "diagnostic" = { modifiers = ["underlined"] }
 # dev: undercurled
-"diagnostic.info" = { modifiers = ["undercurled"] }
+# undercurled
+# underdashed
+# underdotted
+# double-underline
+
+"diagnostic.info" = { modifiers = ["underlined"] }
 "diagnostic.hint" = { modifiers = ["underlined"] }
-"diagnostic.warning" = { modifiers = ["underlined"] }
+"diagnostic.warning" = { modifiers = ["undercurled"] }
 "diagnostic.error" = { modifiers = ["undercurled"] }
+
 "info" = { fg = "blue", modifiers = ["bold"] }
 "hint" = { fg = "green", modifiers = ["bold"] }
 "warning" = { fg = "yellow", modifiers = ["bold"] }
@@ -79,6 +85,7 @@
 
 "ui.cursor" = { fg = "white", bg = "gray" }
 "ui.cursor.primary" = { fg = "white", bg = "black" }
+ # modifiers = ["reversed"] }
 "ui.cursor.match" = { bg = "light-gray" }
 
 "ui.cursorline.primary" = { fg = "white", bg = "grey-100" }
@@ -98,7 +105,7 @@
 "ui.linenr.selected" = { fg = "black", modifiers = ["dim"] }
 
 "ui.statusline" = { fg = "black", bg = "light-white" }
-"ui.statusline.inactive" = { fg = "gray", bg = "light-white" }
+"ui.statusline.inactive" = { fg = "gray", bg = "grey-200" }
 "ui.statusline.normal" = { fg = "light-white", bg = "light-blue" }
 "ui.statusline.insert" = { fg = "light-white", bg = "green" }
 "ui.statusline.select" = { fg = "light-white", bg = "purple" }
@@ -108,12 +115,13 @@
 
 "ui.help" = { fg = "black", bg = "grey-200" }
 "ui.popup" = { fg = "black", bg = "grey-200" }
-"ui.window" = { fg = "black", bg = "light-white" }
+"ui.window" = { fg = "grey-500", bg = "grey-100" }
 "ui.menu" = { fg = "black", bg = "light-white" }
 "ui.menu.selected" = { fg = "white", bg = "light-blue" }
 
 [palette]
 white = "#FAFAFA"
+# white = "#F0F0E8"
 yellow = "#A06600"
 blue = "#0061FF"
 light-blue = "#1877F2"

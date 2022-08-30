@@ -1,33 +1,35 @@
-theme = "onelight_local"  
+theme = "onelight_local"
 
-[editor] 
-# absolute / relative 
+[editor]
+# 行号类型 absolute / relative 
 # line-number = "relative" 
+# 标尺
 # rulers = [80]  
+
+# 真彩支持
 # 使用 infocmp | rg color 检查是否支持 256color [终端控制命令 infocmp](http://manual.51yip.com/shell/terminalccmds.html) 
 # 使用 tmux 的时候,追加配置  
 # set -g default-terminal "tmux-256color" 
 # set -ga terminal-overrides ',xterm-256color:Tc' 
 # 需要 export TERM=xterm-256color  
+true-color = true
 
-true-color = true 
-# terminal = { cmd = "tmux", args = ["split-window"] } 
-# gutters = ["diagnostics","padding"] 
-# default is ["diagnostics", "line-numbers", "padding"] 
-# gutters = ["diagnostics", "line-numbers", "padding"] 
+# 查看代码 view/src/editor # Config > default 
+gutters = ["diagnostics", "diff-sign", "line-numbers"] 
 
-auto-completion = true 
-cursorline = true 
-color-modes = true  
-idle-timeout = 40  
+auto-completion = true
+cursorline = true
+color-modes = true
+idle-timeout = 40
 
-[editor.cursor-shape] 
-insert = "bar" 
-normal = "block" 
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
 select = "underline"
 
-[editor.lsp] 
-# 服务器语言信息提示 display-messages = true  
+[editor.lsp]
+# 服务器语言信息提示 
+display-messages = true
 
 # [editor.whitespace]
 # render = "all"
@@ -68,22 +70,31 @@ separator = "│"
 # column-width = 30
 
 [keys.normal]
+C-s = ":w"
+C-j = "save_selection"
 C-r = ":reload"
 C-z = "normal_mode"       # replace suspend
 C-q = ":quit"
 "A-/" = "toggle_comments"
-# "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
-"esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
+"\\" = ":reflow"
 "X" = "extend_line_above"
 "A-." = "completion"
 Z = { "Z" = ":quit!" }
+
+# macos 自动切换到英文环境
+# 这里使用 自定义键盘 abc1 , 是对alacritty 和 macos 的注音标记 dead key 兼容
+# "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
+"esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
+g = { D = "goto_definition_other_window" }
 
 [keys.normal.space]
 # z = ":quit"
 x = ":bc"
 "." = "file_picker_in_buffer_directory" # dev 
+w = { r = ":config-reload" }
 
 [keys.insert]
 "A-x" = "normal_mode" # Maps Alt-X to enter normal mode
 # j = { k = "normal_mode" } # Maps `jk` to exit insert modes
+
 "esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]

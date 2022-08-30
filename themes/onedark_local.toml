@@ -61,16 +61,18 @@
 
 "diagnostic" = { modifiers = ["underlined"] }
 # dev: undercurled
-"diagnostic.info" = { modifiers = ["undercurled"] }
+
+"diagnostic.info" = { modifiers = ["underlined"] }
 "diagnostic.hint" = { modifiers = ["underlined"] }
-"diagnostic.warning" = { modifiers = ["underlined"] }
+"diagnostic.warning" = { modifiers = ["undercurled"] }
 "diagnostic.error" = { modifiers = ["undercurled"] }
+
 "info" = { fg = "blue", modifiers = ["bold"] }
 "hint" = { fg = "green", modifiers = ["bold"] }
 "warning" = { fg = "yellow", modifiers = ["bold"] }
 "error" = { fg = "red", modifiers = ["bold"] }
 
-"ui.background" = { bg = "black" }
+"ui.background" = { fg="white", bg = "black" }
 "ui.virtual" = { fg = "faint-gray" }
 "ui.virtual.indent-guide" = { fg = "light-gray" }
 "ui.virtual.whitespace" = { fg = "faint-gray" }
@@ -96,11 +98,12 @@
 "ui.text" = { fg = "white" }
 "ui.text.focus" = { fg = "white", bg = "light-black", modifiers = ["bold"] }
 
-"ui.help" = { bg = "gray" }
-"ui.popup" = { bg = "gray" }
-"ui.window" = { bg = "black" }
+"ui.help" = { fg = "white", bg = "gray" }
+"ui.popup" = { fg = "white", bg = "gray" }
+"ui.window" = { fg = "gray" }
 "ui.menu" = { fg = "white", bg = "gray" }
 "ui.menu.selected" = { fg = "black", bg = "blue" }
+"ui.menu.scroll" = { fg = "white", bg = "light-gray" }
 
 [palette]
 
