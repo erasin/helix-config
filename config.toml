@@ -14,6 +14,7 @@ theme = "onelight_local"
 # 需要 export TERM=xterm-256color  
 true-color = true
 
+# [pr#1623] 自定义了类型 diff-sign 
 # 查看代码 view/src/editor # Config > default 
 gutters = ["diagnostics", "diff-sign", "line-numbers"] 
 
@@ -70,31 +71,33 @@ separator = "│"
 # column-width = 30
 
 [keys.normal]
-C-s = ":w"
-C-j = "save_selection"
-C-r = ":reload"
-C-z = "normal_mode"       # replace suspend
-C-q = ":quit"
+"C-s" = ":w"
+"C-j" = "save_selection"
+"C-r" = ":reload"
+"C-z" = "normal_mode"     # replace suspend
+"C-q" = ":quit"
 "A-/" = "toggle_comments"
 "\\" = ":reflow"
 "X" = "extend_line_above"
 "A-." = "completion"
-Z = { "Z" = ":quit!" }
+"Z" = { "Z" = ":quit!" }
 
 # macos 自动切换到英文环境
 # 这里使用 自定义键盘 abc1 , 是对alacritty 和 macos 的注音标记 dead key 兼容
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
+# 这里使用消除 macos dead key 的自定义 keyboard layout
 "esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
-g = { D = "goto_definition_other_window" }
+# dev [pr#]
+"g" = { "D" = ["goto_definition_other_window"] }
 
+# space
 [keys.normal.space]
-# z = ":quit"
-x = ":bc"
-"." = "file_picker_in_buffer_directory" # dev 
-w = { r = ":config-reload" }
+"x" = ":buffer-close"
+"w" = { "r" = ":config-reload" }
+# dev 
+"." = "file_picker_in_buffer_directory"
 
 [keys.insert]
-"A-x" = "normal_mode" # Maps Alt-X to enter normal mode
-# j = { k = "normal_mode" } # Maps `jk` to exit insert modes
-
 "esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
+
+# [keys.select]

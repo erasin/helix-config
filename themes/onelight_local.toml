@@ -61,7 +61,7 @@
 "markup.heading.6" = { fg = "purple", modifiers = ["bold"] }
 
 "diff.plus" = "green"
-"diff.delta" = "gold"
+"diff.delta" = "cyan"
 "diff.minus" = "red"
 
 "diagnostic" = { modifiers = ["underlined"] }

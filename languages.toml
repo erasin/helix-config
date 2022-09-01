@@ -58,7 +58,17 @@ language-server = { command = "nc", args = ["127.0.0.1", "6008"] } # 通过 nc �
 
 [[language]]
 name = "glsl"
-file-types = ["glsl", "vert", "tesc", "tese", "geom", "frag", "comp", "shader"]
+file-types = [
+  "glsl",
+  "vert",
+  "tesc",
+  "tese",
+  "geom",
+  "frag",
+  "comp",
+  "gdshader",
+  "gdshaderinc",
+]
 
 [[grammar]]
 name = "wgsl"
@@ -105,3 +115,15 @@ indent = { tab-width = 2, unit = "  " }
 # name = "http"
 # source = { git = "/Users/erasin/Development/other/tree-sitter-http/", rev = "HEAD" }
 
+[[language]]
+name = "reStructuredText"
+scope = "source.rst"
+injection-regex = "rst"
+file-types = ["rst"] 
+roots = []
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "reStructuredText"
+source = { git = "https://github.com/stsewd/tree-sitter-rst", rev = "25e6328872ac3a764ba8b926aea12719741103f1"}

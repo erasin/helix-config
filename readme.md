@@ -1,5 +1,3 @@
-
-
 # 使用 helix editor
 
 ## 概念简介
@@ -9,7 +7,7 @@
 
 使用 [infocmp][infocmp] | rg color 检查是否支持 256color 
 
-设定终端 
+设定终端
 
 ```bash
 export TERM=xterm-256color 
@@ -96,3 +94,10 @@ echo -e '\e[4:3m\e[58;2;240;143;104mtruecolor underline (new in 0.52) (*)\e[59m\
 
 
 [infocmp]: http://manual.51yip.com/shell/terminalccmds.html
+
+
+## 快捷键 remaping
+
+如果使用了不存在的命令提示错误 
+
+`Bad config: data did not match any variant of untagged enum KeyTrie for key keys.normal at line x column y`
