@@ -25,9 +25,9 @@
 
 "tag" = "cyan"
 "label" = { fg = "cyan" }
-"namespace" = { fg = "red" }
+"namespace" = { fg = "blue" }
 "operator" = { fg = "red" }
-"property" = { fg = "red" }
+"property" = { fg = "purple" }
 "special" = { fg = "purple" }
 "string" = { fg = "green" }
 "module" = { fg = "cyan" }
@@ -64,17 +64,10 @@
 "diff.delta" = "cyan"
 "diff.minus" = "red"
 
-"diagnostic" = { modifiers = ["underlined"] }
-# dev: undercurled
-# undercurled
-# underdashed
-# underdotted
-# double-underline
-
-"diagnostic.info" = { modifiers = ["underlined"] }
-"diagnostic.hint" = { modifiers = ["underlined"] }
-"diagnostic.warning" = { modifiers = ["undercurled"] }
-"diagnostic.error" = { modifiers = ["undercurled"] }
+"diagnostic.info".underline = { color = "blue", style = "curl" } 
+"diagnostic.hint".underline = { color = "green", style = "curl" } 
+"diagnostic.warning".underline = { color = "yellow", style = "curl" } 
+"diagnostic.error".underline = { color = "red", style = "curl" } 
 
 "info" = { fg = "blue", modifiers = ["bold"] }
 "hint" = { fg = "green", modifiers = ["bold"] }
@@ -121,6 +114,7 @@
 
 [palette]
 white = "#FAFAFA"
+# white = "#FFF9E6"
 # white = "#F0F0E8"
 yellow = "#A06600"
 blue = "#0061FF"

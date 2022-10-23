@@ -14,9 +14,10 @@ theme = "onelight_local"
 # 需要 export TERM=xterm-256color  
 true-color = true
 
-# [pr#1623] 自定义了类型 diff-sign 
-# 查看代码 view/src/editor # Config > default 
-gutters = ["diagnostics", "diff-sign", "line-numbers"] 
+# dev [pr#3890] 自定义了类型 diff 
+# 支持 diagnostics, line-numbers, spacer, diff
+gutters = ["diagnostics", "diff", "line-numbers"] 
+# gutters = ["diagnostics", "line-numbers"] 
 
 auto-completion = true
 cursorline = true
@@ -71,6 +72,8 @@ separator = "│"
 # column-width = 30
 
 [keys.normal]
+# use `li` or remap `after insert`
+a = ["move_char_right","insert_mode"]
 "C-s" = ":w"
 "C-j" = "save_selection"
 "C-r" = ":reload"
@@ -87,15 +90,13 @@ separator = "│"
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
 # 这里使用消除 macos dead key 的自定义 keyboard layout
 "esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]
-# dev [pr#]
-"g" = { "D" = ["goto_definition_other_window"] }
 
 # space
 [keys.normal.space]
 "x" = ":buffer-close"
 "w" = { "r" = ":config-reload" }
 # dev 
-"." = "file_picker_in_buffer_directory"
+# "." = "file_picker_in_buffer_directory"
 
 [keys.insert]
 "esc" = [":sh macism org.sil.ukelele.keyboardlayout.abc1.abc1", "normal_mode"]

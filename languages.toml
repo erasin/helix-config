@@ -1,4 +1,4 @@
-# use-grammars ={only= [ "go", "gomod", "gotmpl", "gowork", "rust", "bash", "javascript", "typescript", "jsx", "tsx", "css", "less", "scss", "vue", "svelte", "beancount", "html", "markdown", "toml", "yaml", "python", "php", "bash", "json", "make", "latex", "dot", "lua", "make", "glsl", "wgsl", "gdscript"], except=[]}
+# use-grammars ={only= []}
 
 [[language]]
 name = "bash"
@@ -18,6 +18,7 @@ file-types = [
   ".zshrc",
   ".bash_alias",
   ".bash_path",
+  "host"
 ]
 
 [[language]]
@@ -51,10 +52,16 @@ roots = ["pyproject.toml", "pyrightconfig.json"]
 language-server = { command = "pyright-langserver", args = ["--stdio"] }
 # config = { "analysis" = { "autoSearchPaths" = true, "diagnosticMode" = "workspace", "useLibraryCodeForTypes" = true } }
 config = {}
+# formatter = { command = "black" }
 
 [[language]]
 name = "gdscript"
-language-server = { command = "nc", args = ["127.0.0.1", "6008"] } # 通过 nc 转发
+language-server = { command = "nc", args = ["127.0.0.1", "6005"] } # 通过 nc 转发
+# config = { "locale" = "zh_CN" }
+
+[[language]]
+name = "godot-resource"
+file-types = ["tscn","tres", "godot", "cfg"]
 
 [[language]]
 name = "glsl"
@@ -66,6 +73,7 @@ file-types = [
   "geom",
   "frag",
   "comp",
+  "shader",
   "gdshader",
   "gdshaderinc",
 ]
@@ -84,9 +92,7 @@ name = "markdown"
 indent = { tab-width = 4, unit = "    " }
 file-types = ["md", "markdown"]
 roots = [".git"]
-language-server = { command = "marksman", args = [
-  "server",
-], language-id = "markdown" }
+language-server = { command = "marksman", args = ["server"] }
 
 [[language]]
 name = "plantuml"
@@ -114,16 +120,3 @@ indent = { tab-width = 2, unit = "  " }
 # [[grammar]]
 # name = "http"
 # source = { git = "/Users/erasin/Development/other/tree-sitter-http/", rev = "HEAD" }
-
-[[language]]
-name = "reStructuredText"
-scope = "source.rst"
-injection-regex = "rst"
-file-types = ["rst"] 
-roots = []
-comment-token = "#"
-indent = { tab-width = 4, unit = "    " }
-
-[[grammar]]
-name = "reStructuredText"
-source = { git = "https://github.com/stsewd/tree-sitter-rst", rev = "25e6328872ac3a764ba8b926aea12719741103f1"}

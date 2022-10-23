@@ -62,10 +62,10 @@
 "diagnostic" = { modifiers = ["underlined"] }
 # dev: undercurled
 
-"diagnostic.info" = { modifiers = ["underlined"] }
-"diagnostic.hint" = { modifiers = ["underlined"] }
-"diagnostic.warning" = { modifiers = ["undercurled"] }
-"diagnostic.error" = { modifiers = ["undercurled"] }
+"diagnostic.info".underline = { color = "blue", style = "curl" } 
+"diagnostic.hint".underline = { color = "green", style = "curl" } 
+"diagnostic.warning".underline = { color = "yellow", style = "curl" } 
+"diagnostic.error".underline = { color = "red", style = "curl" } 
 
 "info" = { fg = "blue", modifiers = ["bold"] }
 "hint" = { fg = "green", modifiers = ["bold"] }
