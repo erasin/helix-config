@@ -10,7 +10,8 @@ open -a Alacritty
 # 2. 创建 `快速操作`
 # 3. 右侧，工作流程收到当前 `file or director(文件或文件夹)` 位于 `Finder(访达).app`
 # 4. 搜索 `shell` ， 追加 `运行脚本`
-# 5. 追加执行代码
+# 5. 追加执行代码 shell 选择 `/bin/bash` 或者 `/bin/zsh` , 传递输入选择 `作为自变量`
+#
 # for f in "$@"
 # do 
 #     source ${HOME}/.config/helix/hx.sh;
