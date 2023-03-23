@@ -1,0 +1,195 @@
+[[language]]
+name = "bash"
+file-types = [
+  "sh",
+  "bash",
+  "zsh",
+  ".bash_login",
+  ".bash_logout",
+  ".bash_profile",
+  ".bashrc",
+  ".profile",
+  ".zshenv",
+  ".zlogin",
+  ".zlogout",
+  ".zprofile",
+  ".zshrc",
+  ".bash_alias",
+  ".bash_path",
+  "host",
+]
+
+[[language]]
+name = "typescript"
+
+[language.config]
+hostInfo = "helix"
+locale = "zh-CN"
+
+[language.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[[language]]
+name = "tsx"
+
+[language.config]
+hostInfo = "helix"
+locale = "zh-CN"
+
+[language.config.typescript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[[language]]
+name = "javascript"
+
+[language.config]
+hostInfo = "helix"
+locale = "zh-CN"
+
+[language.config.javascript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[[language]]
+name = "jsx"
+
+[language.config]
+hostInfo = "helix"
+locale = "zh-CN"
+
+[language.config.javascript.inlayHints]
+includeInlayEnumMemberValueHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayFunctionParameterTypeHints = true
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = true
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayVariableTypeHints = true
+
+[[language]]
+name = "css"
+file-types = ["css", "scss", "less"]
+
+[[language]]
+name = "php"
+
+[language.config]
+licenceKey = "/Users/erasin/.config/php/intelephenser_licence.txt"
+# storagePath = "" # os.tmpdir()
+# globalStoragePath = "" # os.homedir()
+# clearCache = false # clean state
+
+[[language]]
+name = "python"
+file-types = ["py", "pyi"]
+roots = ["pyproject.toml", "pyrightconfig.json"]
+language-server = { command = "pyright-langserver", args = ["--stdio"] }
+
+[language.config.pyright.inlayHints]
+functionReturnTypes = true
+variableTypes = true
+
+[language.config.analysis]
+autoSearchPaths = true
+diagnosticMode = "workspace"
+useLibraryCodeForTypes = true
+
+[[language]]
+name = "gdscript"
+language-server = { command = "nc", args = [
+  "127.0.0.1",
+  "6005",
+], language-id = "gdscript" } # 通过 nc 转发
+
+[language.config] 
+locale = "zh_CN" 
+
+[[language]]
+name = "glsl"
+file-types = [
+  "glsl",
+  "vert",
+  "tesc",
+  "tese",
+  "geom",
+  "frag",
+  "comp",
+  "shader",
+  "gdshader",
+  "gdshaderinc",
+]
+roots = ['.git']
+language-server = { command = "glslls", args = ["--stdin"] }
+config = { single_file_support = true }
+
+[[grammar]]
+name = "svelte"
+source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "52e122ae68b316d3aa960a0a422d3645ba717f42" }
+
+# dev
+[[language]]
+name = "markdown"
+indent = { tab-width = 4, unit = "    " }
+file-types = ["md", "markdown"]
+roots = [".git"]
+language-server = { command = "marksman", args = ["server"] }
+config = { ltex.disabledRules = { "en-US" = [ "PROFANITY", ], "en-GB" = [ "PROFANITY", ] }, ltex.dictionary = { "en-US" = [ "builtin", ], "en-GB" = [ "builtin", ] } }
+
+[[language]]
+name = "plantuml"
+scope = "source.puml"
+injection-regex = "plantuml"
+file-types = ["puml", "pu", "wsd"]
+roots = []
+comment-token = "'"
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "plantuml"
+source = { path = "/Users/erasin/Development/project/tree-sitter-plantuml", rev = "" }
+
+[[language]]
+name = "dart"
+
+[language.config.dart]
+# dart lsp 自定义函数，暂不支持
+closingLabels = true
+outline = true
+flutterOutline = true
+
+[[language]]
+name = "v"
+file-types = ["v", "vv", "vsh"]
+# language-server = { command = "", args = [] }
+
+[[language]]
+name = "http"
+scope = "source.http"
+injection-regex = "http"
+file-types = ["http"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "http"
+# source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "2c6c44574031263326cb1e51658bbc0c084326e7" }
+source = { path = "/Users/erasin/Development/other/tree-sitter-http", rev = "" }
+
