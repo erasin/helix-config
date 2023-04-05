@@ -80,16 +80,18 @@
 "markup.list" = { fg = "light-blue" }
 "markup.list.unnumbered" = { fg = "light-blue" }
 "markup.list.numbered" = { fg = "light-blue" }
+"markup.list.checked" = { fg = "green" }
+"markup.list.unchecked" = { fg = "blue" }
 "markup.bold" = { fg = "yellow", modifiers = ["bold"] }
 "markup.italic" = { fg = "purple", modifiers = ["italic"] }
-"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.strikethrough" = { fg = "red", modifiers = ["crossed_out"] }
 "markup.link" = { fg = "light-blue" }
 "markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
 "markup.link.text" = { fg = "light-blue" }
 "markup.quote" = { fg = "grey" }
-"markup.raw" = { fg = "brown" }
+"markup.raw" = { fg = "black" }
 "markup.raw.inline" = { fg = "green" }
-"markup.raw.block" = { fg = "grey" }
+"markup.raw.block" = { fg = "black" }
 
 "diff" = { fg = "red" }
 "diff.plus" = { fg = "green" }
@@ -135,7 +137,7 @@
 "ui.virtual" = { fg = "grey-500" }
 "ui.virtual.ruler" = { bg = "grey-200" }
 "ui.virtual.wrap" = { fg = "grey-500" }
-"ui.virtual.whitespace" = { fg = "grey-300" }
+"ui.virtual.whitespace" = { fg = "grey-400" }
 "ui.virtual.indent-guide" = { fg = "grey-500" }
 "ui.virtual.inlay-hint" = { fg = "grey-500" }
 "ui.virtual.inlay-hint.parameter" = { fg = "grey-500", modifiers = ["italic"] }
@@ -165,13 +167,6 @@
 "hint" = { fg = "green", modifiers = ["bold"] }
 "warning" = { fg = "yellow", modifiers = ["bold"] }
 "error" = { fg = "red", modifiers = ["bold"] }
-
-# [#5768]
-"ui.explorer.file" = { fg = "black" }
-"ui.explorer.dir" = { fg = "blue" }
-"ui.explorer.exe" = { fg = "red" }
-"ui.explorer.focus" = { modifiers = ["reversed"] }
-"ui.explorer.unfocus" = { bg = "light-white" }
 
 [palette]
 white = "#FAFAFA"

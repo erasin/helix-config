@@ -78,17 +78,18 @@
 "markup.list" = { fg = "red" }
 "markup.list.unnumbered" = { fg = "red" }
 "markup.list.numbered" = { fg = "red" }
-
+"markup.list.checked" = { fg = "green" }
+"markup.list.unchecked" = { fg = "blue" }
 "markup.bold" = { fg = "gold", modifiers = ["bold"] }
 "markup.italic" = { fg = "purple", modifiers = ["italic"] }
-"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.strikethrough" = { fg = "red", modifiers = ["crossed_out"] }
 "markup.link" = { fg = "light-blue" }
 "markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
 "markup.link.text" = { fg = "light-blue" }
 "markup.quote" = { fg = "yellow" }
-"markup.raw" = { fg = "gray" }
+"markup.raw" = { fg = "white" }
 "markup.raw.inline" = { fg = "green" }
-"markup.raw.block" = { fg = "gray" }
+"markup.raw.block" = { fg = "white" }
 
 "diff" = { fg = "red" }
 "diff.plus" = { fg = "green" }
@@ -128,10 +129,10 @@
 "ui.virtual" = { fg = "grey-800" }
 "ui.virtual.ruler" = { bg = "gray" }
 "ui.virtual.wrap" = { fg = "grey-700" }
-"ui.virtual.whitespace" = { fg = "grey-800" }
+"ui.virtual.whitespace" = { fg = "grey-700" }
 "ui.virtual.indent-guide" = { fg = "grey-700" }
 "ui.virtual.inlay-hint" = { fg = "grey-600" }
-"ui.virtual.inlay-hint.parameter" = { fg = "grey-700", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.parameter" = { fg = "grey-600", modifiers = ["italic"] }
 "ui.virtual.inlay-hint.type" = { fg = "grey-600" }
 
 "ui.menu" = { fg = "white", bg = "gray" }

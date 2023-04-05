@@ -118,8 +118,17 @@ language-server = { command = "nc", args = [
   "6005",
 ], language-id = "gdscript" } # 通过 nc 转发
 
-[language.config] 
-locale = "zh_CN" 
+[language.config]
+locale = "zh_CN"
+
+[[language]]
+name = "xml"
+file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "ncx", "opf"]
+
+[[language]]
+name = "html"
+file-types = ["html", "xhtml"]
+
 
 [[language]]
 name = "glsl"
@@ -150,7 +159,17 @@ indent = { tab-width = 4, unit = "    " }
 file-types = ["md", "markdown"]
 roots = [".git"]
 language-server = { command = "marksman", args = ["server"] }
-config = { ltex.disabledRules = { "en-US" = [ "PROFANITY", ], "en-GB" = [ "PROFANITY", ] }, ltex.dictionary = { "en-US" = [ "builtin", ], "en-GB" = [ "builtin", ] } }
+# config = { ltex.disabledRules = { "en-US" = [ "PROFANITY", ], "en-GB" = [ "PROFANITY", ] }, ltex.dictionary = { "en-US" = [ "builtin", ], "en-GB" = [ "builtin", ] } }
+
+# zen mode like
+# https://github.com/helix-editor/helix/discussions/6468
+# text-width = 80
+# soft-wrap = { enable = true, wrap-at-text-width = true }
+
+# [[language]]
+# name = "latex"
+# text-width = 80
+# soft-wrap = { enable = true, wrap-at-text-width = true }
 
 [[language]]
 name = "plantuml"
@@ -180,6 +199,10 @@ file-types = ["v", "vv", "vsh"]
 # language-server = { command = "", args = [] }
 
 [[language]]
+name = "env"
+file-types = [".env", ".env.local", ".env.development", ".env.production", ".env.dist", ".envrc","env"]
+
+[[language]]
 name = "http"
 scope = "source.http"
 injection-regex = "http"
@@ -190,6 +213,46 @@ indent = { tab-width = 2, unit = "  " }
 
 [[grammar]]
 name = "http"
-# source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "2c6c44574031263326cb1e51658bbc0c084326e7" }
-source = { path = "/Users/erasin/Development/other/tree-sitter-http", rev = "" }
+source = { git = "https://github.com/erasin/tree-sitter-http", rev = "3dc1385ab2d4ce97eb583ced6e962fff8f407830" }
 
+
+[[language]]
+name = "hurl"
+scope = "source.hurl"
+injection-regex = "hurl"
+file-types = ["hurl"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "hurl"
+source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "264c42064b61ee21abe88d0061f29a0523352e22" }
+
+
+# [[language]]
+# name = "puppet"
+# scope = "source.pp"
+# injection-regex = "puppet"
+# file-types = ["pp"]
+# roots = []
+# indent = { tab-width = 2, unit = "  " }
+# comment-token = "#"
+
+# [[grammar]]
+# name = "puppet"
+# source = { git = "https://github.com/neovim-puppet/tree-sitter-puppet", rev = "bdedf4d5b13b4020745a678364e2f441cd3abf2a" }
+
+
+# [[language]]
+# name = "typst"
+# scope = "source.typ"
+# injection-regex = "typst"
+# file-types = ["typ"]
+# roots = []
+# comment-token = "//"
+# indent = { tab-width = 2, unit = "  " }
+
+# [[grammar]]
+# name = "typst"
+# source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev = "f73626cbabcfb0ff273967b3792740e7478a06c8" }

@@ -1,7 +1,7 @@
 # 使用 pr
 # #5768 file explorer
 # #2869 icons
-# #6059 lsp codelens style diagnostics 
+# #6059 lsp codelens style diagnostics --> #6417 inelin-diagnostics 
 
 ### #6118 sticky-context
 
@@ -11,7 +11,8 @@
 
 theme = "onedark_local"
 # [#2869]
-icons = "nerd"
+icons= "nerd"
+# icons= "nerdfonts"
 
 [editor]
 
@@ -23,8 +24,8 @@ icons = "nerd"
 # set -ga terminal-overrides ',xterm-256color:Tc' 
 # 需要 export TERM=xterm-256color  
 # tty export COLORTERM=truecolor
-true-color = true
-
+true-color =true
+undercurl = true
 auto-completion = true
 # auto-save = false
 auto-info = true
@@ -36,17 +37,26 @@ idle-timeout = 40
 # scrolloff = 5 # 滚动时上下边缘填充行数
 # scroll-lines = 3
 # line-number = "relative"  # 行号类型 absolute / relative 
-# rulers = [80, 120]   # 标尺
+# rulers = [81, 121]   # 标尺
+# text-width = 80  # reflow 自动分割换行, 支持软换行
 
 # bufferline = "multiple"  # always | multiple | nerver
-# gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+# [editor.gutters]
+# layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+
+[editor.soft-wrap]
+enable = true
+# max-wrap = 20 
+# max-indent-retain = 40
+# wrap-indicator = "↪ "
+# wrap-at-text-width = true # zen-mode center View.inner_area
+
 
 # [#2869]
 [editor.icons]
 bufferline = true
 picker = true
 statusline = true
-
 
 [editor.cursor-shape]
 insert = "bar"
@@ -59,33 +69,31 @@ display-messages = true
 # display-signature-help-docs = false
 # LSP Type Hints default is false
 display-inlay-hints = true
+# [6417]
+# inline-diagnostics= { min-diagnostic-width = 80 }
+# display-diagnostic-message=false
 
-# [editor.whitespace]
-# render = "all"
+[editor.whitespace]
+render = "all"
 
 # all / none
-[editor.whitespace.render]
-space = "all"
-tab = "all"
-newline = "all"
+# [editor.whitespace.render]
+# space = "all"
+# tab = "all"
+# newline = "all"
 
 [editor.whitespace.characters]
-space = "·"
+space = " " # "·"
 nbsp = "⍽"
 tab = "→"
 newline = "⏎"
-tabpad = "·"
+tabpad = " "
 
 [editor.indent-guides]
 render = true
 character = "╎" # Some characters that work well: "▏", "╎", "┆", "┊"
-# skip-levels = 1
+skip-levels = 0
 
-[editor.soft-wrap]
-enable = true
-# max-wrap = 20 
-# max-indent-retain = 40
-# wrap-indicator = "↪ "
 
 # 状态栏定义
 [editor.statusline]
