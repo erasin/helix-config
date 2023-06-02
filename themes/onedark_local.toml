@@ -1,6 +1,6 @@
 # Author : Gokul Soumya <gokulps15@gmail.com>
 
-"attribute" = { fg = "yellow" }
+"attribute" = { fg = "pink" }
 "label" = { fg = "cyan" }
 "operator" = { fg = "red" }
 "tag" = { fg = "cyan" }

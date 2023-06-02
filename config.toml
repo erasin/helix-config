@@ -36,7 +36,7 @@ idle-timeout = 40
 # mouse = true
 # scrolloff = 5 # 滚动时上下边缘填充行数
 # scroll-lines = 3
-# line-number = "relative"  # 行号类型 absolute / relative 
+line-number = "relative"  # 行号类型 absolute / relative 
 # rulers = [81, 121]   # 标尺
 # text-width = 80  # reflow 自动分割换行, 支持软换行
 
@@ -158,6 +158,7 @@ a = ["move_char_right", "insert_mode"]
 "x" = ":buffer-close"
 "w" = { "r" = ":config-reload" }
 "." = "file_picker_in_current_buffer_directory"
+"n" = "signature_help"
 
 [keys.insert]
 "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
