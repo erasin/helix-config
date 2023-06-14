@@ -31,16 +31,19 @@ licenceKey = "/Users/erasin/.config/php/intelephenser_licence.txt"
 
 [language-server.pyright]
 command = "pyright-langserver"
-args = ["--stdio"] 
+args =["--stdio"] 
 
 [language-server.pyright.config.pyright.inlayHints]
 functionReturnTypes = true
 variableTypes = true
 
-[language-server.pyright.config.analysis]
+[language-server.pyright.config.python.analysis]
 autoSearchPaths = true
 diagnosticMode = "workspace"
 useLibraryCodeForTypes = true
+
+[language-server.pylsp.config]
+pylsp.plugins.rope_autoimport.enabled = true
 
 [language-server.godot]
 command = "nc" 
@@ -76,6 +79,12 @@ command = "typst-lsp"
 
 # ================= LANG =====================
 
+
+[[language]]
+name = "git-commit"
+soft-wrap = { enable = true, wrap-at-text-width = true }
+
+
 [[language]]
 name = "bash"
 file-types = [
@@ -105,7 +114,9 @@ file-types = ["css", "scss", "less"]
 name = "python"
 file-types = ["py", "pyi"]
 roots = ["pyproject.toml", "pyrightconfig.json"]
-language-servers = ["pyright"]
+# language-servers = ["pyright"]
+formatter = { command = "black", args = ["-"] }
+auto-format = true
 
 
 [[language]]
@@ -161,6 +172,9 @@ name = "markdown"
 indent = { tab-width = 4, unit = "    " }
 file-types = ["md", "markdown"]
 roots = [".git"]
+# 设定zen-mode-like
+# text-width = 80
+# soft-wrap = { enable = true, wrap-at-text-width = true }
 
 # [[language]]
 # name = "latex"
@@ -205,21 +219,21 @@ file-types = [".env", ".env.local", ".env.development", ".env.production", ".env
 [[language]]
 name = "typst"
 scope = "source.typ"
-injection-regex = "typst"
+injection-regex = "^typ(st)?$"
 file-types = ["typ"]
 roots = []
 comment-token = "//"
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["typst-lsp"]
 
-
-# [[grammar]]
-# name = "typst"
-# source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "191ba54d6a9a50e3e8c047afd598b16298cb8135" }
-
 [[grammar]]
 name = "typst"
-source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev = "2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
+# source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "68f60ff8941474f22fe7dc725af846f5c20a5b06" }
+# source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev = "2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
+source = { git = "https://github.com/TheOnlyMrCat/tree-sitter-typst", rev = "dfc0efc184e59e3fad7c9da8e461688ddeecc954" }
+
+
+
 
 [[grammar]]
 name = "slint"

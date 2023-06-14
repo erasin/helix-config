@@ -24,7 +24,7 @@ icons= "nerd"
 # set -ga terminal-overrides ',xterm-256color:Tc' 
 # 需要 export TERM=xterm-256color  
 # tty export COLORTERM=truecolor
-true-color =true
+true-color = true
 undercurl = true
 auto-completion = true
 # auto-save = false
