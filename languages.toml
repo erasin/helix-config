@@ -24,9 +24,9 @@ includeInlayVariableTypeHints = true
 
 # php
 [language-server.intelephense.config]
-licenceKey = "/Users/erasin/.config/php/intelephenser_licence.txt"
-# storagePath = "" # os.tmpdir()
-# globalStoragePath = "" # os.homedir()
+licenceKey = "/home/erasin/.config/php/intelephenser_licence.txt"
+storagePath = "/home/erasin/.config/php/" # os.tmpdir()
+globalStoragePath = "/home/erasin/.config/php/" # os.homedir()
 # clearCache = false # clean state
 
 [language-server.pyright]
@@ -190,9 +190,9 @@ roots = []
 comment-token = "'"
 indent = { tab-width = 2, unit = "  " }
 
-[[grammar]]
-name = "plantuml"
-source = { path = "/Users/erasin/Development/project/tree-sitter-plantuml", rev = "" }
+# [[grammar]]
+# name = "plantuml"
+# source = { path = "/Users/erasin/Development/project/tree-sitter-plantuml", rev = "" }
 
 
 [[language]]
@@ -235,6 +235,6 @@ source = { git = "https://github.com/TheOnlyMrCat/tree-sitter-typst", rev = "dfc
 
 
 
-[[grammar]]
-name = "slint"
-source = { git = "https://github.com/slint-ui/slint", rev = "671d22d762fd1031c554251bf8b3c917eab4c311", subpath="editors/tree-sitter-slint" }
+# [[grammar]]
+# name = "slint"
+# source = { git = "https://github.com/slint-ui/slint", rev = "671d22d762fd1031c554251bf8b3c917eab4c311", subpath="editors/tree-sitter-slint" }
