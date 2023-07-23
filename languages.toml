@@ -1,5 +1,30 @@
-# ==================== LSP ========================
+# ----------- godot4 -------------
+[language-server.godot]
+command = "nc" 
+args = [ "127.0.0.1", "6005"]
 
+[[language]]
+name = "gdscript"
+language-servers = ["godot"] 
+
+[[language]]
+name = "godot-resource"
+scope = "source.tscn"
+file-types = ["tscn", "tres", "godot", "gdextension", "import"]
+# language-servers = ["godot"]
+
+# [language.debugger]
+# name ="gdscript"
+# https://ask.godotengine.org/122563/how-to-get-the-godot-lsp-to-work-with-nvim-lsp
+
+# ------ tailwindcss-language-server -------
+
+# npm i -g helix-twcss , use hx-tw replace tailwindcss-language-server
+[language-server.tailwindcss-language-server]
+command = "hx-tw"
+args = ["--stdio"]
+
+# -------- typescript -----------
 [language-server.typescript-language-server.config]
 hostInfo = "helix"
 locale = "zh-CN"
@@ -22,12 +47,67 @@ includeInlayParameterNameHintsWhenArgumentMatchesName = true
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayVariableTypeHints = true
 
-# php
+# ------- svelte -----------
+
+# has merged to master
+# [language-server.svelteserver.config.configuration.typescript]
+# locale = "zh-CN"
+# inlayHints.parameterTypes.enabled = true
+# inlayHints.variableTypes.enabled = true
+# inlayHints.propertyDeclarationTypes.enabled = true
+# inlayHints.functionLikeReturnTypes.enabled = true
+# inlayHints.enumMemberValues.enabled = true
+# inlayHints.parameterNames.enabled = "all"
+
+
+# [language-server.svelteserver.config.configuration.javascript]
+# locale = "zh-CN"
+# inlayHints.parameterTypes.enabled = true
+# inlayHints.variableTypes.enabled = true
+# inlayHints.propertyDeclarationTypes.enabled = true
+# inlayHints.functionLikeReturnTypes.enabled = true
+# inlayHints.enumMemberValues.enabled = true
+# inlayHints.parameterNames.enabled = "all"
+
+[[language]]
+name = "svelte"
+roots = ["package.json"]
+language-servers = ["svelteserver", "tailwindcss-language-server"]
+
+[[grammar]]
+name = "svelte"
+source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "697bb515471871e85ff799ea57a76298a71a9cca" }
+
+[[language]]
+name = "css"
+file-types = ["css", "scss", "less"]
+language-servers = [ "vscode-css-language-server", "tailwindcss-language-server" ]
+
+[[language]]
+name = "html"
+file-types = ["html", "xhtml"]
+language-servers = [ "vscode-html-language-server", "tailwindcss-language-server" ]
+
+[[language]]
+name = "vue"
+language-servers = ["vuels", "tailwindcss-language-server" ]
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server", "tailwindcss-language-server" ]
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "tailwindcss-language-server" ]
+
+# ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/php/intelephenser_licence.txt"
 storagePath = "/home/erasin/.config/php/" # os.tmpdir()
 globalStoragePath = "/home/erasin/.config/php/" # os.homedir()
 # clearCache = false # clean state
+
+# ----------- python pyright --------------
 
 [language-server.pyright]
 command = "pyright-langserver"
@@ -45,9 +125,15 @@ useLibraryCodeForTypes = true
 [language-server.pylsp.config]
 pylsp.plugins.rope_autoimport.enabled = true
 
-[language-server.godot]
-command = "nc" 
-args = [ "127.0.0.1", "6005"]
+[[language]]
+name = "python"
+file-types = ["py", "pyi"]
+roots = ["pyproject.toml", "pyrightconfig.json"]
+# language-servers = ["pyright"]
+formatter = { command = "black", args = ["-"] }
+auto-format = true
+
+# ---------- dart -----------------
 
 [language-server.dart.config.dart]
 # dart lsp 自定义函数，暂不支持
@@ -55,6 +141,7 @@ closingLabels = true
 outline = true
 flutterOutline = true
 
+# ------------ lua --------------
 
 [language-server.lua-language-server.config.Lua.workspace]
 library = [
@@ -74,10 +161,6 @@ paramType = true
 await = true
 
 
-[language-server.typst-lsp] 
-command = "typst-lsp" 
-
-# ================= LANG =====================
 
 
 [[language]]
@@ -106,43 +189,10 @@ file-types = [
   "host",
 ]
 
-[[language]]
-name = "css"
-file-types = ["css", "scss", "less"]
-
-[[language]]
-name = "python"
-file-types = ["py", "pyi"]
-roots = ["pyproject.toml", "pyrightconfig.json"]
-# language-servers = ["pyright"]
-formatter = { command = "black", args = ["-"] }
-auto-format = true
-
-
-[[language]]
-name = "gdscript"
-language-servers = ["godot"] 
-
-
-[[language]]
-name = "godot-resource"
-scope = "source.tscn"
-file-types = ["tscn", "tres", "godot", "gdextension", "import"]
-language-servers = ["godot"] 
-
-# [language.debugger]
-# name ="gdscript"
-# https://ask.godotengine.org/122563/how-to-get-the-godot-lsp-to-work-with-nvim-lsp
-
 
 [[language]]
 name = "xml"
 file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "ncx", "opf", "iml"]
-
-[[language]]
-name = "html"
-file-types = ["html", "xhtml"]
-
 
 [[language]]
 name = "glsl"
@@ -162,9 +212,6 @@ roots = ['.git']
 # language-server = { command = "glslls", args = ["--stdin"] }
 # config = { single_file_support = true }
 
-[[grammar]]
-name = "svelte"
-source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "52e122ae68b316d3aa960a0a422d3645ba717f42" }
 
 # dev
 [[language]]
@@ -216,25 +263,30 @@ file-types = [".env", ".env.local", ".env.development", ".env.production", ".env
 # name = "http"
 # source = { git = "https://github.com/erasin/tree-sitter-http", rev = "3dc1385ab2d4ce97eb583ced6e962fff8f407830" }
 
+# ------------- typst --------------------
+
+[language-server.typst-lsp] 
+command = "typst-lsp" 
+
 [[language]]
 name = "typst"
 scope = "source.typ"
 injection-regex = "^typ(st)?$"
-file-types = ["typ"]
+file-types = ["typ","typst"]
 roots = []
 comment-token = "//"
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["typst-lsp"]
 
-[[grammar]]
-name = "typst"
-# source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "68f60ff8941474f22fe7dc725af846f5c20a5b06" }
-# source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev = "2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
-source = { git = "https://github.com/TheOnlyMrCat/tree-sitter-typst", rev = "dfc0efc184e59e3fad7c9da8e461688ddeecc954" }
-
-
-
-
 # [[grammar]]
-# name = "slint"
-# source = { git = "https://github.com/slint-ui/slint", rev = "671d22d762fd1031c554251bf8b3c917eab4c311", subpath="editors/tree-sitter-slint" }
+# name = "typst"
+# source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "50915c5fefd6d6d2f48b3e6da7136cb0138b160a" }
+# source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev = "2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
+# source = { git = "https://github.com/TheOnlyMrCat/tree-sitter-typst", rev = "dfc0efc184e59e3fad7c9da8e461688ddeecc954" }
+
+# ---------------------- slint ----------------------
+
+[[grammar]]
+name = "slint"
+# source = { git = "https://github.com/slint-ui/slint", rev = "3e420b32ad7a2e0bca6b3a3193d0c68d1302abf0", subpath="editors/tree-sitter-slint" }
+source = { git = "https://github.com/jrmoulton/tree-sitter-slint", rev = "00c8a2d3645766f68c0d0460086c0a994e5b0d85" }

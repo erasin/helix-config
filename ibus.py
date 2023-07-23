@@ -12,9 +12,11 @@ im = subprocess.run(cmd_read_im, shell=True, capture_output=True, text=True).std
 # TODO： 非 0|, 1|A 情况下检查，按情况切换 en 
 
 # 检查是否为中文
-if (im == "1|小"):
+if (im != "1|A"):
     cmd_switch_ibus_a = "dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.SwitchSource uint32:1 string:A"
     subprocess.call(cmd_switch_ibus_a, shell=True)
+
+
 # else:
     # 0|,1|A keep
 
