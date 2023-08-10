@@ -17,11 +17,18 @@ file-types = ["tscn", "tres", "godot", "gdextension", "import"]
 # name ="gdscript"
 # https://ask.godotengine.org/122563/how-to-get-the-godot-lsp-to-work-with-nvim-lsp
 
+# ------ emmet support -------------
+[language-server.emmet-language-server]
+# command="emmet-language-server"
+command="emmet-ls"
+args = ["--stdio"]
+
 # ------ tailwindcss-language-server -------
 
 # npm i -g helix-twcss , use hx-tw replace tailwindcss-language-server
 [language-server.tailwindcss-language-server]
 command = "hx-tw"
+# command = "tailwindcss-language-server"
 args = ["--stdio"]
 
 # -------- typescript -----------
@@ -81,12 +88,12 @@ source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "697bb5
 [[language]]
 name = "css"
 file-types = ["css", "scss", "less"]
-language-servers = [ "vscode-css-language-server", "tailwindcss-language-server" ]
+language-servers = [ "vscode-css-language-server", "emmet-language-server", "tailwindcss-language-server" ]
 
 [[language]]
 name = "html"
 file-types = ["html", "xhtml"]
-language-servers = [ "vscode-html-language-server", "tailwindcss-language-server" ]
+language-servers = [ "vscode-html-language-server", "emmet-language-server", "tailwindcss-language-server"]
 
 [[language]]
 name = "vue"
@@ -159,9 +166,6 @@ setType = true
 paramName = "All"
 paramType = true
 await = true
-
-
-
 
 [[language]]
 name = "git-commit"
@@ -286,7 +290,16 @@ language-servers = ["typst-lsp"]
 
 # ---------------------- slint ----------------------
 
-[[grammar]]
-name = "slint"
-# source = { git = "https://github.com/slint-ui/slint", rev = "3e420b32ad7a2e0bca6b3a3193d0c68d1302abf0", subpath="editors/tree-sitter-slint" }
-source = { git = "https://github.com/jrmoulton/tree-sitter-slint", rev = "00c8a2d3645766f68c0d0460086c0a994e5b0d85" }
+# [[grammar]]
+# name = "slint"
+# # source = { git = "https://github.com/slint-ui/slint", rev = "3e420b32ad7a2e0bca6b3a3193d0c68d1302abf0", subpath="editors/tree-sitter-slint" }
+# source = { git = "https://github.com/jrmoulton/tree-sitter-slint", rev = "00c8a2d3645766f68c0d0460086c0a994e5b0d85" }
+
+[[language]]
+name = "sshclientconfig"
+file-types = ["conf",{ suffix = "config" },]
+
+[[language]]
+name = "yaml"
+scope = "source.yaml"
+file-types = ["yml", "yaml", "meta", "asset"]

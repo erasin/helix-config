@@ -130,10 +130,10 @@
 "ui.virtual.ruler" = { bg = "gray" }
 "ui.virtual.wrap" = { fg = "grey-700" }
 "ui.virtual.whitespace" = { fg = "grey-700" }
-"ui.virtual.indent-guide" = { fg = "grey-700" }
-"ui.virtual.inlay-hint" = { fg = "grey-600" }
-"ui.virtual.inlay-hint.parameter" = { fg = "grey-600", modifiers = ["italic"] }
-"ui.virtual.inlay-hint.type" = { fg = "grey-600" }
+"ui.virtual.indent-guide" = { fg = "faint-gray" }
+"ui.virtual.inlay-hint" = { fg = "light-gray" }
+"ui.virtual.inlay-hint.parameter" = { fg = "light-gray", modifiers = ["italic"] }
+"ui.virtual.inlay-hint.type" = { fg = "light-gray" }
 
 "ui.menu" = { fg = "white", bg = "gray" }
 "ui.menu.selected" = { fg = "black", bg = "blue" }
