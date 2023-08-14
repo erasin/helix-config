@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 d=$(dirname $f);
 cd $d;
 f=$(basename $f);

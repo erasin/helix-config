@@ -250,6 +250,7 @@ vcs_branch = {icon = ""}
 "scm" = { icon = "λ", color = "#d93f35" }
 "scss" = { icon = "", color = "#f55385" }
 "sh" = { icon = "", color = "#89e051" }
+"shader" = { icon = "", color = "#BA66B6" }
 "sig" = { icon = "λ", color = "#e37933" }
 "slim" = { icon = "", color = "#e34c26" }
 "sln" = { icon = "", color = "#854CC7" }

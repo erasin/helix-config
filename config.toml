@@ -153,7 +153,7 @@ a = ["move_char_right", "insert_mode"]
 # macos 自动切换到英文环境
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
 # linux
-"esc" = [":pipe-to python ~/.config/helix/ibus.py", "normal_mode"]
+"esc" = [":pipe-to bash ~/.config/helix/shells/ibus-en", "normal_mode"]
 
 # space mode
 [keys.normal.space]
@@ -165,6 +165,6 @@ a = ["move_char_right", "insert_mode"]
 [keys.insert]
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
 # linux
-"esc" = [":pipe-to python ~/.config/helix/ibus.py", "normal_mode"]
+"esc" = [":pipe-to bash ~/.config/helix/shells/ibus-en", "normal_mode"]
 
 # [keys.select]

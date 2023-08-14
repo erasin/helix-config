@@ -303,3 +303,25 @@ file-types = ["conf",{ suffix = "config" },]
 name = "yaml"
 scope = "source.yaml"
 file-types = ["yml", "yaml", "meta", "asset"]
+
+# -------------------- haxe ---------------
+[[language]]
+name = "haxe"
+scope = "source.haxe"
+injection-regex = "haxe"
+file-types = ["hx"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+roots = ["hxml", "haxelib.json", "khafile.js"]
+# language-servers = ["haxe-language-server"]
+
+[[grammar]]
+name = "haxe"
+source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "b150fdb311e2a24d3e0cba37ae4954427f5d0cf9" }
+
+# [language-server.haxe-language-server]
+# command = "node" 
+# args = [ "/home/erasin/.vscode/extensions/nadako.vshaxe-2.28.0/bin/server.js"]
+
+# [language-server.haxe-language-server.config]
+# displayArguments = ["build.hxml"]

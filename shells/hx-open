@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# $XDG_CONFIG_HOME/.config/helix/shells/hx-open {project} {file}:{line}:{col}
+#                                                 --------  -------------------
+#                                                 1         2
+# or 
+# hxopen file_path
+
+# 单个参数和2个参数
+
+dir_path=$1
+file_path=$1
+
+# Check the number of arguments
+if [ $# -eq 1 ]; then
+    file_path=$1
+elif [ $# -eq 2 ]; then
+    dir_path=$1;
+    file_path=$2;
+fi
+
+# Try: tmux list-panes -t <your_pane_name> -F '#{pane_current_command}'
+# https://man7.org/linux/man-pages/man1/tmux.1.html#FORMATS
+
+
+hx_pane=$(tmux list-panes -F "#{window_index} #{pane_index} #{pane_current_command}" | grep "hx" | head -n 1|awk '{print $2}')
+
+# 如果 hx 有打开
+if [ -n "$hx_pane" ] && [ "$hx_pane" -gt 0 ]; then
+    tmux send -t $hx_pane ":o $file_path" Enter
+else
+    # 如果 hx 没有运行，创建 Pane 打开
+    # if [ "$file_path" != "$dir_path" ]; then
+    #     file_path="${dir_path%/}/$file_path"
+    # fi
+    tmux split-window -h -c "#{pane_current_path}" "cd $dir_path;hx $file_path"
+fi
+
+
+# godot 中设置外部编辑器 hx-open   {project} {file}:{line}:{col}
