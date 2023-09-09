@@ -107,6 +107,15 @@ language-servers = ["typescript-language-server", "tailwindcss-language-server" 
 name = "jsx"
 language-servers = [ "typescript-language-server", "tailwindcss-language-server" ]
 
+# [[language]]
+# name="javascript"
+# auto-format = true
+
+# [language.formatter]
+# command = "prettier"
+# args = ["--parser=typescript"]
+
+
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/php/intelephenser_licence.txt"
@@ -281,10 +290,16 @@ roots = []
 comment-token = "//"
 indent = { tab-width = 2, unit = "  " }
 language-servers = ["typst-lsp"]
+# soft-wrap = { enable = true, wrap-at-text-width = true }
+
+
+[language.formatter]
+command = "typst"
+args = ["c"]
 
 # [[grammar]]
 # name = "typst"
-# source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "50915c5fefd6d6d2f48b3e6da7136cb0138b160a" }
+# source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "033fd5026f97fc556cbfc2953ca2fca553e7ac3c" }
 # source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev = "2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
 # source = { git = "https://github.com/TheOnlyMrCat/tree-sitter-typst", rev = "dfc0efc184e59e3fad7c9da8e461688ddeecc954" }
 
@@ -325,3 +340,8 @@ source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "b150f
 
 # [language-server.haxe-language-server.config]
 # displayArguments = ["build.hxml"]
+
+[[grammar]]
+name = "jsdoc"
+source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "d01984de49927c979b46ea5c01b78c8ddd79baf9" }
+

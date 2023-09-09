@@ -1,10 +1,10 @@
 name = "nerd"
 
 [diagnostic]
-error = {icon = ""}
-warning = {icon = ""}
-info = {icon = ""}
-hint = {icon = ""}
+error = {icon = ""} # nf-fa-bug
+warning = {icon = ""} # nf-fa-warning 
+info = {icon = ""} # nf-fa-info_circle 
+hint = {icon = ""} # nf-fa-question_circle
 
 [breakpoint]
 verified = {icon = "●"}
@@ -17,39 +17,38 @@ deleted = {icon = "▔"}
 modified = {icon = "▍"}
 
 [symbol-kind]
-file = {icon = ""}
+file = {icon = ""} # nf-cod-symbol_file
 module = {icon = ""}
-namespace = {icon = ""}
-package = {icon = ""}
-class = {icon = ""}
-method = {icon = ""}
-property = {icon = ""}
-field = {icon = ""}
+namespace = {icon = ""} # nf-cod-symbol_namespace
+package = {icon = ""} # nf-cod-package
+class = {icon = ""} # nf-cod-symbol_class
+method = {icon = ""} # nf-cod-symbol_method
+property = {icon = ""} # nf-cod-symbol_property
+field = {icon = ""} # nf-cod-symbol_field
 constructor = {icon = ""}
-enumeration = {icon = ""}
-interface = {icon = ""}
-variable = {icon = ""}
-function = {icon = "󰊕"}
-constant = {icon = ""}
-string = {icon = ""}
-number = {icon = ""}
-boolean = {icon = ""}
-array = {icon = ""}
-object = {icon = ""}
-key = {icon = ""}
-null = {icon = "󰟢"}
-enum-member = {icon = ""}
-structure = {icon = ""}
-event = {icon = ""}
-operator = {icon = ""}
-type-parameter = {icon = ""}
+enumeration = {icon = ""} # nf-cod-symbol_enum
+enum-member = {icon = ""} # nf-cod-symbol_enum_member
+interface = {icon = ""} # nf-cod-symbol_interface
+variable = {icon = "󰫧"} # nf-md-variable
+function = {icon = "󰡱"} # nf-md-function_variant
+constant = {icon = ""} # nf-cod-symbol_constant
+string = {icon = ""} # nf-cod-symbol_string
+number = {icon = ""} # nf-oct-number
+boolean = {icon = ""} # nf-cod-symbol_boolean
+array = {icon = ""} # nf-cod-symbol_array
+object = {icon = ""} # 
+key = {icon = ""} # nf-cod-key
+null = {icon = "󰟢"} # nf-md-null
+structure = {icon = ""} # nf-cod-symbol_structure
+event = {icon = ""} # nf-cod-symbol_event
+operator = {icon = ""} # nf-cod-symbol_operator
+type-parameter = {icon = ""} # nf-cod-symbol_parameter
 
 [ui]
-file = {icon = ""}
-folder = {icon = ""}
-folder_opened = {icon = ""}
-vcs_branch = {icon = ""}
-
+file = {icon = ""} # nf-cod-file
+folder = {icon = ""} # nf-custom-folder
+folder_opened = {icon = ""} # nf-custom-folder_open
+vcs_branch = {icon = ""} # nf-dev-git_branch
 
 # fix some nerdfont icon https://www.nerdfonts.com/cheat-sheet
 

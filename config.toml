@@ -1,7 +1,9 @@
 # 使用 pr
 # #5768 file explorer
 # #2869 icons
-# #6059 lsp codelens style diagnostics --> #6417 inelin-diagnostics 
+# #6417 inline-diagnostics lsp codelens style diagnostics 
+# #6531 lang-config-open
+# #5199 tutor
 
 ### #6118 sticky-context
 
@@ -105,9 +107,11 @@ left = [
   "spacer",
   "version-control",
   "spacer",
+  "read-only-indicator",
   "file-type-icon",
   "file-name",
   "file-modification-indicator",
+  "register"
 ]
 center = ["diagnostics", "workspace-diagnostics"]
 right = [
@@ -149,11 +153,13 @@ a = ["move_char_right", "insert_mode"]
 "\\" = ":reflow"                       # |
 "X" = "extend_line_above"
 "Z" = { "Z" = [":quit"] }
+"z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
 
 # macos 自动切换到英文环境
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
 # linux
 "esc" = [":pipe-to bash ~/.config/helix/shells/ibus-en", "normal_mode"]
+
 
 # space mode
 [keys.normal.space]
@@ -161,6 +167,7 @@ a = ["move_char_right", "insert_mode"]
 "w" = { "r" = ":config-reload" }
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
+# "o" = "diagnostics_popup"
 
 [keys.insert]
 # "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
