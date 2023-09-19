@@ -205,7 +205,7 @@ file-types = [
 
 [[language]]
 name = "xml"
-file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "ncx", "opf", "iml"]
+file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "ncx", "opf", "iml", "ui", "xml.in", "font.conf"]
 
 [[language]]
 name = "glsl"
@@ -297,8 +297,9 @@ language-servers = ["typst-lsp"]
 command = "typst"
 args = ["c"]
 
-# [[grammar]]
-# name = "typst"
+[[grammar]]
+name = "typst"
+source = { git = "https://github.com/uben0/tree-sitter-typst", rev = "da204a9d5de89372f482052a95f7535911fa2b30" }
 # source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "033fd5026f97fc556cbfc2953ca2fca553e7ac3c" }
 # source = { git = "https://github.com/SeniorMars/tree-sitter-typst", rev = "2e66ef4b798a26f0b82144143711f3f7a9e8ea35" }
 # source = { git = "https://github.com/TheOnlyMrCat/tree-sitter-typst", rev = "dfc0efc184e59e3fad7c9da8e461688ddeecc954" }

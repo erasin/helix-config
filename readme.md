@@ -2,7 +2,7 @@
 ===
 
 > https://erasin.wang/helix/
-> 分支 local-dev2 <https://gitee.com/erasin/helix>
+> 分支 local-dev2 <https://github.com/erasin/helix/tree/local-dev2>
 
 - [#5768](https://github.com/helix-editor/helix/pull/5768) explorer 支持
 - [#2869](https://github.com/helix-editor/helix/pull/2869) icons 支持

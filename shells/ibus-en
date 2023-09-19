@@ -10,7 +10,7 @@ cmd_read_im="dbus-send --session --type=method_call --print-reply=literal --dest
 
 im=$(eval "$cmd_read_im" | awk -F "|" '{print $2}')
 
-# 检查是否为英文, 这里用的是 rime, 根据自己的 ibus 处理
+# 检查是否为英文, 这里用的是 pinyin | rime, 根据自己的 ibus 处理
 if [ "$im" != "A" ]; then
     cmd_switch_ibus_a="dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.SwitchSource uint32:1 string:A"
     eval "$cmd_switch_ibus_a"

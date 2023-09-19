@@ -18,14 +18,14 @@ modified = {icon = "▍"}
 
 [symbol-kind]
 file = {icon = ""} # nf-cod-symbol_file
-module = {icon = ""}
+module = {icon = ""} # nf-oct-package
 namespace = {icon = ""} # nf-cod-symbol_namespace
 package = {icon = ""} # nf-cod-package
 class = {icon = ""} # nf-cod-symbol_class
 method = {icon = ""} # nf-cod-symbol_method
 property = {icon = ""} # nf-cod-symbol_property
 field = {icon = ""} # nf-cod-symbol_field
-constructor = {icon = ""}
+constructor = {icon = ""} # nf-fae-tools
 enumeration = {icon = ""} # nf-cod-symbol_enum
 enum-member = {icon = ""} # nf-cod-symbol_enum_member
 interface = {icon = ""} # nf-cod-symbol_interface
@@ -36,13 +36,22 @@ string = {icon = ""} # nf-cod-symbol_string
 number = {icon = ""} # nf-oct-number
 boolean = {icon = ""} # nf-cod-symbol_boolean
 array = {icon = ""} # nf-cod-symbol_array
-object = {icon = ""} # 
+object = {icon = ""} # nf-cod-package
 key = {icon = ""} # nf-cod-key
 null = {icon = "󰟢"} # nf-md-null
 structure = {icon = ""} # nf-cod-symbol_structure
 event = {icon = ""} # nf-cod-symbol_event
 operator = {icon = ""} # nf-cod-symbol_operator
 type-parameter = {icon = ""} # nf-cod-symbol_parameter
+folder = {icon = ""} # nf-custom-folder
+reference = {icon = ""} # nf-cod-references
+color = {icon = ""} # nf-fae-palette_color
+snippet = {icon = ""} # nf-cod-symbol_snippet 
+keyword = {icon = ""} # nf-cod-symbol_keyword
+value = { icon = ""} # nf-cod-symbol_variable
+uint = { icon = ""} # nf-oct-number
+text = { icon = "󰦨"} # nf-md-text
+
 
 [ui]
 file = {icon = ""} # nf-cod-file
@@ -305,5 +314,4 @@ vcs_branch = {icon = ""} # nf-dev-git_branch
 "prisma" = { icon = "", color = "#5a67d8" }
 "lock" = { icon = "", color = "#bbbbbb" }
 "log" = { icon = "", color = "#6d8086" }
-
 "wav" = { icon = "󱑽", color = "#019833" }
