@@ -346,3 +346,18 @@ source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "b150f
 name = "jsdoc"
 source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "d01984de49927c979b46ea5c01b78c8ddd79baf9" }
 
+
+# ====== udl idl-----
+# https://webidl.spec.whatwg.org/
+[[language]]
+name = "webidl"
+scope = "source.idl"
+injection-regex = "webidl"
+file-types = ["idl", "udl"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+roots = []
+
+[[grammar]]
+name = "webidl"
+source = { path = "/home/erasin/Development/project/tree-sitter-webidl", rev = "" }
