@@ -11,9 +11,9 @@
 # [merged] #6173 completion_sync 
 # [merged] #6004 the-mikedavis:md-dynamic-picker-recalculate-column-widths
 
-theme = "onedark_local"
+theme = "onelight_local"
 # [#2869]
-icons= "nerd"
+# icons= "nerd"
 # icons= "nerdfonts"
 
 [editor]
@@ -55,10 +55,10 @@ enable = true
 
 
 # [#2869]
-[editor.icons]
-bufferline = true
-picker = true
-statusline = true
+# [editor.icons]
+# bufferline = true
+# picker = true
+# statusline = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -108,7 +108,7 @@ left = [
   "version-control",
   "spacer",
   "read-only-indicator",
-  "file-type-icon",
+  # "file-type-icon",
   "file-name",
   "file-modification-indicator",
   "register"
@@ -150,8 +150,8 @@ a = ["move_char_right", "insert_mode"]
 "C-z" = "normal_mode"                  # replace suspend
 "C-q" = ":quit"
 "A-/" = "toggle_comments"
-"\\" = ":reflow"                       # |
-"X" = "extend_line_above"
+"\\"  = ":reflow"                       # |
+"X"   = "extend_line_above"
 "Z" = { "Z" = [":quit"] }
 "z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
 
