@@ -34,7 +34,7 @@ else
     #     file_path="${dir_path%/}/$file_path"
     # fi
     # master #8223 分支支持 (-w --working_dir)
-    tmux split-window -h -c "#{pane_current_path}" "cd $dir_path;hx -w $dir_path $file_path"
+    tmux split-window -h -c "#{pane_current_path}" "hx -w $dir_path $file_path"
 fi
 
 

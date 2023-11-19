@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# 获取当前的输入法状态
+current_status=$(fcitx5-remote)
+
+# 判断当前状态并切换
+if [ "$current_status" -ne 1 ]; then
+    fcitx5-remote -s keyboard-us
+    fcitx5-remote -c
+fi
+
+# fcitx-remote -s rime
+

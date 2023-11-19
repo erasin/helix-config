@@ -1,10 +1,11 @@
 # 使用 pr
-# #5768 file explorer
-# #2869 icons
+# #8675 plugin system use steel scheme
+# X #5768 file explorer  
+# X #2869 icons
 # #6417 inline-diagnostics lsp codelens style diagnostics 
 # #6531 lang-config-open
 # #5199 tutor
-
+# #8021 event system
 ### #6118 sticky-context
 
 # [merged] #5934 lsp inlay hints
@@ -75,27 +76,16 @@ display-inlay-hints = true
 # inline-diagnostics= { min-diagnostic-width = 80 }
 # display-diagnostic-message=false
 
-[editor.whitespace]
-render = "all"
-
 # all / none
-# [editor.whitespace.render]
+[editor.whitespace.render]
 # space = "all"
-# tab = "all"
+tab = "all"
 # newline = "all"
-
-[editor.whitespace.characters]
-space = " " # "·"
-nbsp = "⍽"
-tab = "→"
-newline = "⏎"
-tabpad = " "
 
 [editor.indent-guides]
 render = true
 character = "╎" # Some characters that work well: "▏", "╎", "┆", "┊"
 skip-levels = 0
-
 
 # 状态栏定义
 [editor.statusline]
@@ -131,9 +121,9 @@ separator = "│"
 # [#5768]
 # s-e 切换显示
 # s-E 切换并追溯到当前文件所在位置 
-[editor.explorer]
+# [editor.explorer]
 # position = "overlay"
-column-width = 30
+# column-width = 30
 
 # [#6118]
 # [editor.sticky-context]
@@ -160,7 +150,6 @@ a = ["move_char_right", "insert_mode"]
 # linux
 "esc" = [":pipe-to bash ~/.config/helix/shells/ibus-en", "normal_mode"]
 
-
 # space mode
 [keys.normal.space]
 "x" = ":buffer-close"
@@ -175,3 +164,5 @@ a = ["move_char_right", "insert_mode"]
 "esc" = [":pipe-to bash ~/.config/helix/shells/ibus-en", "normal_mode"]
 
 # [keys.select]
+
+# 测试促成

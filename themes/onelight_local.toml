@@ -4,7 +4,7 @@
 "label" = { fg = "cyan" }
 "operator" = { fg = "red" }
 "tag" = { fg = "cyan" }
-"special" = { fg = "deep-purple" }
+"special" = { fg = "blue" }
 # "property" = { fg = "purple" }
 "constructor" = { fg = "blue" }
 "namespace" = { fg = "blue" }

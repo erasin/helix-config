@@ -14,7 +14,7 @@
 "type.enum.variant" = { fg = "cyan" }
 
 "constant" = { fg = "cyan", modifiers = ["bold"] }
-"constant.builtin" = { fg = "purple" }
+"constant.builtin" = { fg = "deep-purple" }
 "constant.builtin.boolean" = { fg = "purple" }
 "constant.character" = { fg = "green" }
 "constant.character.escape" = { fg = "gold" }
