@@ -87,8 +87,8 @@
 
 (define (format-dir path)
   (if (hash-contains? *directories* path)
-      (if (hash-try-get *directories* path) ">  " "v  ")
-      ">  " ;; First time we're visiting, mark as closed
+      (if (hash-try-get *directories* path) " " " ")
+      " " ;; First time we're visiting, mark as closed
       ))
 
 (define *extension-map* (hash "rs" " " 
