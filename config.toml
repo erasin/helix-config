@@ -1,6 +1,6 @@
 # 使用 pr
 # #8675 plugin system use steel scheme
-# X #5768 file explorer  
+# #5768 file explorer  
 # X #2869 icons
 # #6417 inline-diagnostics lsp codelens style diagnostics 
 # #6531 lang-config-open
@@ -12,7 +12,7 @@
 # [merged] #6173 completion_sync 
 # [merged] #6004 the-mikedavis:md-dynamic-picker-recalculate-column-widths
 
-theme = "onelight_local"
+theme = "onedark_local"
 # [#2869]
 # icons= "nerd"
 # icons= "nerdfonts"
@@ -134,11 +134,11 @@ separator = "│"
 [keys.normal]
 # use `li` or remap `after insert`
 a = ["move_char_right", "insert_mode"]
-"C-s" = ":write"                       # 原保存跳转列表位置，修改为 C-j
-"C-j" = ["save_selection"]
-"C-r" = ":reload"
-"C-z" = "normal_mode"                  # replace suspend
-"C-q" = ":quit"
+"C-r" = { s = ":write", e = "reveal_current_file",  r = ":reload",  c = ":config-reload" }
+# "C-r" = { s = ":write", r = ":reload",  c = ":config-reload" }
+"C-s" = ":write"
+"C-j" = "save_selection"
+# "C-z" = "normal_mode"                  # replace suspend
 "A-/" = "toggle_comments"
 "\\"  = ":reflow"                       # |
 "X"   = "extend_line_above"
@@ -153,7 +153,7 @@ a = ["move_char_right", "insert_mode"]
 # space mode
 [keys.normal.space]
 "x" = ":buffer-close"
-"w" = { "r" = ":config-reload" }
+"w" = { r = ":reload",  c = ":config-reload" }
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
 # "o" = "diagnostics_popup"

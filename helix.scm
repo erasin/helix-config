@@ -33,6 +33,8 @@
   current-focus
   insert-string-at-selection
   insert-lambda
+  tmux-pane-h
+  tmux-pane-v
   )
 
 
@@ -62,6 +64,17 @@
   ;; Replace the % with the current file
   (define expanded (map (lambda (x) (if (equal? x "%") (current-path cx) x)) args))
   (helix.run-shell-command cx expanded helix.PromptEvent::Validate))
+
+;;@doc
+;; tmux open
+(define (tmux-pane-h cx . args)
+  (define expanded (list "tmux" "split-window" "-h" "&&" "tmux" "send" args "Enter"))
+  (helix.run-shell-command cx expanded helix.PromptEvent::Validate))
+
+(define (tmux-pane-v cx . args)
+  (define expanded (list "tmux" "split-window" "&&" "tmux" "send" args "Enter"))
+  (helix.run-shell-command cx expanded helix.PromptEvent::Validate))
+
 
 ;;@doc
 ;; Get the path of the currently focused file

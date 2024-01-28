@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# linux desktop entry
+# 默认情况
+# exec alacritty -e hx %f
+
+## 这里使用 
+# Exec=/__path__/.local/bin/hx-desktop %f
+# 接收参数 %f 
+selected_path=$1
+selected_folder=$(dirname "$selected_path")
+selected_file=$(basename "$selected_path")
+
+# Run Alacritty with Vim, passing folder and file paths as arguments
+alacritty -T "HELIX" --config-file=$HOME/.config/alacritty/hx.toml -e hx -w $selected_folder $selected_path

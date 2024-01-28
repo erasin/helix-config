@@ -17,12 +17,12 @@
 
 "constant" = { fg = "cyan", modifiers = ["bold"] }
 "constant.builtin" = { fg = "deep-purple" }
-"constant.builtin.boolean" = { fg = "purple" }
+"constant.builtin.boolean" = { fg = "purple" , modifiers = ["bold"]}
 "constant.character" = { fg = "green" }
-"constant.character.escape" = { fg = "brown" }
-"constant.numeric" = { fg = "brown" }
-"constant.numeric.integer" = { fg = "brown" }
-"constant.numeric.float" = { fg = "brown" }
+"constant.character.escape" = { fg = "brown" , modifiers = ["bold"]}
+"constant.numeric" = { fg = "brown" , modifiers = ["bold"]}
+"constant.numeric.integer" = { fg = "brown" , modifiers = ["bold"]}
+"constant.numeric.float" = { fg = "brown" , modifiers = ["bold"]}
 
 "string" = { fg = "green" }
 "string.regexp" = { fg = "purple" }

@@ -13,6 +13,14 @@
 
 ## 配置
 
+配置环境变量 `HELIX_RUNTIME` 配置 helix 默认的 runtime 文件夹路径。
+
+runtime 加载配置顺序为：
+
+- ~/.config/helix/runtime
+- HELIX_RUNTIME
+
+
 `$XDG_CONFIG_HOME` 一般为 `~/.config/helix`, 
 
 - config.toml 是 helix 的配置文件

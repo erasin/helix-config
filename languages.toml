@@ -1,11 +1,21 @@
+# ---- pinyin ----
+
+[language-server.pinyin]
+command = "ds-pinyin-lsp"
+
+[language-server.pinyin.config]
+db_path = "~/.local/share/pinyin.dict.db3"
+completion_on = true
+match_as_same_as_input = true
+
 # ----------- godot4 -------------
 [language-server.godot]
-command = "nc" 
-args = [ "127.0.0.1", "6005"]
+command = "nc"
+args = ["127.0.0.1", "6005"]
 
 [[language]]
 name = "gdscript"
-language-servers = ["godot"] 
+language-servers = ["godot"]
 
 [[language]]
 name = "godot-resource"
@@ -20,7 +30,7 @@ file-types = ["tscn", "tres", "godot", "gdextension", "import"]
 # ------ emmet support -------------
 [language-server.emmet-language-server]
 # command="emmet-language-server"
-command="emmet-ls"
+command = "emmet-ls"
 args = ["--stdio"]
 
 # ------ tailwindcss-language-server -------
@@ -88,24 +98,32 @@ source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "697bb5
 [[language]]
 name = "css"
 file-types = ["css", "scss", "less"]
-language-servers = [ "vscode-css-language-server", "emmet-language-server", "tailwindcss-language-server" ]
+language-servers = [
+  "vscode-css-language-server",
+  "emmet-language-server",
+  "tailwindcss-language-server",
+]
 
 [[language]]
 name = "html"
 file-types = ["html", "xhtml"]
-language-servers = [ "vscode-html-language-server", "emmet-language-server", "tailwindcss-language-server"]
+language-servers = [
+  "vscode-html-language-server",
+  "emmet-language-server",
+  "tailwindcss-language-server",
+]
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-language-server" ]
+language-servers = ["vuels", "tailwindcss-language-server"]
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server", "tailwindcss-language-server" ]
+language-servers = ["typescript-language-server", "tailwindcss-language-server"]
 
 [[language]]
 name = "jsx"
-language-servers = [ "typescript-language-server", "tailwindcss-language-server" ]
+language-servers = ["typescript-language-server", "tailwindcss-language-server"]
 
 # [[language]]
 # name="javascript"
@@ -119,15 +137,15 @@ language-servers = [ "typescript-language-server", "tailwindcss-language-server"
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/php/intelephenser_licence.txt"
-storagePath = "/home/erasin/.config/php/" # os.tmpdir()
-globalStoragePath = "/home/erasin/.config/php/" # os.homedir()
+storagePath = "/home/erasin/.config/php/"                         # os.tmpdir()
+globalStoragePath = "/home/erasin/.config/php/"                   # os.homedir()
 # clearCache = false # clean state
 
 # ----------- python pyright --------------
 
 [language-server.pyright]
 command = "pyright-langserver"
-args =["--stdio"] 
+args = ["--stdio"]
 
 [language-server.pyright.config.pyright.inlayHints]
 functionReturnTypes = true
@@ -158,18 +176,17 @@ outline = true
 flutterOutline = true
 
 # ------------ lua --------------
+
+[[language]]
+name = "lua"
+indent = { tab-width = 4, unit = "    " }
+
 [language-server.lua-language-server]
 args = ["--locale", "zh-cn"]
 
-[language-server.lua-language-server.config.Lua.workspace]
-library = [
-  "${3rd}/love2d/library",
-  "${3rd}/busted/library",
-]
+# 建议使用 .luarc.json 配置服务器
 
-# [language-server-lua-language-server.config.Lua.diagnostics]
-# globals = ["vim"]
-
+# https://luals.github.io/wiki/configuration/
 [language-server.lua-language-server.config.Lua.hint]
 enable = true
 arrayIndex = "Enable"
@@ -178,11 +195,31 @@ paramName = "All"
 paramType = true
 await = true
 
+[language-server.lua-language-server.config.Lua.workspace]
+library = [
+  "${3rd}/love2d/library",
+  "${3rd}/busted/library",
+  "${3rd}/Defold/library",
+]
+
+[language-server.lua-language-server.config.Lua.runtime]
+nonstandardSymbol = ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="]
+
+special = {"import"="require"}
+
+[[grammar]]
+name = "lua"
+# source = { git = "https://github.com/MunifTanjim/tree-sitter-lua", rev = "9668709211b2e683f27f414454a8b51bf0a6bda1" }
+# source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "" }
+source = { path = "/home/erasin/Development/project/tree-sitter-lua", rev = "" }
+
+# ----------- git ---------------
+
 [[language]]
 name = "git-commit"
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
-
+# ----------- bash ---------------
 [[language]]
 name = "bash"
 file-types = [
@@ -207,7 +244,21 @@ file-types = [
 
 [[language]]
 name = "xml"
-file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "ncx", "opf", "iml", "ui", "xml.in", "font.conf"]
+file-types = [
+  "xml",
+  "mobileconfig",
+  "plist",
+  "xib",
+  "storyboard",
+  "svg",
+  "ncx",
+  "opf",
+  "iml",
+  "ui",
+  "xml.in",
+  "font.conf",
+  ".manifest",
+]
 
 [[language]]
 name = "glsl"
@@ -226,6 +277,36 @@ file-types = [
 roots = ['.git']
 # language-server = { command = "glslls", args = ["--stdin"] }
 # config = { single_file_support = true }
+
+
+[[language]]
+name = "ini"
+scope = "source.ini"
+file-types = [
+  "ini",
+  # Systemd unit files
+  "service",
+  "automount",
+  "device",
+  "mount",
+  "path",
+  "service",
+  "slice",
+  "socket",
+  "swap",
+  "target",
+  "timer",
+  # Podman quadlets
+  "container",
+  "volume",
+  "kube",
+  "network",
+  ".editorconfig",
+  "properties",
+  "cfg",
+  "directory",
+  "desktop",
+]
 
 
 # dev
@@ -263,7 +344,15 @@ file-types = ["v", "vv", "vsh"]
 
 [[language]]
 name = "env"
-file-types = [".env", ".env.local", ".env.development", ".env.production", ".env.dist", ".envrc","env"]
+file-types = [
+  ".env",
+  ".env.local",
+  ".env.development",
+  ".env.production",
+  ".env.dist",
+  ".envrc",
+  "env",
+]
 
 # [[language]]
 # name = "http"
@@ -281,7 +370,6 @@ file-types = [".env", ".env.local", ".env.development", ".env.production", ".env
 # ------------- typst --------------------
 
 
-
 [language.formatter]
 command = "typst"
 args = ["c"]
@@ -295,7 +383,7 @@ args = ["c"]
 
 [[language]]
 name = "sshclientconfig"
-file-types = ["conf",{ suffix = "config" },]
+file-types = ["conf", { suffix = "config" }]
 
 [[language]]
 name = "yaml"
@@ -343,3 +431,19 @@ roots = []
 [[grammar]]
 name = "webidl"
 source = { path = "/home/erasin/Development/project/tree-sitter-webidl", rev = "" }
+
+
+[[language]]
+name = "glicol"
+scope = "source.glicol"
+injection-regex = "glicol"
+file-types = ["glicol"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+roots = []
+
+
+[[grammar]]
+name = "glicol"
+source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
+
