@@ -5,8 +5,14 @@
 > 分支 local-dev2 <https://github.com/erasin/helix/tree/local-dev2>
 
 - [#5768](https://github.com/helix-editor/helix/pull/5768) explorer 支持
-- [#2869](https://github.com/helix-editor/helix/pull/2869) icons 支持
+- [#6417](https://github.com/helix-editor/helix/pull/6417) Inline Diagnostics
 - [#5199](https://github.com/helix-editor/helix/pull/5199) 中文教程 tutor zh_cn
+- zen mode like [D#6468](https://github.com/helix-editor/helix/discussions/6468)
+
+
+**未合并**
+
+- [#2869](https://github.com/helix-editor/helix/pull/2869) --icons 支持--
 
 
 建议使用 Alacritty/wezterm + Tmux + Helix
