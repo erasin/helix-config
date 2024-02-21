@@ -39,7 +39,7 @@ idle-timeout = 40
 # mouse = true
 # scrolloff = 5 # 滚动时上下边缘填充行数
 # scroll-lines = 3
-line-number = "relative"  # 行号类型 absolute / relative 
+line-number = "relative" # 行号类型 absolute / relative 
 # rulers = [81, 121]   # 标尺
 # text-width = 80  # reflow 自动分割换行, 支持软换行
 
@@ -101,7 +101,7 @@ left = [
   # "file-type-icon",
   "file-name",
   "file-modification-indicator",
-  "register"
+  "register",
 ]
 center = ["diagnostics", "workspace-diagnostics"]
 right = [
@@ -132,23 +132,30 @@ separator = "│"
 # max-lines = 10
 
 [keys.normal]
-"C-r" = { s = ":write", e = "reveal_current_file",  r = ":reload",  c = ":config-reload" }
+"C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload" }
 # "C-r" = { s = ":write", r = ":reload",  c = ":config-reload" }
 "C-s" = ":write"
 "C-j" = "save_selection"
 # "C-z" = "normal_mode"                  # replace suspend
 "A-/" = "toggle_comments"
-"\\"  = ":reflow"                       # |
-"X"   = "extend_line_above"
+"\\" = ":reflow"                                         # |
+"X" = "extend_line_above"
 "Z" = { "Z" = [":quit"] }
 "z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
 
 # 输入法切换
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
 i = ["insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
-I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+I = [
+  "insert_at_line_start",
+  ":pipe-to bash ~/.config/helix/shells/ime-switch 1",
+]
 # use `li` or remap `after insert`
-a = ["move_char_right", "insert_mode",  ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+a = [
+  "move_char_right",
+  "insert_mode",
+  ":pipe-to bash ~/.config/helix/shells/ime-switch 1",
+]
 A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 o = ["open_below", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
@@ -156,7 +163,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 # space mode
 [keys.normal.space]
 "x" = ":buffer-close"
-"w" = { r = ":reload",  c = ":config-reload" }
+"w" = { r = ":reload", c = ":config-reload" }
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
 # "o" = "diagnostics_popup"

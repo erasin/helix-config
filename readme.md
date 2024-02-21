@@ -69,7 +69,7 @@ set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{25
 i = ["insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 # use `li` or remap `after insert`
-a = ["move_char_right", "insert_mode",  ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+a = ["move_char_right", "insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 o = ["open_below", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
