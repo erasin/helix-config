@@ -132,8 +132,6 @@ separator = "│"
 # max-lines = 10
 
 [keys.normal]
-# use `li` or remap `after insert`
-a = ["move_char_right", "insert_mode"]
 "C-r" = { s = ":write", e = "reveal_current_file",  r = ":reload",  c = ":config-reload" }
 # "C-r" = { s = ":write", r = ":reload",  c = ":config-reload" }
 "C-s" = ":write"
@@ -145,10 +143,15 @@ a = ["move_char_right", "insert_mode"]
 "Z" = { "Z" = [":quit"] }
 "z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
 
-# macos 自动切换到英文环境
-# "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
-# linux
-"esc" = [":pipe-to bash ~/.config/helix/shells/ibus-en", "normal_mode"]
+# 输入法切换
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+i = ["insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+# use `li` or remap `after insert`
+a = ["move_char_right", "insert_mode",  ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+o = ["open_below", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 
 # space mode
 [keys.normal.space]
@@ -159,9 +162,7 @@ a = ["move_char_right", "insert_mode"]
 # "o" = "diagnostics_popup"
 
 [keys.insert]
-# "esc" = [":sh macism com.apple.keylayout.ABC", "normal_mode"]
-# linux
-"esc" = [":pipe-to bash ~/.config/helix/shells/ibus-en", "normal_mode"]
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
 
 # [keys.select]
 

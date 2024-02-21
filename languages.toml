@@ -374,16 +374,9 @@ file-types = [
 command = "typst"
 args = ["c"]
 
-# ---------------------- slint ----------------------
-
-# [[grammar]]
-# name = "slint"
-# # source = { git = "https://github.com/slint-ui/slint", rev = "3e420b32ad7a2e0bca6b3a3193d0c68d1302abf0", subpath="editors/tree-sitter-slint" }
-# source = { git = "https://github.com/jrmoulton/tree-sitter-slint", rev = "00c8a2d3645766f68c0d0460086c0a994e5b0d85" }
-
 [[language]]
 name = "sshclientconfig"
-file-types = ["conf", { suffix = "config" }]
+file-types = ["conf"]
 
 [[language]]
 name = "yaml"

@@ -55,3 +55,35 @@ set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{25
 - hx-open 在 tmux 中打开调用
 - hx-sh 利用 tmux 执行命令
 - ibus-en 使用 gnome-shell dbus 切换输入法
+
+
+## 输入法切换
+
+切换输入法一般在切换插入模式时候处理。查看脚本[shells/ime-switch](shells/ime-switch)
+
+需要配置
+
+```toml
+[keys.normal]
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+i = ["insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+# use `li` or remap `after insert`
+a = ["move_char_right", "insert_mode",  ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+o = ["open_below", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+
+[keys.insert]
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+```
+
+### mac 下
+
+参看 [macism](https://github.com/laishulu/macism)
+
+### linux gnome 环境下 ibus 切换 
+
+配置 config.toml 设置 esc 执行 脚本 切换英文
+使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
+在 gnome 下需要插件[gnome shell ibus switcher](https://github.com/kevinhwang91/gnome-shell-ibus-switcher)

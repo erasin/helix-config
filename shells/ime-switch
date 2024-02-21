@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+
+# window 可以参考 neuims
+# macos 使用 macism 切换
+# linux ibus 使用 dbus
+
+is_re=0
+if [ $# -eq 1 ]; then
+    is_re=$1
+fi
+
+os_name=$(uname)
+
+### mac Drawin
+function osx_cache_file {
+    # 用于记录当前输入法的值
+    echo "$HOME/.cache/ime-method-input"
+}
+
+function osx_en {
+    macism com.apple.keylayout.ABC
+
+    # TODO: cache method
+}
+
+# TODO: 
+function osx_re {
+    macism com.apple.keylayout.ABC
+}
+
+### linux
+
+# 获取当前的输入法
+function ibus_get {
+    cmd_read_im="dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.CurrentSource"
+
+    current_input_method=$(eval "$cmd_read_im" | awk -F "|" '{print $2}')
+
+    echo $current_input_method
+}
+
+function ibus_set {
+    local id=$1
+    local method=$2
+
+    cmd_switch_ibus="dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.SwitchSource uint32:$id string:$method"
+    eval "$cmd_switch_ibus"
+}
+
+function ibus_cache_file {
+    # 用于记录当前输入法的值
+    echo "$HOME/.cache/ibus/ibus-method-input"
+}
+
+function ibus_en {
+    # 配置 config.toml 设置 esc 执行 脚本 切换英文
+    # 使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
+    # 在 gnome 下需要插件, d-bus send
+    # https://github.com/kevinhwang91/gnome-shell-ibus-switcher
+
+    ## 我使用的输入法 0 为英文， 1 为 rime ， rime 又记录了 A 和 (输入法的头个汉字),
+    # 比如我使用的小鹤双拼， 则显式为 1:小
+
+    # RIME 1 
+    local input_id=1
+    local method_a="A"
+    local method_b="小"
+
+    # 用于记录当前输入法的值
+    local input_method_cache=$(ibus_cache_file)
+    current_input_method=$(ibus_get)
+
+    # 检查是否为英文 A,不是则切换, 这里用的是 pinyin | rime, 根据自己的 ibus 处理
+    if [ "$current_input_method" != "$method_a" ]; then
+        ibus_set $input_id $method_a
+        # 记录最新值到缓存文件
+        echo $current_input_method > "$input_method_cache"
+    else
+        # 这里 多次使用 esc 的话，还是会记录为 A
+        echo "$method_a" > "$input_method_cache"
+    fi
+} 
+
+function ibus_re {
+    
+    # RIME 1 
+    local input_id=1
+    local method_a="A"
+    local method_b="小"
+
+    # 读取记录的上次的输入法
+    input_method_cache=$(ibus_cache_file)
+
+    # 如果输入法状态被保存在文件中，读取上次的值
+    if [ -f "$input_method_cache" ]; then
+        cached_input_method=$(cat "$input_method_cache")
+        current_input_method=$(ibus_get)
+
+        # 如果上次保存的输入法状态和当前输入法状态不同，则更新当前输入法状态
+        if [ "$cached_input_method" != "$current_input_method" ]; then
+            ibus_set $input_id $cached_input_method
+        fi
+    else
+        # 如果文件不存在，保存当前输入法状态到文件中
+        echo "$current_input_method" > "$input_method_cache"
+    fi
+}
+
+
+# 检查是否为macOS系统
+if [[ $(uname) == "Darwin" ]]; then
+    if [ $is_re -eq 0 ]; then
+        osx_en
+    else
+        osx_re
+    fi
+# 检查是否为Linux系统
+elif [[ $(uname) == "Linux" ]]; then
+    if [ $is_re -eq 0 ]; then
+        ibus_en
+    else
+        ibus_re
+    fi
+else
+    echo "无法确定当前系统"
+fi
