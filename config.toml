@@ -145,6 +145,7 @@ separator = "│"
 
 # 输入法切换
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+# 插入模式，恢复输入法
 i = ["insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 I = [
   "insert_at_line_start",
@@ -172,9 +173,5 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
 
 # Return/Enter keep insert at center with zen mode
-# 保持插入模式下书写的时候保持在屏幕中间
+# 保持插入模式下书写的时候保持在屏幕中间, 可以设定在项目中 for markdown
 # "ret" = ["insert_newline", 'align_view_center']
-
-# [keys.select]
-
-# 测试促成

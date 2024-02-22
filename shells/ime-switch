@@ -12,23 +12,69 @@ fi
 os_name=$(uname)
 
 ### mac Drawin
-function osx_cache_file {
-    # 用于记录当前输入法的值
-    echo "$HOME/.cache/ime-method-input"
+
+# 用于记录当前输入法的值
+osx_cache_file="$HOME/.cache/ime-method-input"
+osx_method_en="com.apple.keylayout.ABC"
+# osx_method_cn="im.rime.inputmethod.Squirrel.Hans"
+
+function osx_set {
+    macism $1
+}
+
+function osx_get {
+    echo $(macism)
 }
 
 function osx_en {
-    macism com.apple.keylayout.ABC
+    # 用于记录当前输入法的值
+    current_input_method=$(osx_get)
 
-    # TODO: cache method
+    # 检查是否为英文
+    if [ "$current_input_method" != "$osx_method_en" ]; then
+        osx_set $osx_method_en
+        # 记录最新值到缓存文件
+        echo $current_input_method > "$osx_cache_file"
+    else
+        # 这里 多次使用 esc 的话，还是会记录为 英文
+        echo "$osx_method_en" > "$osx_cache_file"
+    fi
 }
 
-# TODO: 
 function osx_re {
-    macism com.apple.keylayout.ABC
+    local current_input_method=$(osx_get)
+
+    # 读取记录的上次的输入法 
+    # 如果输入法状态被保存在文件中，读取上次的值
+    if [ -f "$osx_cache_file" ]; then
+        cached_input_method=$(cat "$osx_cache_file")
+
+        # 如果上次保存的输入法状态和当前输入法状态不同，则更新当前输入法状态
+        if [ "$cached_input_method" != "$current_input_method" ]; then
+            osx_set $cached_input_method
+        fi
+    else
+        # 如果文件不存在，保存当前输入法状态到文件中
+        echo "$current_input_method" > "$osx_cache_file"
+    fi
 }
 
 ### linux
+# 配置 config.toml 设置 esc 执行 脚本 切换英文
+# 使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
+# 在 gnome 下需要插件, d-bus send
+# https://github.com/kevinhwang91/gnome-shell-ibus-switcher
+
+## 我使用的输入法 0 为英文， 1 为 rime ， rime 又记录了 A 和 (输入法的头个汉字),
+# 比如我使用的小鹤双拼， 则显式为 1:小
+
+# RIME 1 
+ibus_input_id=1
+ibus_method_en="A"
+# ibus_method_cn="小"
+
+# 用于记录当前输入法的值
+ibus_cache_file="$HOME/.cache/ibus/ibus-method-input"
 
 # 获取当前的输入法
 function ibus_get {
@@ -47,65 +93,37 @@ function ibus_set {
     eval "$cmd_switch_ibus"
 }
 
-function ibus_cache_file {
-    # 用于记录当前输入法的值
-    echo "$HOME/.cache/ibus/ibus-method-input"
-}
-
 function ibus_en {
-    # 配置 config.toml 设置 esc 执行 脚本 切换英文
-    # 使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
-    # 在 gnome 下需要插件, d-bus send
-    # https://github.com/kevinhwang91/gnome-shell-ibus-switcher
-
-    ## 我使用的输入法 0 为英文， 1 为 rime ， rime 又记录了 A 和 (输入法的头个汉字),
-    # 比如我使用的小鹤双拼， 则显式为 1:小
-
-    # RIME 1 
-    local input_id=1
-    local method_a="A"
-    local method_b="小"
-
     # 用于记录当前输入法的值
-    local input_method_cache=$(ibus_cache_file)
     current_input_method=$(ibus_get)
 
     # 检查是否为英文 A,不是则切换, 这里用的是 pinyin | rime, 根据自己的 ibus 处理
-    if [ "$current_input_method" != "$method_a" ]; then
-        ibus_set $input_id $method_a
+    if [ "$current_input_method" != "$ibus_method_en" ]; then
+        ibus_set $ibus_input_id $ibus_method_en
         # 记录最新值到缓存文件
-        echo $current_input_method > "$input_method_cache"
+        echo $current_input_method > "$ibus_cache_file"
     else
         # 这里 多次使用 esc 的话，还是会记录为 A
-        echo "$method_a" > "$input_method_cache"
+        echo "$ibus_method_en" > "$ibus_cache_file"
     fi
 } 
 
 function ibus_re {
-    
-    # RIME 1 
-    local input_id=1
-    local method_a="A"
-    local method_b="小"
-
-    # 读取记录的上次的输入法
-    input_method_cache=$(ibus_cache_file)
-
+    local current_input_method=$(ibus_get)
+    # 读取记录的上次的输入法 
     # 如果输入法状态被保存在文件中，读取上次的值
-    if [ -f "$input_method_cache" ]; then
-        cached_input_method=$(cat "$input_method_cache")
-        current_input_method=$(ibus_get)
+    if [ -f "$ibus_cache_file" ]; then
+        cached_input_method=$(cat "$ibus_cache_file")
 
         # 如果上次保存的输入法状态和当前输入法状态不同，则更新当前输入法状态
         if [ "$cached_input_method" != "$current_input_method" ]; then
-            ibus_set $input_id $cached_input_method
+            ibus_set $ibus_input_id $cached_input_method
         fi
     else
         # 如果文件不存在，保存当前输入法状态到文件中
-        echo "$current_input_method" > "$input_method_cache"
+        echo "$current_input_method" > "$ibus_cache_file"
     fi
 }
-
 
 # 检查是否为macOS系统
 if [[ $(uname) == "Darwin" ]]; then

@@ -9,23 +9,13 @@
 - [#5199](https://github.com/helix-editor/helix/pull/5199) 中文教程 tutor zh_cn
 - zen mode like [D#6468](https://github.com/helix-editor/helix/discussions/6468)
 
-
 **未合并**
 
 - [#2869](https://github.com/helix-editor/helix/pull/2869) --icons 支持--
 
-
 建议使用 Alacritty/wezterm + Tmux + Helix
 
 ## 配置
-
-配置环境变量 `HELIX_RUNTIME` 配置 helix 默认的 runtime 文件夹路径。
-
-runtime 加载配置顺序为：
-
-- ~/.config/helix/runtime
-- HELIX_RUNTIME
-
 
 `$XDG_CONFIG_HOME` 一般为 `~/.config/helix`, 
 
@@ -33,22 +23,18 @@ runtime 加载配置顺序为：
 - languages.toml 是本地语言优先配置
 - shells 中是针对 hx 的一些脚本
 
-## tmux 
+配置路径加载顺序
 
-设定终端
+- ~/.config/helix/
+- project_path/.helix/
 
-```bash
-export TERM=xterm-256color 
-```
 
-使用 tmux 的时候,追加tmux配置 
+配置环境变量 `HELIX_RUNTIME` 配置 helix 默认的 runtime 文件夹路径。
 
-```bash
-set -g default-terminal "tmux-256color"
-set -ga terminal-overrides ',xterm-256color:Tc'
-set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
-set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-```
+runtime 加载配置顺序为：
+
+- ~/.config/helix/runtime
+- HELIX_RUNTIME
 
 ## shells
 
@@ -87,3 +73,21 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 配置 config.toml 设置 esc 执行 脚本 切换英文
 使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
 在 gnome 下需要插件[gnome shell ibus switcher](https://github.com/kevinhwang91/gnome-shell-ibus-switcher)
+
+
+## tmux 
+
+设定终端
+
+```bash
+export TERM=xterm-256color 
+```
+
+使用 tmux 的时候,追加tmux配置 
+
+```bash
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ',xterm-256color:Tc'
+set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
+set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+```
