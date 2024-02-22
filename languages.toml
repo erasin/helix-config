@@ -440,3 +440,11 @@ roots = []
 name = "glicol"
 source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
 
+
+[[language]]
+name="hurl"
+formatter = { command = "hurlfmt" }
+
+[[grammar]]
+name = "hurl"
+source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "cd1a0ada92cc73dd0f4d7eedc162be4ded758591" }

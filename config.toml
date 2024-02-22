@@ -171,6 +171,10 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 [keys.insert]
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
 
+# Return/Enter keep insert at center with zen mode
+# 保持插入模式下书写的时候保持在屏幕中间
+# "ret" = ["insert_newline", 'align_view_center']
+
 # [keys.select]
 
 # 测试促成
