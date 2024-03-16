@@ -12,7 +12,7 @@
 # [merged] #6173 completion_sync 
 # [merged] #6004 the-mikedavis:md-dynamic-picker-recalculate-column-widths
 
-theme = "onedark_local"
+theme = "onelight_local"
 # [#2869]
 # icons= "nerd"
 # icons= "nerdfonts"
@@ -92,19 +92,16 @@ skip-levels = 0
 # [#2869] file-type-icon
 left = [
   "mode",
-  "spacer",
   "spinner",
-  "spacer",
   "version-control",
-  "spacer",
   "read-only-indicator",
   # "file-type-icon",
   "file-name",
   "file-modification-indicator",
-  "register",
 ]
 center = ["diagnostics", "workspace-diagnostics"]
 right = [
+  "register",
   "selections",
   "primary-selection-length",
   "position",
@@ -171,6 +168,9 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 
 [keys.insert]
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+
+# tab 默认为 "tab" = smart_tab
+# tab 输入 \t 为 "S-tab" = insert_tab
 
 # Return/Enter keep insert at center with zen mode
 # 保持插入模式下书写的时候保持在屏幕中间, 可以设定在项目中 for markdown

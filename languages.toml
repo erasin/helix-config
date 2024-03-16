@@ -1,3 +1,8 @@
+# ----- rust ----
+# [language-server.rust-analyzer.config]
+# cargo.features = "all"
+# checkOnSave.features = "all"
+
 # ---- pinyin ----
 
 [language-server.pinyin]
@@ -312,9 +317,9 @@ file-types = [
 # dev
 [[language]]
 name = "markdown"
-indent = { tab-width = 4, unit = "    " }
 file-types = ["md", "markdown"]
 roots = [".git"]
+formatter = { command = "prettier", args = ["--parser", "markdown"] }
 # 设定zen-mode-like
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
@@ -396,7 +401,7 @@ roots = ["hxml", "haxelib.json", "khafile.js"]
 
 [[grammar]]
 name = "haxe"
-source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "b150fdb311e2a24d3e0cba37ae4954427f5d0cf9" }
+source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "6f6e7989d2d8a69b50d75a77be1ebae9486280a3" }
 
 # [language-server.haxe-language-server]
 # command = "node" 
@@ -407,7 +412,7 @@ source = { git = "https://github.com/vantreeseba/tree-sitter-haxe", rev = "b150f
 
 [[grammar]]
 name = "jsdoc"
-source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "d01984de49927c979b46ea5c01b78c8ddd79baf9" }
+source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "6a6cf9e7341af32d8e2b2e24a37fbfebefc3dc55" }
 
 
 # ====== udl idl-----
@@ -435,11 +440,9 @@ comment-token = "//"
 indent = { tab-width = 4, unit = "\t" }
 roots = []
 
-
 [[grammar]]
 name = "glicol"
 source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
-
 
 [[language]]
 name="hurl"

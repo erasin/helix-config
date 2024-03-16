@@ -69,26 +69,28 @@ function osx_re {
 # 比如我使用的小鹤双拼， 则显式为 1:小
 
 # RIME 1 
-ibus_input_id=1
-ibus_method_en="A"
-# ibus_method_cn="小"
-
 # 用于记录当前输入法的值
 ibus_cache_file="$HOME/.cache/ibus/ibus-method-input"
+# ibus_method_en="0|"
+ibus_method_en="1|A"
+# ibus_method_cn="1|小"
+
 
 # 获取当前的输入法
 function ibus_get {
     cmd_read_im="dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.CurrentSource"
 
-    current_input_method=$(eval "$cmd_read_im" | awk -F "|" '{print $2}')
+    current_input_method=$(awk '{$1=$1};1' <<< $(eval "$cmd_read_im"))
 
     echo $current_input_method
 }
 
 function ibus_set {
-    local id=$1
-    local method=$2
-
+    local ime_method=$1
+    # id=$(echo $ime_method | awk -F "|" '{print $1}')
+    # method=$(echo $ime_method | awk -F "|" '{print $2}')
+    IFS='|' read -r id method <<< $ime_method
+    
     cmd_switch_ibus="dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.SwitchSource uint32:$id string:$method"
     eval "$cmd_switch_ibus"
 }
@@ -97,13 +99,13 @@ function ibus_en {
     # 用于记录当前输入法的值
     current_input_method=$(ibus_get)
 
-    # 检查是否为英文 A,不是则切换, 这里用的是 pinyin | rime, 根据自己的 ibus 处理
+    # 检查是否为英文 0|,不是则切换, 这里用的是 pinyin | rime, 根据自己的 ibus 处理
     if [ "$current_input_method" != "$ibus_method_en" ]; then
-        ibus_set $ibus_input_id $ibus_method_en
+        ibus_set $ibus_method_en
         # 记录最新值到缓存文件
         echo $current_input_method > "$ibus_cache_file"
     else
-        # 这里 多次使用 esc 的话，还是会记录为 A
+        # 这里 多次使用 esc 的话，还是会记录为 0|
         echo "$ibus_method_en" > "$ibus_cache_file"
     fi
 } 
@@ -117,7 +119,7 @@ function ibus_re {
 
         # 如果上次保存的输入法状态和当前输入法状态不同，则更新当前输入法状态
         if [ "$cached_input_method" != "$current_input_method" ]; then
-            ibus_set $ibus_input_id $cached_input_method
+            ibus_set $cached_input_method
         fi
     else
         # 如果文件不存在，保存当前输入法状态到文件中
