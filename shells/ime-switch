@@ -141,6 +141,18 @@ elif [[ $(uname) == "Linux" ]]; then
     else
         ibus_re
     fi
+
+    ## 仅使用 ibus 输入
+    # if [ $is_re -eq 0 ]; then
+    #     current_input_method=$(ibus engine)
+    #     echo "$current_input_method" > "$ibus_cache_file"
+    #     ibus engine "xkb:us::eng"
+    # else
+    #     cached_input_method=$(cat "$ibus_cache_file")
+    #     if [[ "$cached_input_method" != "" ]];then
+    #         ibus engine $cached_input_method
+    #     fi
+    # fi
 else
     echo "无法确定当前系统"
 fi
