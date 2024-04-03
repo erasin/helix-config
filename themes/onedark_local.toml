@@ -96,6 +96,7 @@
 "diff.minus" = { fg = "red" }
 "diff.delta" = { fg = "gold" }
 "diff.delta.moved" = { fg = "gold" }
+"diff.delta.conflict" = {fg = "blue"}
 
 "ui.background" = { bg = "black" }
 "ui.background.separator" = { bg = "black" }
@@ -134,6 +135,7 @@
 "ui.virtual.inlay-hint" = { fg = "light-gray" }
 "ui.virtual.inlay-hint.parameter" = { fg = "light-gray", modifiers = ["italic"] }
 "ui.virtual.inlay-hint.type" = { fg = "light-gray" }
+"ui.virtual.jump-label" = { fg = "white", bg = "gray", modifiers = ["bold" ] }
 
 "ui.menu" = { fg = "white", bg = "gray" }
 "ui.menu.selected" = { fg = "black", bg = "blue" }

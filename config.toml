@@ -1,24 +1,27 @@
+# 使用分支
+# https://github.com/erasin/helix/tree/local-dev2
+# https://gitee.com/erasin/helix/tree/local-dev2
+
 # 使用 pr
-# #8675 plugin system use steel scheme
-# #5768 file explorer  
-# X #2869 icons
 # #6417 inline-diagnostics lsp codelens style diagnostics 
+# #5768 file explorer : https://gitee.com/erasin/helix/tree/tree_explore_local/
 # #6531 lang-config-open
+# zen mode like : https://github.com/helix-editor/helix/discussions/6468
+
+
+# X #8675 plugin system use steel scheme
+# X #2869 icons
 # #5199 tutor
 # #8021 event system
 ### #6118 sticky-context
 
-# [merged] #5934 lsp inlay hints
-# [merged] #6173 completion_sync 
-# [merged] #6004 the-mikedavis:md-dynamic-picker-recalculate-column-widths
+theme = "onelight_local"
 
-theme = "onedark_local"
 # [#2869]
 # icons= "nerd"
 # icons= "nerdfonts"
 
 [editor]
-
 
 # 真彩支持
 # 使用 infocmp | rg color 检查是否支持 256color [终端控制命令 infocmp](http://manual.51yip.com/shell/terminalccmds.html) 

@@ -1,13 +1,21 @@
 使用 HELIX EDITOR
 ===
 
+
 > https://erasin.wang/helix/
-> 分支 local-dev2 <https://github.com/erasin/helix/tree/local-dev2>
+
+使用分支
+- <https://github.com/erasin/helix/tree/local-dev2>
+- <https://gitee.com/erasin/helix/tree/local-dev2>
+
 
 - [#5768](https://github.com/helix-editor/helix/pull/5768) explorer 支持
+  - 分支维护 <https://gitee.com/erasin/helix/tree/tree_explore_local/>
 - [#6417](https://github.com/helix-editor/helix/pull/6417) Inline Diagnostics
-- [#5199](https://github.com/helix-editor/helix/pull/5199) 中文教程 tutor zh_cn
+- [#6531](https://github.com/helix-editor/helix/pull/6417) lang-config-open
 - zen mode like [D#6468](https://github.com/helix-editor/helix/discussions/6468)
+
+> [#5199](https://github.com/helix-editor/helix/pull/5199) 中文教程 tutor zh_cn
 
 **未合并**
 

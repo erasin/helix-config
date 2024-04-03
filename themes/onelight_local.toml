@@ -89,15 +89,16 @@
 "markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
 "markup.link.text" = { fg = "light-blue" }
 "markup.quote" = { fg = "grey" }
-"markup.raw" = { fg = "black" }
+"markup.raw" = { fg = "brown" }
 "markup.raw.inline" = { fg = "green" }
-"markup.raw.block" = { fg = "black" }
+"markup.raw.block" = { fg = "brown" }
 
 "diff" = { fg = "red" }
 "diff.plus" = { fg = "green" }
 "diff.minus" = { fg = "red" }
 "diff.delta" = { fg = "cyan" }
 "diff.delta.moved" = { fg = "cyan" }
+"diff.delta.conflict" = {fg = "blue"}
 
 "ui.background" = { bg = "white" }
 "ui.background.separator" = { bg = "white" }
@@ -142,6 +143,7 @@
 "ui.virtual.inlay-hint" = { fg = "grey-500" }
 "ui.virtual.inlay-hint.parameter" = { fg = "grey-500", modifiers = ["italic"] }
 "ui.virtual.inlay-hint.type" = { fg = "grey-500" }
+"ui.virtual.jump-label" = { fg = "black", bg = "grey-200", modifiers = ["bold" ] }
 
 "ui.menu" = { fg = "black", bg = "grey-300" }
 "ui.menu.selected" = { fg = "white", bg = "light-blue" }
