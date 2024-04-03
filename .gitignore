@@ -1,3 +1,4 @@
+!runtime/queries
 runtime
 *.bak
 def.toml

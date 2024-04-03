@@ -41,10 +41,10 @@ args = ["--stdio"]
 # ------ tailwindcss-language-server -------
 
 # npm i -g helix-twcss , use hx-tw replace tailwindcss-language-server
-[language-server.tailwindcss-language-server]
-command = "hx-tw"
+# [language-server.tailwindcss-ls]
+# # command = "hx-tw"
 # command = "tailwindcss-language-server"
-args = ["--stdio"]
+# args = ["--stdio"]
 
 # -------- typescript -----------
 [language-server.typescript-language-server.config]
@@ -94,11 +94,7 @@ includeInlayVariableTypeHints = true
 [[language]]
 name = "svelte"
 roots = ["package.json"]
-language-servers = ["svelteserver", "tailwindcss-language-server"]
-
-[[grammar]]
-name = "svelte"
-source = { git = "https://github.com/Himujjal/tree-sitter-svelte", rev = "697bb515471871e85ff799ea57a76298a71a9cca" }
+language-servers = ["svelteserver", "tailwindcss-ls"]
 
 [[language]]
 name = "css"
@@ -106,7 +102,7 @@ file-types = ["css", "scss", "less"]
 language-servers = [
   "vscode-css-language-server",
   "emmet-language-server",
-  "tailwindcss-language-server",
+  "tailwindcss-ls",
 ]
 
 [[language]]
@@ -115,20 +111,20 @@ file-types = ["html", "xhtml"]
 language-servers = [
   "vscode-html-language-server",
   "emmet-language-server",
-  "tailwindcss-language-server",
+  "tailwindcss-ls",
 ]
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-language-server"]
+language-servers = ["vuels", "tailwindcss-ls"]
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server", "tailwindcss-language-server"]
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
 
 [[language]]
 name = "jsx"
-language-servers = ["typescript-language-server", "tailwindcss-language-server"]
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
 
 # [[language]]
 # name="javascript"
@@ -346,19 +342,18 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "6a6c
 
 # ====== udl idl-----
 # https://webidl.spec.whatwg.org/
-[[language]]
-name = "webidl"
-scope = "source.idl"
-injection-regex = "webidl"
-file-types = ["idl", "udl"]
-comment-token = "//"
-indent = { tab-width = 4, unit = "\t" }
-roots = []
+# [[language]]
+# name = "webidl"
+# scope = "source.idl"
+# injection-regex = "webidl"
+# file-types = ["idl", "udl"]
+# comment-token = "//"
+# indent = { tab-width = 4, unit = "\t" }
+# roots = []
 
-[[grammar]]
-name = "webidl"
-source = { path = "/home/erasin/Development/project/tree-sitter-webidl", rev = "" }
-
+# [[grammar]]
+# name = "webidl"
+# source = { path = "/home/erasin/Development/project/tree-sitter-webidl", rev = "" }
 
 [[language]]
 name = "glicol"
@@ -372,11 +367,3 @@ roots = []
 [[grammar]]
 name = "glicol"
 source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
-
-[[language]]
-name="hurl"
-formatter = { command = "hurlfmt" }
-
-[[grammar]]
-name = "hurl"
-source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "cd1a0ada92cc73dd0f4d7eedc162be4ded758591" }
