@@ -144,28 +144,39 @@ globalStoragePath = "/home/erasin/.config/php/"                   # os.homedir()
 
 # ----------- python pyright --------------
 
+# https://github.com/microsoft/pyright
 [language-server.pyright]
 command = "pyright-langserver"
 args = ["--stdio"]
+# 禁用 dia, format, 使用 ruff-lsp
+except-features = ["diagnostics", "format"]
 
-[language-server.pyright.config.pyright.inlayHints]
-functionReturnTypes = true
-variableTypes = true
-
-[language-server.pyright.config.python.analysis]
-autoSearchPaths = true
-diagnosticMode = "workspace"
-useLibraryCodeForTypes = true
+#  https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+#  为 pyright 在 pyproject.toml 中设置 venv 路径适配 rye 等 venv 
+# ```toml
+#  [tool.pyright]
+#  venvPath = "."
+#  venv = ".venv"
+# ```
 
 [language-server.pylsp.config]
 pylsp.plugins.rope_autoimport.enabled = true
+
+# https://github.com/astral-sh/ruff-lsp
+[language-server.ruff]
+command = "ruff-lsp"
+args = []
+# support ruff check
+# support ruff format
+
+[language-server.ruff.config.settings]
+args = ["--ignore", "E501"]
 
 [[language]]
 name = "python"
 file-types = ["py", "pyi"]
 roots = ["pyproject.toml", "pyrightconfig.json"]
-language-servers = ["pyright"]
-formatter = { command = "black", args = ["-"] }
+language-servers = ["pyright", "ruff"]
 auto-format = true
 
 # ---------- dart -----------------
@@ -204,15 +215,27 @@ library = [
 ]
 
 [language-server.lua-language-server.config.Lua.runtime]
-nonstandardSymbol = ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="]
+nonstandardSymbol = [
+  "+=",
+  "-=",
+  "*=",
+  "/=",
+  "//=",
+  "%=",
+  "<<=",
+  ">>=",
+  "&=",
+  "|=",
+  "^=",
+]
 
-special = {"import"="require"}
+special = { "import" = "require" }
 
 [[grammar]]
 name = "lua"
 # source = { git = "https://github.com/MunifTanjim/tree-sitter-lua", rev = "9668709211b2e683f27f414454a8b51bf0a6bda1" }
-# source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "" }
-source = { path = "/home/erasin/Development/project/tree-sitter-lua", rev = "" }
+source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769a3fcf7f40dcaaa94509023ff7fea6" }
+# source = { path = "/home/erasin/Development/project/tree-sitter-lua", rev = "" }
 
 # ----------- git ---------------
 
