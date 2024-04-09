@@ -3,15 +3,9 @@
 # cargo.features = "all"
 # checkOnSave.features = "all"
 
-# ---- pinyin ----
-
-[language-server.pinyin]
-command = "ds-pinyin-lsp"
-
-[language-server.pinyin.config]
-db_path = "~/.local/share/pinyin.dict.db3"
-completion_on = true
-match_as_same_as_input = true
+# ------ snippets lsp -----
+[language-server.snippets-ls]
+command = "snippets-ls"
 
 # ----------- godot4 -------------
 [language-server.godot]
@@ -41,10 +35,10 @@ args = ["--stdio"]
 # ------ tailwindcss-language-server -------
 
 # npm i -g helix-twcss , use hx-tw replace tailwindcss-language-server
-# [language-server.tailwindcss-ls]
-# # command = "hx-tw"
+[language-server.tailwindcss-ls]
+command = "hx-tw"
 # command = "tailwindcss-language-server"
-# args = ["--stdio"]
+args = ["--stdio"]
 
 # -------- typescript -----------
 [language-server.typescript-language-server.config]
@@ -390,3 +384,16 @@ roots = []
 [[grammar]]
 name = "glicol"
 source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
+
+# rust lepto
+[[language]]
+name = "rstml"
+scope = "source.rstml"
+injection-regex = "rstml"
+file-types = ["rstml"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+
+[[grammar]]
+name = "rstml"
+source = { git = "https://github.com/rayliwell/tree-sitter-rstml", rev = "c7fc489ced51d23af52efc1d4046a4fdf53b56db" ,subpath = "rust_with_rstml" }

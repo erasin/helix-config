@@ -3,11 +3,14 @@
 # https://gitee.com/erasin/helix/tree/local-dev2
 
 # 使用 pr
+# #9801 snippets for lsp
 # #6417 inline-diagnostics lsp codelens style diagnostics 
 # #5768 file explorer : https://gitee.com/erasin/helix/tree/tree_explore_local/
 # #6531 lang-config-open
+
 # zen mode like : https://github.com/helix-editor/helix/discussions/6468
 
+# statusline-word-count
 
 # X #8675 plugin system use steel scheme
 # X #2869 icons
@@ -75,9 +78,9 @@ display-messages = true
 # display-signature-help-docs = false
 # LSP Type Hints default is false
 display-inlay-hints = true
-# [6417]
-# inline-diagnostics= { min-diagnostic-width = 80 }
-# display-diagnostic-message=false
+# [6417] inline diagnostic
+# inline-diagnostics = { min-diagnostic-width = 80, max_diagnostics = 10 } 
+# display-diagnostic-message=false # default true
 
 # all / none
 [editor.whitespace.render]
@@ -111,6 +114,7 @@ right = [
   "position-percentage",
   "file-encoding",
   "file-line-ending",
+  'word-count', #[] statusline-word-count
   "file-type",
 ]
 separator = "│"
