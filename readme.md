@@ -13,7 +13,7 @@
 - [#6417](https://github.com/helix-editor/helix/pull/6417) Inline Diagnostics
 - [#9081](https://github.com/helix-editor/helix/pull/9801) lsp snippets, smart-tab
 - [#6531](https://github.com/helix-editor/helix/pull/6417) lang-config-open
-> [#5199](https://github.com/helix-editor/helix/pull/5199) 中文教程 tutor zh_cn
+> [#5199](https://github.com/erasin/helix/tree/tutor-zh) 中文教程 tutor zh_cn
 - zen mode like [D#6468](https://github.com/helix-editor/helix/discussions/6468)
 
 
