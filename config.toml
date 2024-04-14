@@ -18,7 +18,7 @@
 # #8021 event system
 ### #6118 sticky-context
 
-theme = "onelight_local"
+theme = "onedark_local"
 
 # [#2869]
 # icons= "nerd"
@@ -110,17 +110,17 @@ right = [
   "register",
   "selections",
   "primary-selection-length",
-  "position",
-  "position-percentage",
   "file-encoding",
   "file-line-ending",
   'word-count', #[] statusline-word-count
+  "position",
+  "position-percentage",
   "file-type",
 ]
 separator = "│"
-mode.normal = "正常"
-mode.insert = "插入"
-mode.select = "选择"
+# mode.normal = "正常"
+# mode.insert = "插入"
+# mode.select = "选择"
 
 # [#5768]
 # s-e 切换显示

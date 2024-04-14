@@ -1,0 +1,134 @@
+{
+  "zola": {
+    "prefix": "zola",
+    "body": [
+      "+++",
+      "title = ''",
+      "description = ''",
+      "date = ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}Z",
+      "weight = 0",
+      "draft = true",
+      "",
+      "[taxonomies]",
+      "tags = []",
+      "categories = []",
+      "authors = ['erasin']",
+      "",
+      "[extra]",
+      "math = false",
+      "cc = true",
+      "comment = false",
+      "+++"
+    ],
+    "description": "zola header"
+  },
+  "time": {
+    "prefix": "time",
+    "body": "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}",
+    "description": "time"
+  },
+  "mdbookNote": {
+    "prefix": "mdbookNote",
+    "body": [
+      "```admonish note ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish note"
+  },
+  "mdbookInfo": {
+    "prefix": "mdbookInfo",
+    "body": [
+      "```admonish info ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish info"
+  },
+  "mdbookTip": {
+    "prefix": "mdbookTip",
+    "body": [
+      "```admonish tip ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish tip"
+  },
+  "mdbookSucess": {
+    "prefix": "mdbookSuccess",
+    "body": [
+      "```admonish success ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish success"
+  },
+  "mdbookQuestion": {
+    "prefix": "mdbookQuestion",
+    "body": [
+      "```admonish question ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish question"
+  },
+  "mdbookWarning": {
+    "prefix": "mdbookWarning",
+    "body": [
+      "```admonish warning ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish warning"
+  },
+  "mdbookFail": {
+    "prefix": "mdbookFail",
+    "body": [
+      "```admonish fail ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish fail"
+  },
+  "mdbookDanger": {
+    "prefix": "mdbookDanger",
+    "body": [
+      "```admonish danger ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish danger"
+  },
+  "mdbookBug": {
+    "prefix": "mdbookBug",
+    "body": [
+      "```admonish bug ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish bug"
+  },
+  "mdbookExample": {
+    "prefix": "mdbookExample",
+    "body": [
+      "```admonish example ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish example"
+  },
+  "mdbookQuote": {
+    "prefix": "mdbookQuote",
+    "body": [
+      "```admonish quote ${1:title=\"$2\"}",
+      "${3:content}",
+      "```"
+    ],
+    "description": "mdbook admonish quote"
+  },
+  "mdbookBob": {
+    "prefix": "mdbookBob",
+    "body": "```svgbob \n$1\n```",
+    "description": "mdbook svgbob "
+  }
+}

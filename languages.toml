@@ -4,8 +4,10 @@
 # checkOnSave.features = "all"
 
 # ------ snippets lsp -----
-[language-server.snippets-ls]
-command = "snippets-ls"
+# https://github.com/erasin/hx-lsp 
+# ./snippets
+[language-server.hx-lsp]
+command = "hx-lsp"
 
 # ----------- godot4 -------------
 [language-server.godot]
@@ -293,6 +295,8 @@ name = "markdown"
 file-types = ["md", "markdown"]
 roots = [".git"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
+language-servers = ["marksman", "markdown-oxide", "hx-lsp"]
+
 # 设定zen-mode-like
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
