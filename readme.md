@@ -8,14 +8,13 @@
 - <https://github.com/erasin/helix/tree/local-dev2>
 - <https://gitee.com/erasin/helix/tree/local-dev2>
 
-- [#5768](https://github.com/helix-editor/helix/pull/5768) explorer 支持
-  - 分支维护 <https://gitee.com/erasin/helix/tree/tree_explore_local/>
-- [#6417](https://github.com/helix-editor/helix/pull/6417) Inline Diagnostics
-- [#9081](https://github.com/helix-editor/helix/pull/9801) lsp snippets, smart-tab
-- [#6531](https://github.com/helix-editor/helix/pull/6417) lang-config-open
-> [#5199](https://github.com/erasin/helix/tree/tutor-zh) 中文教程 tutor zh_cn
-- zen mode like [D#6468](https://github.com/helix-editor/helix/discussions/6468)
-
+- [tree_explorer #5768](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
+  - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
+- [inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics
+- [snippet_placeholder #9081](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab
+- [lang-config-open #6531](https://github.com/erasin/helix/lang-config-open) lang-config-open
+- [tutor-zh #5199](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
+- [zen mode like D#6468](https://github.com/helix-editor/helix/discussions/6468)
 
 **未合并**
 
@@ -84,6 +83,9 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 
 
 ## tmux 
+
+真彩支持
+使用 `infocmp | rg color` 检查是否支持 256color [终端控制命令 infocmp](http://manual.51yip.com/shell/terminalccmds.html) 
 
 设定终端
 
