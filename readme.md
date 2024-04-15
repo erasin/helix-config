@@ -5,13 +5,14 @@
 > https://erasin.wang/helix/
 
 使用分支
-- <https://github.com/erasin/helix/tree/local-dev2>
-- <https://gitee.com/erasin/helix/tree/local-dev2>
+- <https://github.com/erasin/helix/tree/local-dev>
+- <https://gitee.com/erasin/helix/tree/local-dev>
 
 - [tree_explorer #5768](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
   - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
 - [inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics
 - [snippet_placeholder #9081](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab
+  - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
 - [lang-config-open #6531](https://github.com/erasin/helix/lang-config-open) lang-config-open
 - [tutor-zh #5199](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
 - [zen mode like D#6468](https://github.com/helix-editor/helix/discussions/6468)

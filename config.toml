@@ -1,7 +1,6 @@
 # 使用分支
-# https://github.com/erasin/helix/tree/local-dev2
-# https://gitee.com/erasin/helix/tree/local-dev2
-
+# https://github.com/erasin/helix/tree/local-dev
+# https://gitee.com/erasin/helix/tree/local-dev
 # use pr
 # #5768 tree_explore_local https://gitee.com/erasin/helix/tree/tree_explore_local 
 # #6417 inline-diagnostics  https://github.com/helix-editor/helix/pull/6417 

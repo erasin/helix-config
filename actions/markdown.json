@@ -6,9 +6,8 @@
       "^test_"
     ],
     "shell": [
-      "kitty",
       "tmux split-window -h",
-      "tmux send hx"
+      "tmux send in helix"
     ],
     "description": "tmux split and open helix"
   }
