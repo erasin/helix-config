@@ -27,16 +27,16 @@
 
 `$XDG_CONFIG_HOME` 一般为 `~/.config/helix`, 
 
-- config.toml 是 helix 的配置文件
-- languages.toml 是本地语言优先配置
-- shells 中是针对 hx 的一些脚本
-- snippets 适配 hx-lsp
-- actions 适配 hx-lsp
+- `config.toml` 是 helix 的配置文件
+- `languages.toml` 是本地语言优先配置
+- `shells `中是针对 hx 的一些脚本
+- `snippets `适配 [hx-lsp](https://github.com/erasin/hx-lsp)
+- `actions `适配 [hx-lsp](https://github.com/erasin/hx-lsp)
 
 配置路径加载顺序
 
 - ~/.config/helix/
-- project_path/.helix/
+- PROJECT_PATH/.helix/
 
 因为我自己使用的自己编译的文件，需要设定置环境变量 `HELIX_RUNTIME` 为 helix 项目的 runtime 文件夹路径。
 
