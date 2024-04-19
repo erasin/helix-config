@@ -9,6 +9,18 @@
 [language-server.hx-lsp]
 command = "hx-lsp"
 
+# ------ typos lsp ------
+# https://github.com/tekumara/typos-lsp
+# https://github.com/crate-ci/typos
+# Add typos.toml enable
+[language-server.typos-lsp]
+command = "typos-lsp"
+
+# ---------- rust -----
+[[language]]
+name = "rust"
+language-servers = [ "rust-analyzer", "typos-lsp" ]
+
 # ----------- godot4 -------------
 [language-server.godot]
 command = "nc"
@@ -175,14 +187,6 @@ roots = ["pyproject.toml", "pyrightconfig.json"]
 language-servers = ["pyright", "ruff"]
 auto-format = true
 
-# ---------- dart -----------------
-
-[language-server.dart.config.dart]
-# dart lsp 自定义函数，暂不支持
-closingLabels = true
-outline = true
-flutterOutline = true
-
 # ------------ lua --------------
 
 [[language]]
@@ -295,7 +299,7 @@ name = "markdown"
 file-types = ["md", "markdown"]
 roots = [".git"]
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
-language-servers = ["marksman", "markdown-oxide", "hx-lsp"]
+language-servers = ["marksman", "markdown-oxide", "hx-lsp", "typos-lsp"]
 
 # 设定zen-mode-like
 # text-width = 80

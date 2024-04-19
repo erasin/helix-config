@@ -8,6 +8,12 @@
 - <https://github.com/erasin/helix/tree/local-dev>
 - <https://gitee.com/erasin/helix/tree/local-dev>
 
+```sh
+git clone -b local-dev https://github.com/erasin/helix
+cd helix
+cargo install --path helix-term
+```
+
 - [tree_explorer #5768](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
   - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
 - [inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics
