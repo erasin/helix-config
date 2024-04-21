@@ -1,5 +1,3 @@
-!runtime/queries
 runtime
+!runtime/queries
 *.bak
-def.toml
-st.toml
