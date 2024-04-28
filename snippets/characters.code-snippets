@@ -1,0 +1,25 @@
+{
+	"dui": {
+		"prefix": "dui",
+		"body": "✓",
+		"description": "对号"
+	},
+	"cuo": {
+		"prefix": [
+			"cuo",
+			"cha"
+		],
+		"body": "✖",
+		"description": "错误号"
+	},
+	"撒花": {
+		"prefix": "sahua",
+		"body": "🎉",
+		"description": "撒花"
+	},
+	"撒花2": {
+		"prefix": "sahua2",
+		"body": "🎊",
+		"description": "撒花"
+	}
+}

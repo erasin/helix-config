@@ -1,7 +1,0 @@
-{
-	"global a": {
-		"prefix": "globala",
-		"body": "global a: ${1:abc} : ${2:cde}",
-		"description": "test global a info content"
-	}
-}

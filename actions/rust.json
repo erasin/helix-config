@@ -1,0 +1,10 @@
+{
+  "run main": {
+    "title": "rust run main",
+    "catch": "fn main",
+    "shell": [
+      "alacritty --hold --working-directory ${TM_DIRECTORY} -e cargo r"
+    ],
+    "description": "cargo run main"
+  }
+}

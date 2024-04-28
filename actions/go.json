@@ -1,0 +1,10 @@
+{
+  "run main": {
+    "title": "go run main",
+    "catch": "func main",
+    "shell": [
+      "alacritty --hold --working-directory ${TM_DIRECTORY} -e go run ${TM_FILENAME}"
+    ],
+    "description": "go run main"
+  }
+}

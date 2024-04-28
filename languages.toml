@@ -20,11 +20,11 @@ config.diagnosticSeverity = "Warning"
 # ---------- rust -----
 [[language]]
 name = "rust"
-language-servers = [ "rust-analyzer", "hx-lsp", "typos-lsp" ]
+language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp"]
 
 [[language]]
 name = "go"
-language-servers = [ "gopls", "golangci-lint-lsp", "hx-lsp", "typos-lsp" ]
+language-servers = ["gopls", "golangci-lint-lsp", "hx-lsp", "typos-lsp"]
 
 # ----------- godot4 -------------
 [language-server.godot]
@@ -105,7 +105,7 @@ language-servers = [
   "emmet-language-server",
   "tailwindcss-ls",
   "hx-lsp",
-  "typos-lsp"
+  "typos-lsp",
 ]
 
 [[language]]
@@ -114,11 +114,21 @@ language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
+language-servers = [
+  "typescript-language-server",
+  "tailwindcss-ls",
+  "hx-lsp",
+  "typos-lsp",
+]
 
 [[language]]
 name = "jsx"
-language-servers = ["typescript-language-server", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
+language-servers = [
+  "typescript-language-server",
+  "tailwindcss-ls",
+  "hx-lsp",
+  "typos-lsp",
+]
 
 [[grammar]]
 name = "jsdoc"
@@ -295,7 +305,7 @@ language-servers = ["marksman", "markdown-oxide", "hx-lsp", "typos-lsp"]
 # ---- latex ----
 [[language]]
 name = "latex"
-language-servers = [ "texlab" ]
+language-servers = ["texlab"]
 text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
@@ -312,6 +322,13 @@ soft-wrap = { enable = true, wrap-at-text-width = true }
 # name = "typst"
 # source = { git = "https://github.com/uben0/tree-sitter-typst",  rev = "1ad9724e4e4ea5ab81192e843e74cf664eacc59b" }
 
+
+# --- glicol ----
+# https://github.com/TenStrings/glicol-lsp
+[language-server.glicol-lsp]
+command = "glicol-lsp"
+
+# https://github.com/chaosprint/glicol
 [[language]]
 name = "glicol"
 scope = "source.glicol"
@@ -320,6 +337,7 @@ file-types = ["glicol"]
 comment-token = "//"
 indent = { tab-width = 4, unit = "\t" }
 roots = []
+language-servers = ["glicol-lsp"]
 
 [[grammar]]
 name = "glicol"
