@@ -1,4 +1,5 @@
-# Author : Gokul Soumya <gokulps15@gmail.com>
+# 继承 onedark
+inherits = "onedark"
 
 "attribute" = { fg = "pink" }
 "label" = { fg = "cyan" }
@@ -98,8 +99,8 @@
 "diff.delta.moved" = { fg = "gold" }
 "diff.delta.conflict" = {fg = "blue"}
 
-"ui.background" = { bg = "black" }
-"ui.background.separator" = { bg = "black" }
+"ui.background" = {}
+# "ui.background.separator" = { bg = "black" }
 
 "ui.cursor" = { fg = "black", bg = "grey-600" }
 "ui.cursor.primary" = { fg = "black",  bg="white" }

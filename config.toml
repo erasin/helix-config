@@ -22,7 +22,7 @@
 # 官方文档 https://docs.helix-editor.com/
 # 配置文档中文 https://zjp-cn.github.io/helix-book/title-page.html
 
-theme = "onelight_local"
+theme = "onedark_local"
 
 # [#2869]
 # icons= "nerd"
@@ -46,6 +46,7 @@ idle-timeout = 40
 line-number = "relative" # 行号类型 absolute / relative 
 # rulers = [81, 121]   # 标尺
 # text-width = 80  # reflow 自动分割换行, 支持软换行
+# popup-border = "all"
 
 # bufferline = "multiple"  # always | multiple | nerver
 # [editor.gutters]

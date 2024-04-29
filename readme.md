@@ -51,6 +51,20 @@ runtime 加载配置顺序为：
 - ~/.config/helix/runtime
 - HELIX_RUNTIME
 
+### 背景透明
+
+可以自定义透明背景，创建自定义主题,比如 `onedark_local.toml`
+
+```toml
+# 继承
+inherits = "onedark"
+
+# 自定义
+
+# background 为空，使用 term 的背景，支持透明
+"ui.background" = {}
+```
+
 ## shells
 
 - hx-open 在 tmux 中打开调用
