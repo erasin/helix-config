@@ -328,11 +328,6 @@ formatter = { command = "typst", args = ["c"] }
 text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
-# [[grammar]]
-# name = "typst"
-# source = { git = "https://github.com/uben0/tree-sitter-typst",  rev = "1ad9724e4e4ea5ab81192e843e74cf664eacc59b" }
-
-
 # --- glicol ----
 # https://github.com/TenStrings/glicol-lsp
 [language-server.glicol-lsp]
@@ -346,7 +341,6 @@ injection-regex = "glicol"
 file-types = ["glicol"]
 comment-token = "//"
 indent = { tab-width = 4, unit = "\t" }
-roots = []
 language-servers = ["glicol-lsp"]
 
 [[grammar]]
