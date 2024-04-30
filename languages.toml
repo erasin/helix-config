@@ -34,12 +34,22 @@ args = ["127.0.0.1", "6005"]
 [[language]]
 name = "gdscript"
 language-servers = ["godot", "hx-lsp", "typos-lsp"]
+comment-token = ["#", "##"]
+
+[[grammar]]
+name = "gdscript"
+source = { git = "https://github.com/PrestonKnopp/tree-sitter-gdscript", rev = "1f1e782fe2600f50ae57b53876505b8282388d77" }
+
 
 [[language]]
 name = "godot-resource"
 scope = "source.tscn"
 file-types = ["tscn", "tres", "godot", "gdextension", "import"]
-# language-servers = ["godot"]
+
+[[grammar]]
+name = "godot-resource"
+source = { git = "https://github.com/PrestonKnopp/tree-sitter-godot-resource", rev = "2ffb90de47417018651fc3b970e5f6b67214dc9d" }
+
 
 # [language.debugger]
 # name ="gdscript"
