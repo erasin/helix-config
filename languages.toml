@@ -346,3 +346,17 @@ language-servers = ["glicol-lsp"]
 [[grammar]]
 name = "glicol"
 source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
+
+
+[[language]]
+name = "mail"
+scope = "source.mail"
+injection-regex = "mail"
+file-types = ["eml"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+
+[[grammar]]
+name = "mail"
+source = { git = "https://github.com/dagle/tree-sitter-mail", rev = "a668550628e9a76bcac4864864dd9d60c91be27f" }
+

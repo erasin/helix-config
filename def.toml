@@ -1,0 +1,41 @@
+theme = "onedark_local"
+
+[editor]
+true-color = true
+# line-number = "standalone"
+
+[editor.lsp]
+display-messages = true
+# display-inlay-hints = true 
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.soft-wrap]
+enable = true
+# max-wrap = 20 
+# max-indent-retain = 40
+# wrap-indicator = "↪ "
+# wrap-at-text-width = true
+
+[editor.indent-guides]
+render = true
+
+# [editor.whitespace]
+# render = "all"
+
+[editor.whitespace.render]
+space = "all"
+tab = "all"
+newline = "all"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+# tabpad = " "
+tabpad = "·"
+
