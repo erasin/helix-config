@@ -1,3 +1,16 @@
+[use-grammars] 
+only = [ 
+
+"rust", "c", 
+"go", "gomod", "gowork", "gotmpl", 
+"python", "bash", 
+"html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", 
+"json", "jsonc", "json5", 
+"gdscript", "godot-resource", "glsl", "wgsl", 
+"lua", 
+
+"git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes", "hosts", "kdl", "toml", "yaml", "xml", "ini", "env", "latex", "typst", "log", "make", "markdown", "markdown.inline", "task", "todotxt", "regex", "scheme", "php", "php-only" , "glicol", "slint", "sql", "pest", "mail", "sshclientconfig", "ron", "po", "hurl", "dot", "diff", "comment", "beancount" ]
+
 # ----- rust ----
 # [language-server.rust-analyzer.config]
 # cargo.features = "all"
@@ -350,10 +363,9 @@ source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b
 
 [[language]]
 name = "mail"
-scope = "source.mail"
+scope = "source.eml"
 injection-regex = "mail"
 file-types = ["eml"]
-comment-token = "//"
 indent = { tab-width = 4, unit = "\t" }
 
 [[grammar]]
