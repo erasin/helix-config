@@ -1,15 +1,19 @@
-[use-grammars] 
-only = [ 
-
-"rust", "c", 
-"go", "gomod", "gowork", "gotmpl", 
-"python", "bash", 
-"html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", 
-"json", "jsonc", "json5", 
-"gdscript", "godot-resource", "glsl", "wgsl", 
-"lua", 
-
-"git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes", "hosts", "kdl", "toml", "yaml", "xml", "ini", "env", "latex", "typst", "log", "make", "markdown", "markdown.inline", "task", "todotxt", "regex", "scheme", "php", "php-only" , "glicol", "slint", "sql", "pest", "mail", "sshclientconfig", "ron", "po", "hurl", "dot", "diff", "comment", "beancount" ]
+# [use-grammars] 
+# only = [ 
+# "rust", "c", 
+# "go", "gomod", "gowork", "gotmpl", 
+# "python", "bash", "lua", "scheme", "sql", 
+# "php", "php-only",
+# "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", 
+# "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron", 
+# "gdscript", "godot-resource", "glsl", "wgsl", 
+# "git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes","sshclientconfig", 
+# "hosts","env", "make",
+# "comment", "diff", "regex",
+# "latex", "typst","markdown", "markdown.inline", "task", "todotxt", 
+# "log", "glicol", 
+# "dot", "hurl", "po", "mail", "pest", "beancount",  "slint",
+# ]
 
 # ----- rust ----
 # [language-server.rust-analyzer.config]
