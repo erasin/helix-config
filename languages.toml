@@ -194,8 +194,15 @@ except-features = ["diagnostics", "format"]
 #  venv = ".venv"
 # ```
 
+[language-server.pyright.config]
+settings.python.analysis = { autoImportCompletions = true, typeCheckingMode = "on", autoSearchPaths = true, useLibraryCodeForTypes = true, diagnosticMode = "openFilesOnly" }
+
 [language-server.pylsp.config]
 pylsp.plugins.rope_autoimport.enabled = true
+
+[language-server.pylyzer]
+command = "pylyzer"
+args = ["--server"]
 
 # https://github.com/astral-sh/ruff-lsp
 [language-server.ruff-lsp]
@@ -209,8 +216,19 @@ args = ["--ignore", "E501"]
 
 [[language]]
 name = "python"
-file-types = ["py", "pyi"]
+file-types = [
+  "py",
+  "pyi",
+  "py3",
+  "pyw",
+  "ptl",
+  ".pythonstartup",
+  ".pythonrc",
+  "SConstruct",
+  "mel",
+]
 roots = ["pyproject.toml", "pyrightconfig.json"]
+# formatter = { command = "ruff", args = ["format"] }
 language-servers = ["pyright", "ruff-lsp", "hx-lsp", "typos-lsp"]
 auto-format = true
 
@@ -375,4 +393,3 @@ indent = { tab-width = 4, unit = "\t" }
 [[grammar]]
 name = "mail"
 source = { git = "https://github.com/dagle/tree-sitter-mail", rev = "a668550628e9a76bcac4864864dd9d60c91be27f" }
-
