@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# $XDG_CONFIG_HOME/.config/helix/shells/hx-open {project} {file}:{line}:{col}
+# $XDG_CONFIG_HOME/.config/helix/scripts/hx-open {project} {file}:{line}:{col}
 #                                                 --------  -------------------
 #                                                 1         2
 # or 

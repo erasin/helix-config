@@ -35,7 +35,7 @@ cargo install --path helix-term
 
 - `config.toml` 是 helix 的配置文件
 - `languages.toml` 是本地语言优先配置
-- `shells `中是针对 hx 的一些脚本
+- `scripts`中是针对 hx 的一些脚本
 - `snippets `适配 [hx-lsp](https://github.com/erasin/hx-lsp)
 - `actions `适配 [hx-lsp](https://github.com/erasin/hx-lsp)
 
@@ -65,7 +65,7 @@ inherits = "onedark"
 "ui.background" = {}
 ```
 
-## shells
+## scripts
 
 - hx-open 在 tmux 中打开调用
 - hx-sh 利用 tmux 执行命令
@@ -74,23 +74,23 @@ inherits = "onedark"
 
 ## 输入法切换
 
-切换输入法一般在切换插入模式时候处理。查看脚本[shells/ime-switch](shells/ime-switch)
+切换输入法一般在切换插入模式时候处理。查看脚本[scripts/ime-switch](scripts/ime-switch)
 
 需要配置
 
 ```toml
 [keys.normal]
-"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
-i = ["insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
-I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
+i = ["insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 # use `li` or remap `after insert`
-a = ["move_char_right", "insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
-A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
-o = ["open_below", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
-O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+a = ["move_char_right", "insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+o = ["open_below", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 
 [keys.insert]
-"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 ```
 
 ### mac 下

@@ -48,7 +48,7 @@ command = "lldb-vscode"
 name = "binary"
 request = "launch"
 completion = [ { name = "binary", completion = "filename" } ]
-args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/shells/lldb_vscode_rustc_primer.py" ] }
+args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py" ] }
 
 [[language]]
 name = "go"

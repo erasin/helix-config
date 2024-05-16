@@ -5,7 +5,7 @@
 # exec alacritty -e hx %f
 
 ## 这里使用 
-# Exec=/__path__/.config/helix/shells/hx-desktop %f
+# Exec=/__path__/.config/helix/scripts/hx-desktop %f
 # 接收参数 %f 
 selected_path=$1
 selected_folder=$(dirname "$selected_path")

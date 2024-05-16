@@ -146,22 +146,22 @@ separator = "│"
 "z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
 
 # 输入法切换
-"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 # 插入模式，恢复输入法
-i = ["insert_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+i = ["insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 I = [
   "insert_at_line_start",
-  ":pipe-to bash ~/.config/helix/shells/ime-switch 1",
+  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
 ]
 # use `li` or remap `after insert`
 a = [
   "move_char_right",
   "insert_mode",
-  ":pipe-to bash ~/.config/helix/shells/ime-switch 1",
+  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
 ]
-A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
-o = ["open_below", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
-O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
+A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+o = ["open_below", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 
 # space mode
 [keys.normal.space]
@@ -172,7 +172,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/shells/ime-switch 1"]
 # "o" = "diagnostics_popup"
 
 [keys.insert]
-"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/shells/ime-switch"]
+"esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 
 # tab 默认为 "tab" = smart_tab
 # tab 输入 \t 为 "S-tab" = insert_tab
