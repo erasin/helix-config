@@ -6,5 +6,13 @@
       "alacritty --hold --working-directory ${TM_DIRECTORY} -e cargo r"
     ],
     "description": "cargo run main"
+  },
+  "run in tmux": {
+    "title": "tmux:rust run main",
+    "catch": "fn main",
+    "shell": [
+      "tmux split-window -h -c ${WORKSPACE_FOLDER}; tmux send 'cargo r' Enter"
+    ],
+    "description": "cargo run main"
   }
 }

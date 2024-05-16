@@ -39,6 +39,17 @@ config.diagnosticSeverity = "Warning"
 name = "rust"
 language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp"]
 
+[language.debugger]
+name = "lldb-dap"
+transport = "stdio"
+command = "lldb-vscode"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/shells/lldb_vscode_rustc_primer.py" ] }
+
 [[language]]
 name = "go"
 language-servers = ["gopls", "golangci-lint-lsp", "hx-lsp", "typos-lsp"]
@@ -172,7 +183,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "6a6c
 
 # ----------- php --------------
 [language-server.intelephense.config]
-licenceKey = "/home/erasin/.config/php/intelephenser_licence.txt"
+licenceKey = "/home/erasin/.config/apikeys/intelephenser_licence.txt"
 storagePath = "/home/erasin/.config/php/"                         # os.tmpdir()
 globalStoragePath = "/home/erasin/.config/php/"                   # os.homedir()
 # clearCache = false # clean state
@@ -183,7 +194,7 @@ globalStoragePath = "/home/erasin/.config/php/"                   # os.homedir()
 [language-server.pyright]
 command = "pyright-langserver"
 args = ["--stdio"]
-# 禁用 dia, format, 使用 ruff-lsp
+# 禁用 diagnostics, format, 使用 ruff-lsp
 except-features = ["diagnostics", "format"]
 
 #  https://github.com/microsoft/pyright/blob/main/docs/configuration.md
@@ -200,6 +211,7 @@ settings.python.analysis = { autoImportCompletions = true, typeCheckingMode = "o
 [language-server.pylsp.config]
 pylsp.plugins.rope_autoimport.enabled = true
 
+# https://github.com/mtshiba/pylyzer
 [language-server.pylyzer]
 command = "pylyzer"
 args = ["--server"]
@@ -211,8 +223,10 @@ args = []
 # support ruff check
 # support ruff format
 
-[language-server.ruff-lsp.config.settings]
-args = ["--ignore", "E501"]
+# https://docs.astral.sh/ruff/configuration/
+# use pyproject.toml [tool.ruff]
+# [language-server.ruff-lsp.config.settings]
+# args = ["--ignore", "E501", "E402"]
 
 [[language]]
 name = "python"

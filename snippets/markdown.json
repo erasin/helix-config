@@ -135,5 +135,18 @@
     "prefix": "mdbookBob",
     "body": "```svgbob \n$1\n```",
     "description": "mdbook svgbob "
+  },
+  "dir": {
+    "prefix": "dir",
+    "body": [
+      "TM_FILENAME: $TM_FILENAME",
+      "TM_FILENAME_BASE: $TM_FILENAME_BASE",
+      "TM_DIRECTORY: $TM_DIRECTORY",
+      "TM_FILEPATH: $TM_FILEPATH",
+      "RELATIVE_FILEPATH: $RELATIVE_FILEPATH",
+      "WORKSPACE_NAME: $WORKSPACE_NAME ",
+      "WORKSPACE_FOLDER: $WORKSPACE_FOLDER "
+    ],
+    "description": "path of current"
   }
 }
