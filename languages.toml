@@ -50,6 +50,7 @@ request = "launch"
 completion = [ { name = "binary", completion = "filename" } ]
 args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py" ] }
 
+# ---------- golang ----------------
 [[language]]
 name = "go"
 language-servers = ["gopls", "golangci-lint-lsp", "hx-lsp", "typos-lsp"]
@@ -63,6 +64,24 @@ args = ["127.0.0.1", "6005"]
 name = "gdscript"
 language-servers = ["godot", "hx-lsp", "typos-lsp"]
 comment-token = ["#", "##"]
+
+[language.debugger]
+name = "lldb-vscode"
+transport = "stdio"
+command = "lldb-vscode"
+
+# [[language.debugger.templates]]
+# name = "binary"
+# request = "launch"
+# completion = [ { name = "binary", completion = "filename" } ]
+# args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py" ] }
+
+[[language.debugger.templates]]
+name = "gdbserver attach"
+request = "attach"
+completion = [ { name = "lldb connect url", default = "connect://127.0.0.1:6007" }, { name = "file", completion = "filename" }, "pid" ]
+args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
+
 
 [[grammar]]
 name = "gdscript"
@@ -82,6 +101,29 @@ source = { git = "https://github.com/PrestonKnopp/tree-sitter-godot-resource", r
 # [language.debugger]
 # name ="gdscript"
 # https://ask.godotengine.org/122563/how-to-get-the-godot-lsp-to-work-with-nvim-lsp
+
+
+[[language]]
+name = "gdshader"
+scope = "source.gdshader"
+injection-regex = "gdshader"
+file-types = ["shader","gdshader","gdshaderinc"]
+shebangs = []
+roots = ["project.godot"]
+auto-format = true
+# formatter = { command = "", args = ["-"] }
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 4, unit = "\t" }
+# language-servers = ["gdshader-lsp", "hx-lsp", "typos-lsp"]
+
+[[grammar]]
+name = "gdshader"
+source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "ffd9f958df13cae04593781d7d2562295a872455" }
+
+[language-server.gdshader-lsp]
+command = "gdshader-lsp"
+
 
 # ------ emmet support -------------
 [language-server.emmet-language-server]
@@ -219,14 +261,13 @@ args = ["--server"]
 # https://github.com/astral-sh/ruff-lsp
 [language-server.ruff-lsp]
 command = "ruff-lsp"
-args = []
+args = ["--ignore", "E501", "E402"]
+
 # support ruff check
 # support ruff format
 
 # https://docs.astral.sh/ruff/configuration/
 # use pyproject.toml [tool.ruff]
-# [language-server.ruff-lsp.config.settings]
-# args = ["--ignore", "E501", "E402"]
 
 [[language]]
 name = "python"
@@ -301,25 +342,6 @@ source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769
 [[language]]
 name = "git-commit"
 soft-wrap = { enable = true, wrap-at-text-width = true }
-
-[[language]]
-name = "glsl"
-file-types = [
-  "glsl",
-  "vert",
-  "tesc",
-  "tese",
-  "geom",
-  "frag",
-  "comp",
-  "shader",
-  "gdshader",
-  "gdshaderinc",
-]
-roots = ['.git']
-# language-server = { command = "glslls", args = ["--stdin"] }
-# config = { single_file_support = true }
-
 
 [[language]]
 name = "ini"

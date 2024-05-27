@@ -134,8 +134,8 @@ separator = "│"
 # max-lines = 10
 
 [keys.normal]
-"C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload" }
-# "C-r" = { s = ":write", r = ":reload",  c = ":config-reload" }
+"C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to wayinfo tmux split-run 'cargo run'"}
+# "C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
 "C-s" = ":write"
 "C-j" = "save_selection"
 # "C-z" = "normal_mode"                  # replace suspend

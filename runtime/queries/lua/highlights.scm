@@ -147,10 +147,10 @@
 
 ; ;; Functions
 (function_declaration name: (identifier) @function)
-(function_call name: (identifier) @function.call)
+(function_call name: (identifier) @function)
 
 (function_declaration name: (dot_index_expression field: (identifier) @function))
-(function_call name: (dot_index_expression field: (identifier) @function.call))
+(function_call name: (dot_index_expression field: (identifier) @function))
 
 ; TODO: incorrectly highlights variable N in `N, nop = 42, function() end`
 (assignment_statement

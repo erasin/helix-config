@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+# wayinfo tmux run 'xx xxx'
+
 has_pane=$(tmux list-panes -F "#{window_index} #{pane_index} #{pane_current_command}" | grep "tmux" | head -n 1|awk '{print $2}')
 
 if [ -n "$has_pane" ] && [ "$has_pane" -gt 0 ]; then
-    tmux send - $has_pane "$1" Enter
+    tmux send -t $has_pane "$1" Enter
 else
     tmux split-window -h
-    tmux send "$1" Enter
+    tmux send "$@" Enter
 fi

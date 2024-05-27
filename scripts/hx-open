@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 # $XDG_CONFIG_HOME/.config/helix/scripts/hx-open {project} {file}:{line}:{col}
-#                                                 --------  -------------------
-#                                                 1         2
 # or 
-# hxopen file_path
+# wayinfo tmux hx {project} {file}:{line}:{col}
 
 # 单个参数和2个参数
 
