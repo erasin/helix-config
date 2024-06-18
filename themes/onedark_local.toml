@@ -120,7 +120,7 @@ inherits = "onedark"
 
 "ui.popup" = { fg = "white", bg = "gray" }
 "ui.popup.info" = { fg = "white", bg = "gray" }
-"ui.window" = { fg = "gray" }
+"ui.window" = { fg = "gold" }
 "ui.help" = { fg = "white", bg = "gray" }
 
 "ui.text" = { fg = "white" }

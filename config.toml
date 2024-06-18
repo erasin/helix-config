@@ -123,9 +123,9 @@ separator = "│"
 # [#5768]
 # s-e 切换显示
 # s-E 切换并追溯到当前文件所在位置 
-# [editor.explorer]
-# position = "overlay"
-# column-width = 30
+[editor.explorer]
+position = "left"
+column-width = 22
 
 # [#6118]
 # [editor.sticky-context]
@@ -134,7 +134,7 @@ separator = "│"
 # max-lines = 10
 
 [keys.normal]
-"C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to wayinfo tmux split-run 'cargo run'"}
+"C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to wayinfo tmux run 'cargo run'"}
 # "C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
 "C-s" = ":write"
 "C-j" = "save_selection"

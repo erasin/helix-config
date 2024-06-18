@@ -29,7 +29,7 @@ command = "hx-lsp"
 # ------ typos lsp ------
 # https://github.com/tekumara/typos-lsp
 # https://github.com/crate-ci/typos
-# Add typos.toml enable
+# Add _typos.toml enable
 [language-server.typos-lsp]
 command = "typos-lsp"
 config.diagnosticSeverity = "Warning"
@@ -429,3 +429,10 @@ indent = { tab-width = 4, unit = "\t" }
 [[grammar]]
 name = "mail"
 source = { git = "https://github.com/dagle/tree-sitter-mail", rev = "a668550628e9a76bcac4864864dd9d60c91be27f" }
+
+[language-server.beancount-lsp]
+command = "beancount-language-server"
+
+[[language]]
+name = "beancount"
+language-servers = ["bleancount-lsp","hx-lsp"]

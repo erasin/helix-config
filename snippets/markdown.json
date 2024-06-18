@@ -27,11 +27,6 @@
     ],
     "description": "zola header"
   },
-  "time": {
-    "prefix": "time",
-    "body": "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}",
-    "description": "time"
-  },
   "mdbookNote": {
     "prefix": "mdbookNote",
     "body": [
