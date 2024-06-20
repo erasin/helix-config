@@ -121,8 +121,8 @@ indent = { tab-width = 4, unit = "\t" }
 name = "gdshader"
 source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "ffd9f958df13cae04593781d7d2562295a872455" }
 
-[language-server.gdshader-lsp]
-command = "gdshader-lsp"
+# [language-server.gdshader-lsp]
+# command = "gdshader-lsp"
 
 
 # ------ emmet support -------------

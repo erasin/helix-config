@@ -52,6 +52,9 @@ line-number = "relative" # 行号类型 absolute / relative
 # [editor.gutters]
 # layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 
+#[6147] 
+end-of-line-diagnostics = "hint"
+
 [editor.soft-wrap]
 enable = true
 # max-wrap = 20 
@@ -77,8 +80,9 @@ display-messages = true
 display-inlay-hints = true
 
 # [6417] inline diagnostic
-# inline-diagnostics = { min-diagnostic-width = 80, max_diagnostics = 10 } 
-# display-diagnostic-message=false # default true
+[editor.inline-diagnostics]
+cursor-line = "hint"
+# DiagnosticFilter : disable, hint, info, waring, error
 
 # all / none
 [editor.whitespace.render]
@@ -110,7 +114,7 @@ right = [
   "primary-selection-length",
   "file-encoding",
   "file-line-ending",
-  'word-count', #[] statusline-word-count
+  # 'word-count', #[] statusline-word-count
   "position",
   "position-percentage",
   "file-type",
@@ -134,6 +138,10 @@ column-width = 22
 # max-lines = 10
 
 [keys.normal]
+# smart tab
+tab = "move_parent_node_end"
+S-tab = "move_parent_node_start"
+
 "C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to wayinfo tmux run 'cargo run'"}
 # "C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
 "C-s" = ":write"
@@ -172,6 +180,9 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 # "o" = "diagnostics_popup"
 
 [keys.insert]
+# smart tab
+S-tab = "move_parent_node_start"
+  
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 
 # tab 默认为 "tab" = smart_tab
@@ -180,3 +191,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 # Return/Enter keep insert at center with zen mode
 # 保持插入模式下书写的时候保持在屏幕中间, 可以设定在项目中 for markdown
 # "ret" = ["insert_newline", 'align_view_center']
+
+[keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"
