@@ -123,6 +123,9 @@ inherits = "onedark"
 "ui.window" = { fg = "gold" }
 "ui.help" = { fg = "white", bg = "gray" }
 
+"ui.picker.header" = { fg = "purple"}
+"ui.picker.header.active" = { fg = "blue"}
+
 "ui.text" = { fg = "white" }
 "ui.text.focus" = { fg = "white", bg = "light-black", modifiers = ["bold"] }
 "ui.text.inactive" = { fg = "grey-800" }

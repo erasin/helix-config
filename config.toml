@@ -114,7 +114,7 @@ right = [
   "primary-selection-length",
   "file-encoding",
   "file-line-ending",
-  # 'word-count', #[] statusline-word-count
+  'word-count', #[] statusline-word-count
   "position",
   "position-percentage",
   "file-type",
@@ -182,7 +182,6 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 [keys.insert]
 # smart tab
 S-tab = "move_parent_node_start"
-  
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 
 # tab 默认为 "tab" = smart_tab

@@ -16,7 +16,7 @@ cargo install --path helix-term
 
 - [tree_explorer #5768](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
   - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
-- [inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics
+- --[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics-- has merged
 - [snippet_placeholder #9081](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab
   - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
 - [lang-config-open #6531](https://github.com/erasin/helix/lang-config-open) lang-config-open
