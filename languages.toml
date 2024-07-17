@@ -436,3 +436,29 @@ command = "beancount-language-server"
 [[language]]
 name = "beancount"
 language-servers = ["bleancount-lsp","hx-lsp"]
+
+
+[[language]]
+name = "fluent"
+scope = "source.ftl"
+injection-regex = "fluent"
+file-types = ["ftl"]
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "fluent"
+# source = { git = "https://github.com/tree-sitter/tree-sitter-fluent", rev = "858fdd6f1e81992e00d3541bfb31bac9365d7a47" }
+source = { git = "https://github.com/erasin/tree-sitter-fluent", rev = "1eeaebdd0bff4f3f2d44a7d6c2af1fedc36164b0" }
+
+[[language]]
+name = "http"
+scope = "source.http"
+injection-regex = "http"
+file-types = ["rest", "http"]
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "http"
+source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995f0caf2fa30f68fa1fdf2c08bcbd4629a8" }
