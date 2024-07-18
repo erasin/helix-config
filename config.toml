@@ -55,6 +55,9 @@ line-number = "relative" # 行号类型 absolute / relative
 #[6147] 
 end-of-line-diagnostics = "hint"
 
+#[local-dev:commandline] hide commandline
+commandline = false
+
 [editor.soft-wrap]
 enable = true
 # max-wrap = 20 
