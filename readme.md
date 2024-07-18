@@ -136,3 +136,26 @@ set -ga terminal-overrides ',xterm-256color:Tc'
 set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 ```
+
+## markdown 输入
+
+为项目创建 `.helix/config.toml` 和 `.helix/languages.toml`
+
+`.helix/config.toml` 处理回车换行的时候保持垂直居中
+
+```toml
+[keys.insert]
+# Return/Enter
+"ret" = ["insert_newline", 'align_view_center']
+```
+
+`.helix/languages.toml` 使用 markdown 保持宽度并水平居中
+
+```toml
+
+[[language]]
+name = "markdown"
+text-width = 80
+soft-wrap = { enable = true, wrap-at-text-width = true }
+
+```
