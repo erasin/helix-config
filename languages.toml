@@ -6,13 +6,13 @@
 # "php", "php-only",
 # "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", 
 # "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron", 
-# "gdscript", "godot-resource", "glsl", "wgsl", 
+# "gdscript", "godot-resource", "glsl", "wgsl", "gdshader", 
 # "git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes","sshclientconfig", 
-# "hosts","env", "make",
+# "hosts","env", "make", 
 # "comment", "diff", "regex",
-# "latex", "typst","markdown", "markdown.inline", "task", "todotxt", 
+# "latex", "typst","markdown", "markdown.inline", "task", "todotxt", "mail",
 # "log", "glicol", 
-# "dot", "hurl", "po", "mail", "pest", "beancount",  "slint",
+# "dot", "hurl", "http", "po", "fluent", "pest", "beancount",  "slint",
 # ]
 
 # ----- rust ----
@@ -212,7 +212,7 @@ language-servers = [
 
 [[grammar]]
 name = "jsdoc"
-source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "6a6cf9e7341af32d8e2b2e24a37fbfebefc3dc55" }
+source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fde205b59a1d9792efc21ee0b6d50bbd35ff14" }
 
 # [[language]]
 # name="javascript"
@@ -449,7 +449,7 @@ indent = { tab-width = 4, unit = "    " }
 [[grammar]]
 name = "fluent"
 # source = { git = "https://github.com/tree-sitter/tree-sitter-fluent", rev = "858fdd6f1e81992e00d3541bfb31bac9365d7a47" }
-source = { git = "https://github.com/erasin/tree-sitter-fluent", rev = "1eeaebdd0bff4f3f2d44a7d6c2af1fedc36164b0" }
+source = { git = "https://github.com/erasin/tree-sitter-fluent", rev = "14ad08028c0287ca8c10ce620377f581e17dddb2" }
 
 [[language]]
 name = "http"

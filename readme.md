@@ -29,6 +29,19 @@ cargo install --path helix-term
 
 建议使用 Alacritty/wezterm + Tmux + Helix
 
+## highlight
+
+- godot
+  - gdscript
+  - godot-resource
+  - gdshader
+- glicol
+- fluent 
+- rest http
+- mail
+- lua
+- jsdoc
+
 ## 配置
 
 `$XDG_CONFIG_HOME` 一般为 `~/.config/helix`, 

@@ -14,6 +14,7 @@
 (attribute_call (identifier) @function)
 (base_call (identifier) @function)
 (call (identifier) @function)
+(lambda (name) @function)
 
 ; Function definitions
 
