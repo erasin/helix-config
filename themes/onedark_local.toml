@@ -162,7 +162,7 @@ inherits = "onedark"
 "info" = { fg ="white", bg = "blue", modifiers = ["bold"] }
 "hint" = { fg = "white", bg = "green", modifiers = ["bold"] }
 "warning" = { fg ="black", bg = "yellow", modifiers = ["bold"] }
-"error" = { fg = "white", bg="red", modifiers = ["bold"] }
+"error" = { fg = "black", bg="red", modifiers = ["bold"] }
 
 [palette]
 
