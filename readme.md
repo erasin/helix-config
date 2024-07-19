@@ -22,7 +22,7 @@ cargo install --path helix-term
 - [lang-config-open #6531](https://github.com/erasin/helix/lang-config-open) lang-config-open
 - [tutor-zh #5199](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
 - [zen mode like D#6468](https://github.com/helix-editor/helix/discussions/6468)
-- [commandline] 隐藏 commandline
+- [commandline #11223](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
 
 **未合并**
 
