@@ -1,19 +1,32 @@
-# [use-grammars] 
-# only = [ 
-# "rust", "c", 
-# "go", "gomod", "gowork", "gotmpl", 
-# "python", "bash", "lua", "scheme", "sql", 
-# "php", "php-only",
-# "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", 
-# "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron", 
-# "gdscript", "godot-resource", "glsl", "wgsl", "gdshader", 
-# "git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes","sshclientconfig", 
-# "hosts","env", "make", 
-# "comment", "diff", "regex",
-# "latex", "typst","markdown", "markdown.inline", "task", "todotxt", "mail",
-# "log", "glicol", 
-# "dot", "hurl", "http", "po", "fluent", "pest", "beancount",  "slint",
-# ]
+[use-grammars]
+only = [
+  # 
+  "rust", "c",
+  # 
+  "go", "gomod", "gowork", "gotmpl",
+  # 
+  "python", "bash", "lua", "scheme", "sql",
+  # 
+  "php", "php-only",
+  # 
+  "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte",
+  # 
+  "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron",
+  # 
+  "gdscript", "godot-resource", "glsl", "wgsl", "gdshader",
+  # 
+  "git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes", "sshclientconfig",
+  # 
+  "hosts", "env", "make",
+  # 
+  "comment", "diff", "regex",
+  # 
+  "latex", "typst", "markdown", "markdown.inline", "task", "todotxt", "mail",
+  # 
+  "log", "glicol",
+  # 
+  "dot", "hurl", "http", "po", "fluent", "pest", "beancount", "slint",
+]
 
 # ----- rust ----
 # [language-server.rust-analyzer.config]
@@ -47,8 +60,10 @@ command = "lldb-vscode"
 [[language.debugger.templates]]
 name = "binary"
 request = "launch"
-completion = [ { name = "binary", completion = "filename" } ]
-args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py" ] }
+completion = [{ name = "binary", completion = "filename" }]
+args = { program = "{0}", initCommands = [
+  "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py",
+] }
 
 # ---------- golang ----------------
 [[language]]
@@ -79,8 +94,17 @@ command = "lldb-vscode"
 [[language.debugger.templates]]
 name = "gdbserver attach"
 request = "attach"
-completion = [ { name = "lldb connect url", default = "connect://127.0.0.1:6007" }, { name = "file", completion = "filename" }, "pid" ]
-args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
+completion = [
+  { name = "lldb connect url", default = "connect://127.0.0.1:6007" },
+  { name = "file", completion = "filename" },
+  "pid",
+]
+args = { attachCommands = [
+  "platform select remote-gdb-server",
+  "platform connect {0}",
+  "file {1}",
+  "attach {2}",
+] }
 
 
 [[grammar]]
@@ -107,7 +131,7 @@ source = { git = "https://github.com/PrestonKnopp/tree-sitter-godot-resource", r
 name = "gdshader"
 scope = "source.gdshader"
 injection-regex = "gdshader"
-file-types = ["shader","gdshader","gdshaderinc"]
+file-types = ["shader", "gdshader", "gdshaderinc"]
 shebangs = []
 roots = ["project.godot"]
 auto-format = true
@@ -152,6 +176,7 @@ includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = true
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayVariableTypeHints = true
+# includeInlayVariableTypeHintsWhenTypeMatchesName = true
 
 [language-server.typescript-language-server.config.javascript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -165,6 +190,7 @@ includeInlayVariableTypeHints = true
 # --- svelte ---
 [[language]]
 name = "svelte"
+indent = { tab-width = 4, unit = "    " }
 roots = ["package.json"]
 language-servers = ["svelteserver", "tailwindcss-ls"]
 
@@ -190,10 +216,12 @@ language-servers = [
 
 [[language]]
 name = "vue"
+indent = { tab-width = 4, unit = "    " }
 language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
 
 [[language]]
 name = "tsx"
+indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
   "tailwindcss-ls",
@@ -203,6 +231,7 @@ language-servers = [
 
 [[language]]
 name = "jsx"
+indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
   "tailwindcss-ls",
@@ -214,20 +243,59 @@ language-servers = [
 name = "jsdoc"
 source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fde205b59a1d9792efc21ee0b6d50bbd35ff14" }
 
-# [[language]]
-# name="javascript"
-# auto-format = true
+[[language]]
+name = "json"
+formatter = { command = 'prettier' }
+
+[[language]]
+name = "javascript"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = 'prettier', args = [
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+] }
+auto-format = true
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+  "hx-lsp",
+  "typos-lsp",
+]
+
+[[language]]
+name = "typescript"
+indent = { tab-width = 4, unit = "    " }
+# 使用 package.prettier 配置
+formatter = { command = 'prettier', args = [
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+] }
+auto-format = true
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+  "hx-lsp",
+  "typos-lsp",
+]
 
 # [language.formatter]
+
 # command = "prettier"
 # args = ["--parser=typescript"]
 
+[[language]]
+name = "yaml"
+formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/apikeys/intelephenser_licence.txt"
-storagePath = "/home/erasin/.config/php/"                         # os.tmpdir()
-globalStoragePath = "/home/erasin/.config/php/"                   # os.homedir()
+storagePath = "/home/erasin/.config/php/"                             # os.tmpdir()
+globalStoragePath = "/home/erasin/.config/php/"                       # os.homedir()
 # clearCache = false # clean state
 
 # ----------- python pyright --------------
@@ -435,7 +503,7 @@ command = "beancount-language-server"
 
 [[language]]
 name = "beancount"
-language-servers = ["bleancount-lsp","hx-lsp"]
+language-servers = ["bleancount-lsp", "hx-lsp"]
 
 
 [[language]]
