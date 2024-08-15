@@ -48,6 +48,16 @@ command = "typos-lsp"
 config.diagnosticSeverity = "Warning"
 
 # ---------- rust -----
+
+[language-server.rust-analyzer.config]
+inlayHints.bindingModeHints.enable = false
+inlayHints.closingBraceHints.minLines = 10
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.discriminantHints.enable = "fieldless"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.typeHints.hideClosureInitialization = false
+cargo.features = "all"
+
 [[language]]
 name = "rust"
 language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp"]
@@ -78,7 +88,6 @@ args = ["127.0.0.1", "6005"]
 [[language]]
 name = "gdscript"
 language-servers = ["godot", "hx-lsp", "typos-lsp"]
-comment-token = ["#", "##"]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -106,21 +115,10 @@ args = { attachCommands = [
   "attach {2}",
 ] }
 
-
-[[grammar]]
-name = "gdscript"
-source = { git = "https://github.com/PrestonKnopp/tree-sitter-gdscript", rev = "1f1e782fe2600f50ae57b53876505b8282388d77" }
-
-
 [[language]]
 name = "godot-resource"
 scope = "source.tscn"
 file-types = ["tscn", "tres", "godot", "gdextension", "import"]
-
-[[grammar]]
-name = "godot-resource"
-source = { git = "https://github.com/PrestonKnopp/tree-sitter-godot-resource", rev = "2ffb90de47417018651fc3b970e5f6b67214dc9d" }
-
 
 # [language.debugger]
 # name ="gdscript"
@@ -530,3 +528,8 @@ indent = { tab-width = 4, unit = "    " }
 [[grammar]]
 name = "http"
 source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995f0caf2fa30f68fa1fdf2c08bcbd4629a8" }
+
+[[language]]
+name = "ron"
+formatter = { command = 'ronfmt', args = ["-w", "80"] }
+
