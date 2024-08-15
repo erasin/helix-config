@@ -16,18 +16,32 @@ cargo install --path helix-term
 
 - [tree_explorer #5768](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
   - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
-- --[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics-- has merged
-- [snippet_placeholder #9081](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab
+- ~~[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics~~ Merged in 24.07  🎉
+- [snippet_placeholder #9801](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab
   - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
 - [lang-config-open #6531](https://github.com/erasin/helix/lang-config-open) lang-config-open
 - [tutor-zh #5199](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
 - [zen mode like D#6468](https://github.com/helix-editor/helix/discussions/6468)
+- [commandline #11223](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
 
 **未合并**
 
 - [#2869](https://github.com/helix-editor/helix/pull/2869) --icons 支持--
 
 建议使用 Alacritty/wezterm + Tmux + Helix
+
+## highlight
+
+- godot
+  - gdscript
+  - godot-resource
+  - gdshader
+- glicol
+- fluent 
+- rest http
+- mail
+- lua
+- jsdoc
 
 ## 配置
 
@@ -50,6 +64,16 @@ runtime 加载配置顺序为：
 
 - ~/.config/helix/runtime
 - HELIX_RUNTIME
+
+
+### ignore
+
+文件过滤器
+
+- `~/.config/helix/ignore`
+- `PROJECT_PATH/.ignore`
+- `PROJECT_PATH/.helix/ignore`
+
 
 ### 背景透明
 
@@ -122,4 +146,27 @@ set -g default-terminal "tmux-256color"
 set -ga terminal-overrides ',xterm-256color:Tc'
 set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+```
+
+## markdown 输入
+
+为项目创建 `.helix/config.toml` 和 `.helix/languages.toml`
+
+`.helix/config.toml` 处理回车换行的时候保持垂直居中
+
+```toml
+[keys.insert]
+# Return/Enter
+"ret" = ["insert_newline", 'align_view_center']
+```
+
+`.helix/languages.toml` 使用 markdown 保持宽度并水平居中
+
+```toml
+
+[[language]]
+name = "markdown"
+text-width = 80
+soft-wrap = { enable = true, wrap-at-text-width = true }
+
 ```

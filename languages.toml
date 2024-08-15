@@ -1,19 +1,84 @@
-# [use-grammars] 
-# only = [ 
-# "rust", "c", 
-# "go", "gomod", "gowork", "gotmpl", 
-# "python", "bash", "lua", "scheme", "sql", 
-# "php", "php-only",
-# "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", 
-# "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron", 
-# "gdscript", "godot-resource", "glsl", "wgsl", 
-# "git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes","sshclientconfig", 
-# "hosts","env", "make",
-# "comment", "diff", "regex",
-# "latex", "typst","markdown", "markdown.inline", "task", "todotxt", 
-# "log", "glicol", 
-# "dot", "hurl", "po", "mail", "pest", "beancount",  "slint",
-# ]
+[use-grammars]
+only = [
+  # 
+  "rust",
+  "c",
+  # 
+  "go",
+  "gomod",
+  "gowork",
+  "gotmpl",
+  # 
+  "python",
+  "bash",
+  "lua",
+  "scheme",
+  "sql",
+  # 
+  "php",
+  "php-only",
+  # 
+  "html",
+  "css",
+  "scss",
+  "javascript",
+  "jsdoc",
+  "typescript",
+  "jsx",
+  "vue",
+  "svelte",
+  # 
+  "json",
+  "jsonc",
+  "json5",
+  "toml",
+  "yaml",
+  "xml",
+  "ini",
+  "kdl",
+  "ron",
+  # 
+  "gdscript",
+  "godot-resource",
+  "glsl",
+  "wgsl",
+  "gdshader",
+  # 
+  "git-config",
+  "git-commit",
+  "git-ignore",
+  "git-rebase",
+  "git-attributes",
+  "sshclientconfig",
+  # 
+  "hosts",
+  "env",
+  "make",
+  # 
+  "comment",
+  "diff",
+  "regex",
+  # 
+  "latex",
+  "typst",
+  "markdown",
+  "markdown.inline",
+  "task",
+  "todotxt",
+  "mail",
+  # 
+  "log",
+  "glicol",
+  # 
+  "dot",
+  "hurl",
+  "http",
+  "po",
+  "fluent",
+  "pest",
+  "beancount",
+  "slint",
+]
 
 # ----- rust ----
 # [language-server.rust-analyzer.config]
@@ -35,6 +100,16 @@ command = "typos-lsp"
 config.diagnosticSeverity = "Warning"
 
 # ---------- rust -----
+
+[language-server.rust-analyzer.config]
+inlayHints.bindingModeHints.enable = false
+inlayHints.closingBraceHints.minLines = 10
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.discriminantHints.enable = "fieldless"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.typeHints.hideClosureInitialization = false
+cargo.features = "all"
+
 [[language]]
 name = "rust"
 language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp"]
@@ -47,8 +122,10 @@ command = "lldb-vscode"
 [[language.debugger.templates]]
 name = "binary"
 request = "launch"
-completion = [ { name = "binary", completion = "filename" } ]
-args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py" ] }
+completion = [{ name = "binary", completion = "filename" }]
+args = { program = "{0}", initCommands = [
+  "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py",
+] }
 
 # ---------- golang ----------------
 [[language]]
@@ -63,7 +140,6 @@ args = ["127.0.0.1", "6005"]
 [[language]]
 name = "gdscript"
 language-servers = ["godot", "hx-lsp", "typos-lsp"]
-comment-token = ["#", "##"]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -79,24 +155,22 @@ command = "lldb-vscode"
 [[language.debugger.templates]]
 name = "gdbserver attach"
 request = "attach"
-completion = [ { name = "lldb connect url", default = "connect://127.0.0.1:6007" }, { name = "file", completion = "filename" }, "pid" ]
-args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
-
-
-[[grammar]]
-name = "gdscript"
-source = { git = "https://github.com/PrestonKnopp/tree-sitter-gdscript", rev = "1f1e782fe2600f50ae57b53876505b8282388d77" }
-
+completion = [
+  { name = "lldb connect url", default = "connect://127.0.0.1:6007" },
+  { name = "file", completion = "filename" },
+  "pid",
+]
+args = { attachCommands = [
+  "platform select remote-gdb-server",
+  "platform connect {0}",
+  "file {1}",
+  "attach {2}",
+] }
 
 [[language]]
 name = "godot-resource"
 scope = "source.tscn"
 file-types = ["tscn", "tres", "godot", "gdextension", "import"]
-
-[[grammar]]
-name = "godot-resource"
-source = { git = "https://github.com/PrestonKnopp/tree-sitter-godot-resource", rev = "2ffb90de47417018651fc3b970e5f6b67214dc9d" }
-
 
 # [language.debugger]
 # name ="gdscript"
@@ -107,7 +181,7 @@ source = { git = "https://github.com/PrestonKnopp/tree-sitter-godot-resource", r
 name = "gdshader"
 scope = "source.gdshader"
 injection-regex = "gdshader"
-file-types = ["shader","gdshader","gdshaderinc"]
+file-types = ["shader", "gdshader", "gdshaderinc"]
 shebangs = []
 roots = ["project.godot"]
 auto-format = true
@@ -152,6 +226,7 @@ includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = true
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayVariableTypeHints = true
+# includeInlayVariableTypeHintsWhenTypeMatchesName = true
 
 [language-server.typescript-language-server.config.javascript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -165,6 +240,7 @@ includeInlayVariableTypeHints = true
 # --- svelte ---
 [[language]]
 name = "svelte"
+indent = { tab-width = 4, unit = "    " }
 roots = ["package.json"]
 language-servers = ["svelteserver", "tailwindcss-ls"]
 
@@ -190,10 +266,12 @@ language-servers = [
 
 [[language]]
 name = "vue"
+indent = { tab-width = 4, unit = "    " }
 language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
 
 [[language]]
 name = "tsx"
+indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
   "tailwindcss-ls",
@@ -203,6 +281,7 @@ language-servers = [
 
 [[language]]
 name = "jsx"
+indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
   "tailwindcss-ls",
@@ -212,22 +291,61 @@ language-servers = [
 
 [[grammar]]
 name = "jsdoc"
-source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "6a6cf9e7341af32d8e2b2e24a37fbfebefc3dc55" }
+source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fde205b59a1d9792efc21ee0b6d50bbd35ff14" }
 
-# [[language]]
-# name="javascript"
-# auto-format = true
+[[language]]
+name = "json"
+formatter = { command = 'prettier' }
+
+[[language]]
+name = "javascript"
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = 'prettier', args = [
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+] }
+auto-format = true
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+  "hx-lsp",
+  "typos-lsp",
+]
+
+[[language]]
+name = "typescript"
+indent = { tab-width = 4, unit = "    " }
+# 使用 package.prettier 配置
+formatter = { command = 'prettier', args = [
+  "--parser",
+  "typescript",
+  "--tab-width",
+  "4",
+] }
+auto-format = true
+language-servers = [
+  "typescript-language-server",
+  "vscode-eslint-language-server",
+  "hx-lsp",
+  "typos-lsp",
+]
 
 # [language.formatter]
+
 # command = "prettier"
 # args = ["--parser=typescript"]
 
+[[language]]
+name = "yaml"
+formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/apikeys/intelephenser_licence.txt"
-storagePath = "/home/erasin/.config/php/"                         # os.tmpdir()
-globalStoragePath = "/home/erasin/.config/php/"                   # os.homedir()
+storagePath = "/home/erasin/.config/php/"                             # os.tmpdir()
+globalStoragePath = "/home/erasin/.config/php/"                       # os.homedir()
 # clearCache = false # clean state
 
 # ----------- python pyright --------------
@@ -435,13 +553,44 @@ command = "beancount-language-server"
 
 [[language]]
 name = "beancount"
-language-servers = ["bleancount-lsp","hx-lsp"]
+language-servers = ["bleancount-lsp", "hx-lsp"]
+
+
+[[language]]
+name = "fluent"
+scope = "source.ftl"
+injection-regex = "fluent"
+file-types = ["ftl"]
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "fluent"
+# source = { git = "https://github.com/tree-sitter/tree-sitter-fluent", rev = "858fdd6f1e81992e00d3541bfb31bac9365d7a47" }
+source = { git = "https://github.com/erasin/tree-sitter-fluent", rev = "14ad08028c0287ca8c10ce620377f581e17dddb2" }
+
+[[language]]
+name = "http"
+scope = "source.http"
+injection-regex = "http"
+file-types = ["rest", "http"]
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[grammar]]
+name = "http"
+source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995f0caf2fa30f68fa1fdf2c08bcbd4629a8" }
+
+[[language]]
+name = "ron"
+formatter = { command = 'ronfmt', args = ["-w", "80"] }
+
 
 [[language]]
 name = "scheme"
 # formatter = { command = "raco", args = ["fmt", "-i"] }
 # auto-format = true
-language-servers = [ "steel-language-server" ]
+language-servers = ["steel-language-server"]
 
 # For development
 [language-server.steel-language-server]

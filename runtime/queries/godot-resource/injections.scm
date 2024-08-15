@@ -11,7 +11,7 @@
   (property 
     (path) @_is_code
     (string) @injection.content))
-  (#match? @_type "type")
+  (#eq? @_type "type")
   (#match? @_is_shader "Shader")
   (#eq? @_is_code "code")
   (#set! injection.language "glsl")
@@ -44,7 +44,7 @@
   (property 
     (path) @_is_code
     (string) @injection.content))
-  (#match? @_type "type")
+  (#eq? @_type "type")
   (#match? @_is_shader "GDScript")
   (#eq? @_is_code "script/source")
   (#set! injection.language "gdscript")

@@ -3,6 +3,7 @@ theme = "onedark_local"
 [editor]
 true-color = true
 # line-number = "standalone"
+commandline = false
 
 [editor.lsp]
 display-messages = true
