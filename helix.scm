@@ -12,7 +12,7 @@
 
 (require "steel/sorting/merge-sort.scm")
 
-(require "term.scm")
+(require "cogs/term.scm")
 
 (provide open-term
          new-term
@@ -135,6 +135,10 @@
 (provide move-window-left)
 (define (move-window-left)
   (helix.static.move-window-far-left))
+
+(provide move-window-right)
+(define (move-window-right)
+  (helix.static.move-window-far-right))
 
 ; (provide dummy)
 ; (define (dummy cx)

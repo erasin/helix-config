@@ -533,6 +533,20 @@
 (define (config-open-workspace . args)
     (helix.config-open-workspace *helix.cx* args))
 
+(provide lang-config-open)
+
+;;@doc
+;;Open the user languages.toml file.
+(define (lang-config-open . args)
+    (helix.lang-config-open *helix.cx* args))
+
+(provide lang-config-open-workspace)
+
+;;@doc
+;;Open the workspace languages.toml file.
+(define (lang-config-open-workspace . args)
+    (helix.lang-config-open-workspace *helix.cx* args))
+
 (provide log-open)
 
 ;;@doc

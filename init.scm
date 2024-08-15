@@ -16,7 +16,7 @@
 (define rng (rand::thread-rng!))
 
 ;; Picking one from the possible themes is _fine_
-(define possible-themes '("onedark_local","tokyonight_storm" "catppuccin_macchiato" "solarized_dark"))
+(define possible-themes '("onedark_local" "tokyonight_storm" "solarized_dark"))
 
 (define (select-random lst)
   (let ([index (rand::rng->gen-range rng 0 (length lst))]) (list-ref lst index)))
