@@ -58,6 +58,9 @@ end-of-line-diagnostics = "hint"
 #[local-dev:commandline] hide commandline
 commandline = false
 
+#[11497]
+rounded-corners = true
+
 [editor.soft-wrap]
 enable = true
 # max-wrap = 20 

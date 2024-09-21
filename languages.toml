@@ -9,7 +9,7 @@ only = [
   # 
   "php", "php-only",
   # 
-  "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte",
+  "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", "tsx",
   # 
   "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron",
   # 
@@ -19,7 +19,7 @@ only = [
   # 
   "hosts", "env", "make",
   # 
-  "comment", "diff", "regex",
+  "comment", "diff", "regex", "rstml",
   # 
   "latex", "typst", "markdown", "markdown.inline", "task", "todotxt", "mail",
   # 
@@ -531,5 +531,16 @@ source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995
 
 [[language]]
 name = "ron"
+file-types = ["ron", "trickfilm"]
 formatter = { command = 'ronfmt', args = ["-w", "80"] }
 
+# for rust leptos
+[[language]]
+name = "rstml"
+scope = "scope.rstml"
+file-types = []
+injection-regex = "rstml"
+
+[[grammar]]
+name = "rstml"
+source = { git = "https://github.com/rayliwell/tree-sitter-rstml", subpath = "rstml", rev = "07a8e3b9bda09b648a6ccaca09e15dea3adf956f" }

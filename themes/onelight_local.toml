@@ -11,5 +11,7 @@ inherits = "onelight"
 # 使用 term 默认的背景色，提供 opacity 透明功能
 # "ui.background" = {}
 
+"ui.popup.info" = { fg = "blue" }
+
 "ui.picker.header" = { fg = "purple"}
 "ui.picker.header.active" = { fg = "blue"}

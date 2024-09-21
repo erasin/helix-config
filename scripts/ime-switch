@@ -21,6 +21,7 @@ os_name=$(uname)
 osx_cache_file="$HOME/.cache/ime-method-input"
 osx_method_en="com.apple.keylayout.ABC"
 osx_method_cn="im.rime.inputmethod.Squirrel.Hans"
+touch $osx_cache_file
 
 function osx_set {
     macism $1
@@ -90,7 +91,7 @@ ibus_cache_file="$HOME/.cache/ibus/ibus-method-input"
 ibus_method_en="0|"
 # ibus_method_en="1|A"
 ibus_method_cn="1|小"
-
+touch $ibus_cache_file
 
 # 获取当前的输入法
 function ibus_get {
@@ -159,6 +160,7 @@ function ibus_re {
 fcitx5_cache_file="$HOME/.cache/fcitx5-method-input"
 fcitx5_method_en="keyboard-us"
 fcitx5_method_cn="rime"
+touch $fcitx5_cache_file
 
 # 获取当前的输入法
 function fcitx5_get {

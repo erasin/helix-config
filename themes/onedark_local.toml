@@ -119,7 +119,7 @@ inherits = "onedark"
 "ui.statusline.select" = { fg = "light-black", bg = "purple" }
 
 "ui.popup" = { fg = "white", bg = "gray" }
-"ui.popup.info" = { fg = "white", bg = "gray" }
+"ui.popup.info" = { fg = "blue", bg = "black" }
 "ui.window" = { fg = "gold" }
 "ui.help" = { fg = "white", bg = "gray" }
 
