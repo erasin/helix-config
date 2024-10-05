@@ -21,11 +21,13 @@ only = [
   # 
   "comment", "diff", "regex", "rstml",
   # 
-  "latex", "typst", "markdown", "markdown.inline", "task", "todotxt", "mail",
+  "latex", "typst", "markdown", "markdown_inline", "task", "todotxt", "mail",
   # 
   "log", "glicol",
   # 
   "dot", "hurl", "http", "po", "fluent", "pest", "beancount", "slint",
+  #
+  "yuck"
 ]
 
 # ----- rust ----
@@ -544,3 +546,12 @@ injection-regex = "rstml"
 [[grammar]]
 name = "rstml"
 source = { git = "https://github.com/rayliwell/tree-sitter-rstml", subpath = "rstml", rev = "07a8e3b9bda09b648a6ccaca09e15dea3adf956f" }
+
+# --- steel -----
+[language-server.steel]
+command = "steel-language-server"
+
+# # project/.helix/languages.toml
+# [[language]]
+# name = "scheme"
+# language-servers = ["steel"]

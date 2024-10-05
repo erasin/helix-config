@@ -1,10 +1,10 @@
 使用 HELIX EDITOR
 ===
 
+> <https://erasin.wang/helix/>
 
-> https://erasin.wang/helix/
+使用自定义分支
 
-使用分支
 - <https://github.com/erasin/helix/tree/local-dev>
 - <https://gitee.com/erasin/helix/tree/local-dev>
 
@@ -30,18 +30,27 @@ cargo install --path helix-term
 
 建议使用 Alacritty/wezterm + Tmux + Helix
 
+## 文档
+
+- 官方文档 <https://docs.helix-editor.com/>
+- 配置文档中文 <https://zjp-cn.github.io/helix-book/title-page.html>
+
 ## highlight
 
-- godot
-  - gdscript
-  - godot-resource
-  - gdshader
-- glicol
-- fluent 
-- rest http
-- mail
-- lua
-- jsdoc
+配置 `languages.toml`
+
+```toml
+[use-grammars]
+only = [
+  "rust", "toml", # ...
+  "markdown", "markdown-inline"
+]
+```
+
+> 注意有些语言有嵌入语法。
+
+使用 `hx -g fetch && hx -g build` 更新 `runtime/grammars`。
+
 
 ## 配置
 
@@ -148,7 +157,9 @@ set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 ```
 
-## markdown 输入
+## Language
+
+### markdown 输入
 
 为项目创建 `.helix/config.toml` 和 `.helix/languages.toml`
 
@@ -170,3 +181,7 @@ text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
 ```
+
+## leptos view
+
+使用 `rstml`

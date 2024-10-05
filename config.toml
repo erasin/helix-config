@@ -19,10 +19,8 @@
 # #6118 sticky-context
 
 
-# 官方文档 https://docs.helix-editor.com/
-# 配置文档中文 https://zjp-cn.github.io/helix-book/title-page.html
 
-theme = "onedark_local"
+theme = "onelight_local"
 
 # [#2869]
 # icons= "nerd"
