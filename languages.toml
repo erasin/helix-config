@@ -459,10 +459,20 @@ text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
 # ---- typst ----
+# https://myriad-dreamin.github.io/tinymist//frontend/helix.html
+[language-server.tinymist]
+command = "tinymist"
+
+# In project .helix/languages.toml setting main file.
+#
+# [language-server.tinymist.config]
+# typstExtraArgs = ["main.typ"]
+# exportPdf = "onType"
+# outputPath = "$root/target/$dir/$name"
 
 [[language]]
 name = "typst"
-language-servers = ["typst-lsp", "hx-lsp", "typos-lsp"]
+language-servers = ["tinymist", "hx-lsp", "typos-lsp"]
 formatter = { command = "typst", args = ["c"] }
 text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
