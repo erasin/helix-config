@@ -10,6 +10,8 @@ only = [
   "php", "php-only",
   # 
   "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", "tsx",
+  #
+  "dart", "kotlin", "groovy",
   # 
   "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron",
   # 
@@ -19,7 +21,7 @@ only = [
   # 
   "hosts", "env", "make",
   # 
-  "comment", "diff", "regex", "rstml",
+  "comment", "diff", "regex", "rstml", "protobuf",
   # 
   "latex", "typst", "markdown", "markdown_inline", "task", "todotxt", "mail",
   # 
@@ -190,7 +192,7 @@ includeInlayVariableTypeHints = true
 # --- svelte ---
 [[language]]
 name = "svelte"
-indent = { tab-width = 4, unit = "    " }
+# indent = { tab-width = 4, unit = "    " }
 roots = ["package.json"]
 language-servers = ["svelteserver", "tailwindcss-ls"]
 
@@ -216,12 +218,12 @@ language-servers = [
 
 [[language]]
 name = "vue"
-indent = { tab-width = 4, unit = "    " }
+# indent = { tab-width = 4, unit = "    " }
 language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
 
 [[language]]
 name = "tsx"
-indent = { tab-width = 4, unit = "    " }
+# indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
   "tailwindcss-ls",
@@ -231,7 +233,7 @@ language-servers = [
 
 [[language]]
 name = "jsx"
-indent = { tab-width = 4, unit = "    " }
+# indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
   "tailwindcss-ls",
@@ -244,17 +246,13 @@ name = "jsdoc"
 source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fde205b59a1d9792efc21ee0b6d50bbd35ff14" }
 
 [[language]]
-name = "json"
-formatter = { command = 'prettier' }
-
-[[language]]
 name = "javascript"
-indent = { tab-width = 4, unit = "    " }
+# indent = { tab-width = 4, unit = "    " }
 formatter = { command = 'prettier', args = [
   "--parser",
   "typescript",
   "--tab-width",
-  "4",
+  "2",
 ] }
 auto-format = true
 language-servers = [
@@ -266,13 +264,13 @@ language-servers = [
 
 [[language]]
 name = "typescript"
-indent = { tab-width = 4, unit = "    " }
+# indent = { tab-width = 4, unit = "    " }
 # 使用 package.prettier 配置
 formatter = { command = 'prettier', args = [
   "--parser",
   "typescript",
   "--tab-width",
-  "4",
+  "2",
 ] }
 auto-format = true
 language-servers = [
@@ -565,3 +563,9 @@ command = "steel-language-server"
 # [[language]]
 # name = "scheme"
 # language-servers = ["steel"]
+# --- dart ---
+[language-server.dart.config]
+closingLabels = true
+outline = true
+flutterOutline = true
+allowOpenUri = true
