@@ -56,9 +56,6 @@ end-of-line-diagnostics = "hint"
 #[local-dev:commandline] hide commandline
 commandline = false
 
-#[11497]
-rounded-corners = true
-
 [editor.soft-wrap]
 enable = true
 # max-wrap = 20 
@@ -146,8 +143,7 @@ column-width = 22
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
 
-"C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to wayinfo tmux run 'cargo run'"}
-# "C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
+"C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
 "C-s" = ":write"
 "C-j" = "save_selection"
 # "C-z" = "normal_mode"                  # replace suspend
