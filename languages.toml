@@ -151,6 +151,13 @@ source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "f
 # command = "gdshader-lsp"
 
 
+
+# format slint
+# https://biomejs.dev/guides/editors/third-party-extensions/#helix 
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
 # ------ emmet support -------------
 [language-server.emmet-language-server]
 # command="emmet-language-server"
@@ -223,9 +230,9 @@ language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
 
 [[language]]
 name = "tsx"
-# indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
+  "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
@@ -233,9 +240,9 @@ language-servers = [
 
 [[language]]
 name = "jsx"
-# indent = { tab-width = 4, unit = "    " }
 language-servers = [
   "typescript-language-server",
+  "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
@@ -247,16 +254,10 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fd
 
 [[language]]
 name = "javascript"
-# indent = { tab-width = 4, unit = "    " }
-formatter = { command = 'prettier', args = [
-  "--parser",
-  "typescript",
-  "--tab-width",
-  "2",
-] }
 auto-format = true
 language-servers = [
   "typescript-language-server",
+  "biome",
   "vscode-eslint-language-server",
   "hx-lsp",
   "typos-lsp",
@@ -264,26 +265,14 @@ language-servers = [
 
 [[language]]
 name = "typescript"
-# indent = { tab-width = 4, unit = "    " }
-# 使用 package.prettier 配置
-formatter = { command = 'prettier', args = [
-  "--parser",
-  "typescript",
-  "--tab-width",
-  "2",
-] }
 auto-format = true
 language-servers = [
   "typescript-language-server",
+  "biome",
   "vscode-eslint-language-server",
   "hx-lsp",
   "typos-lsp",
 ]
-
-# [language.formatter]
-
-# command = "prettier"
-# args = ["--parser=typescript"]
 
 [[language]]
 name = "yaml"
