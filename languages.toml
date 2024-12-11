@@ -1,36 +1,99 @@
 [use-grammars]
 only = [
   # 
-  "rust", "c",
+  "rust",
+  "c",
   # 
-  "go", "gomod", "gowork", "gotmpl",
+  "go",
+  "gomod",
+  "gowork",
+  "gotmpl",
   # 
-  "python", "bash", "lua", "scheme", "sql",
+  "python",
+  "bash",
+  "lua",
+  "scheme",
+  "sql",
   # 
-  "php", "php-only",
+  "php",
+  "php-only",
   # 
-  "html", "css", "scss", "javascript", "jsdoc", "typescript", "jsx", "vue", "svelte", "tsx",
+  "html",
+  "css",
+  "scss",
+  "javascript",
+  "jsdoc",
+  "typescript",
+  "jsx",
+  "vue",
+  "svelte",
+  "tsx",
   #
-  "dart", "kotlin", "groovy",
+  "dart",
+  "kotlin",
+  "groovy",
   # 
-  "json", "jsonc", "json5", "toml", "yaml", "xml", "ini", "kdl", "ron",
+  "json",
+  "jsonc",
+  "json5",
+  "toml",
+  "yaml",
+  "xml",
+  "ini",
+  "kdl",
+  "ron",
   # 
-  "gdscript", "godot-resource", "glsl", "wgsl", "gdshader",
+  "gdscript",
+  "godot-resource",
+  "glsl",
+  "wgsl",
+  "gdshader",
   # 
-  "git-config", "git-commit", "git-ignore", "git-rebase", "git-attributes", "sshclientconfig",
+  "git-config",
+  "git-commit",
+  "git-ignore",
+  "git-rebase",
+  "git-attributes",
+  "sshclientconfig",
   # 
-  "hosts", "env", "make",
+  "hosts",
+  "env",
+  "make",
   # 
-  "comment", "diff", "regex", "rstml", "protobuf",
+  "comment",
+  "diff",
+  "regex",
+  "rstml",
+  "protobuf",
   # 
-  "latex", "typst", "markdown", "markdown_inline", "task", "todotxt", "mail",
+  "latex",
+  "typst",
+  "markdown",
+  "markdown_inline",
+  "task",
+  "todotxt",
+  "mail",
   # 
-  "log", "glicol",
+  "log",
+  "glicol",
   # 
-  "dot", "hurl", "http", "po", "fluent", "pest", "beancount", "slint",
+  "dot",
+  "hurl",
+  "http",
+  "po",
+  "fluent",
+  "pest",
+  "beancount",
+  "slint",
   #
-  "yuck"
+  "yuck",
 ]
+
+# 使用 https://github.com/rosarp/llm-lsp/ 对接AI，自动补全
+# 使用前需要执行 `llm-lsp generate-config` 初始化 `~/.config/llm-lsp/` 的配置
+[language-server.llm-lsp]
+command = "llm-lsp"
+args = ["server", "-p", "codeium"]
 
 # ----- rust ----
 # [language-server.rust-analyzer.config]
@@ -64,7 +127,7 @@ cargo.features = "all"
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp"]
+language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp", "llm-lsp"]
 
 [language.debugger]
 name = "lldb-dap"
@@ -82,7 +145,13 @@ args = { program = "{0}", initCommands = [
 # ---------- golang ----------------
 [[language]]
 name = "go"
-language-servers = ["gopls", "golangci-lint-lsp", "hx-lsp", "typos-lsp"]
+language-servers = [
+  "gopls",
+  "golangci-lint-lsp",
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
 
 # ----------- godot4 -------------
 [language-server.godot]
@@ -151,7 +220,6 @@ source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "f
 # command = "gdshader-lsp"
 
 
-
 # format slint
 # https://biomejs.dev/guides/editors/third-party-extensions/#helix 
 [language-server.biome]
@@ -208,6 +276,7 @@ name = "css"
 file-types = ["css", "scss", "less"]
 language-servers = [
   "vscode-css-language-server",
+  "biome",
   "emmet-language-server",
   "tailwindcss-ls",
 ]
@@ -221,12 +290,13 @@ language-servers = [
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
+  "llm-lsp",
 ]
 
 [[language]]
 name = "vue"
 # indent = { tab-width = 4, unit = "    " }
-language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp"]
+language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "llm-lsp"]
 
 [[language]]
 name = "tsx"
@@ -236,6 +306,7 @@ language-servers = [
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
+  "llm-lsp",
 ]
 
 [[language]]
@@ -246,6 +317,7 @@ language-servers = [
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
+  "llm-lsp",
 ]
 
 [[grammar]]
@@ -258,9 +330,9 @@ auto-format = true
 language-servers = [
   "typescript-language-server",
   "biome",
-  "vscode-eslint-language-server",
   "hx-lsp",
   "typos-lsp",
+  "llm-lsp",
 ]
 
 [[language]]
@@ -269,9 +341,9 @@ auto-format = true
 language-servers = [
   "typescript-language-server",
   "biome",
-  "vscode-eslint-language-server",
   "hx-lsp",
   "typos-lsp",
+  "llm-lsp",
 ]
 
 [[language]]
@@ -339,7 +411,7 @@ file-types = [
 ]
 roots = ["pyproject.toml", "pyrightconfig.json"]
 # formatter = { command = "ruff", args = ["format"] }
-language-servers = ["pyright", "ruff-lsp", "hx-lsp", "typos-lsp"]
+language-servers = ["pyright", "ruff-lsp", "hx-lsp", "typos-lsp", "llm-lsp"]
 auto-format = true
 
 # ------------ lua --------------
