@@ -301,7 +301,7 @@ language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "llm-lsp"]
 [[language]]
 name = "tsx"
 language-servers = [
-  "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] },
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
@@ -312,7 +312,7 @@ language-servers = [
 [[language]]
 name = "jsx"
 language-servers = [
-  "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] },
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
@@ -328,7 +328,7 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fd
 name = "javascript"
 auto-format = true
 language-servers = [
-  "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] },
   "biome",
   "hx-lsp",
   "typos-lsp",
@@ -339,7 +339,7 @@ language-servers = [
 name = "typescript"
 auto-format = true
 language-servers = [
-  "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] },
   "biome",
   "hx-lsp",
   "typos-lsp",
