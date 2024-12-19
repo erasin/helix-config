@@ -160,7 +160,7 @@ args = ["127.0.0.1", "6005"]
 
 [[language]]
 name = "gdscript"
-language-servers = ["godot", "hx-lsp", "typos-lsp"]
+language-servers = ["godot", "hx-lsp", "typos-lsp", "llm-lsp"]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -222,6 +222,7 @@ source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "f
 
 # format slint
 # https://biomejs.dev/guides/editors/third-party-extensions/#helix 
+# https://biomejs.dev/formatter/#options
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
@@ -267,7 +268,6 @@ includeInlayVariableTypeHints = true
 # --- svelte ---
 [[language]]
 name = "svelte"
-# indent = { tab-width = 4, unit = "    " }
 roots = ["package.json"]
 language-servers = ["svelteserver", "tailwindcss-ls"]
 
@@ -295,7 +295,6 @@ language-servers = [
 
 [[language]]
 name = "vue"
-# indent = { tab-width = 4, unit = "    " }
 language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "llm-lsp"]
 
 [[language]]
@@ -356,6 +355,10 @@ licenceKey = "/home/erasin/.config/apikeys/intelephenser_licence.txt"
 storagePath = "/home/erasin/.config/php/"                             # os.tmpdir()
 globalStoragePath = "/home/erasin/.config/php/"                       # os.homedir()
 # clearCache = false # clean state
+
+[[language]]
+name = "php"
+language-servers = [ "intelephense", "typos-lsp",  "llm-lsp"]
 
 # ----------- python pyright --------------
 
@@ -418,7 +421,7 @@ auto-format = true
 
 [[language]]
 name = "lua"
-indent = { tab-width = 4, unit = "    " }
+language-servers = [ "lua-language-server", "llm-lsp"]
 
 [language-server.lua-language-server]
 args = ["--locale", "zh-cn"]
@@ -630,3 +633,7 @@ closingLabels = true
 outline = true
 flutterOutline = true
 allowOpenUri = true
+
+[[language]]
+name = "dart"
+language-servers = [ "dart", "llm-lsp"]

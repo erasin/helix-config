@@ -17,12 +17,15 @@ cargo install --path helix-term
 - [tree_explorer #5768](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
   - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
 - ~~[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics~~ Merged in 24.07  🎉
-- [snippet_placeholder #9801](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab
+- ~~[snippet_placeholder #9801](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab~~ Merged
   - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
 - [lang-config-open #6531](https://github.com/erasin/helix/lang-config-open) lang-config-open
 - [tutor-zh #5199](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
 - [zen mode like D#6468](https://github.com/helix-editor/helix/discussions/6468)
 - [commandline #11223](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
+
+- [incomplete_completion #12214](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests
+- [fix: better display of prompts on long inputs #12036](https://github.com/helix-editor/helix/pull/12036)
 
 **未合并**
 
@@ -136,6 +139,13 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
 在 gnome 下需要插件[gnome shell ibus switcher](https://github.com/kevinhwang91/gnome-shell-ibus-switcher)
 
+## AI 
+
+在 Steel 插件未落地之前使用 lsp 作为AI补充
+
+- <https://github.com/SilasMarvin/lsp-ai> 支持本地模型等等
+- <https://github.com/rosarp/llm-lsp/> 支持 Codeium.ai
+- <https://github.com/leona/helix-gpt> 支持 gpt
 
 ## tmux 
 
@@ -185,3 +195,5 @@ soft-wrap = { enable = true, wrap-at-text-width = true }
 ## leptos view
 
 使用 `rstml`
+
+

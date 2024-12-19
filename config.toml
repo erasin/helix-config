@@ -20,7 +20,7 @@
 
 
 
-theme = "onedark_local"
+theme = "onelight_local"
 
 # [#2869]
 # icons= "nerd"
@@ -131,6 +131,7 @@ separator = "│"
 [editor.explorer]
 position = "left"
 column-width = 22
+
 
 # [#6118]
 # [editor.sticky-context]
