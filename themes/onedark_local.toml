@@ -164,6 +164,9 @@ inherits = "onedark"
 "warning" = { fg = "yellow", modifiers = ["bold"] }
 "error" = { fg="red", modifiers = ["bold"] }
 
+tabstop = { modifiers = ["italic"], bg = "grey-800" }
+"ui.text.directory" = { fg = "blue" }
+
 [palette]
 
 yellow = "#E5C07B"

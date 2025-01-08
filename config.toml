@@ -77,6 +77,7 @@ select = "underline"
 [editor.lsp]
 # 服务器语言信息提示 
 display-messages = true
+display-progress-messages = true
 # 内联提示
 display-inlay-hints = true
 
@@ -140,6 +141,7 @@ column-width = 22
 # max-lines = 10
 
 [keys.normal]
+# W = "@miw"
 # smart tab
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"

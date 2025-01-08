@@ -13,23 +13,24 @@ git clone -b local-dev https://github.com/erasin/helix
 cd helix
 cargo install --path helix-term
 ```
+- **local**
+  - [#5768 tree_explorer](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
+    - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
+    - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
+  - [#6531 lang-config-open](https://github.com/erasin/helix/lang-config-open) lang-config-open
+  - [#5199 tutor-zh ](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
+  - [#6468 zen mode like D](https://github.com/helix-editor/helix/discussions/6468)
+  - [#11223 commandline ](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
+- **origin**
+  - [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
+  - [#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308) lsp document color support
+  - [#12214 incomplete_completion ](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests
+  - [#12036 fix: better display of prompts on long inputs](https://github.com/helix-editor/helix/pull/12036)
+  - ~~[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics~~ Merged in 24.07  🎉
+  - ~~[snippet_placeholder #9801](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab~~ Merged
 
-- [tree_explorer #5768](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
-  - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
-- ~~[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics~~ Merged in 24.07  🎉
-- ~~[snippet_placeholder #9801](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab~~ Merged
-  - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
-- [lang-config-open #6531](https://github.com/erasin/helix/lang-config-open) lang-config-open
-- [tutor-zh #5199](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
-- [zen mode like D#6468](https://github.com/helix-editor/helix/discussions/6468)
-- [commandline #11223](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
-
-- [incomplete_completion #12214](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests
-- [fix: better display of prompts on long inputs #12036](https://github.com/helix-editor/helix/pull/12036)
-
-**未合并**
-
-- [#2869](https://github.com/helix-editor/helix/pull/2869) --icons 支持--
+- **trash**
+  - [#2869](https://github.com/helix-editor/helix/pull/2869) --icons 支持--
 
 建议使用 Alacritty/wezterm + Tmux + Helix
 

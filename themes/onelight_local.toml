@@ -1,6 +1,13 @@
 # 继承 onlight
 inherits = "onelight"
 
+tabstop = { modifiers = ["italic"], bg = "grey-300" }
+
+"ui.text.directory" = { fg = "blue", underline = { style = "line" } }
+
+# "ui.text.focus" = { fg = "red", bg = "grey-300", modifiers = ["bold"] }
+
+
 "attribute" = { fg = "pink" }
 "special" = { fg = "blue" }
 "property" = { fg = "purple" }
