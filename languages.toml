@@ -98,7 +98,7 @@ file_store = { }
 
 [language-server.lsp-ai.config.models.model1]
 type = "ollama"
-model = "codellama"
+model = "phi4"
 
 [language-server.lsp-ai.config.completion]
 model = "model1"
