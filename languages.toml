@@ -2,6 +2,7 @@
 only = [
   # 
   "rust",
+  "rustfmt",
   "c",
   # 
   "go",
@@ -13,6 +14,8 @@ only = [
   "bash",
   "lua",
   "scheme",
+  "tsq",
+  "query",
   "sql",
   # 
   "php",
@@ -98,7 +101,7 @@ file_store = { }
 
 [language-server.lsp-ai.config.models.model1]
 type = "ollama"
-model = "phi4"
+model = "deepseek-r1:8b"
 
 [language-server.lsp-ai.config.completion]
 model = "model1"

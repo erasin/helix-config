@@ -1,4 +1,3 @@
-
 ([(line_comment) (block_comment)] @injection.content
  (#set! injection.language "comment"))
 
@@ -14,7 +13,8 @@
  (#set! injection.language "html")
  (#set! injection.include-children))
 
-; leptos
+; std::fmt 
+
 ((macro_invocation
    macro:
      [
@@ -23,8 +23,27 @@
        (identifier) @_macro_name
      ]
    (token_tree) @injection.content)
- (#eq? @_macro_name "view")
- (#set! injection.language "rstml")
+ (#any-of? @_macro_name
+  ; std
+  "format"
+  "write"
+  "writeln"
+  "print"
+  "println"
+  "eprint"
+  "eprintln"
+  "format_args"
+  ; log
+  "crit"
+  "error"
+  "warn"
+  "info"
+  "debug"
+  "trace"
+  ; anyhow
+  "anyhow"
+  "bail")
+ (#set! injection.language "rustfmt")
  (#set! injection.include-children))
 
 ((macro_invocation
@@ -89,3 +108,16 @@
     [(string_literal) (raw_string_literal)] @injection.content
   )
   (#set! injection.language "sql"))
+
+; leptos
+((macro_invocation
+   macro:
+     [
+       (scoped_identifier
+         name: (_) @_macro_name)
+       (identifier) @_macro_name
+     ]
+   (token_tree) @injection.content)
+ (#eq? @_macro_name "view")
+ (#set! injection.language "rstml")
+ (#set! injection.include-children))

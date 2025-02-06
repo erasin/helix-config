@@ -22,10 +22,11 @@ cargo install --path helix-term
   - [#6468 zen mode like D](https://github.com/helix-editor/helix/discussions/6468)
   - [#11223 commandline ](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
 - **origin**
-  - [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
+  - [rust fmt](https://github.com/helix-editor/helix/pull/12768) 
+  - ~[#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)~
   - [#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308) lsp document color support
-  - [#12214 incomplete_completion ](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests
-  - [#12036 fix: better display of prompts on long inputs](https://github.com/helix-editor/helix/pull/12036)
+  - ~~[#12214 incomplete_completion ](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests~~
+  - ~~[#12036 fix: better display of prompts on long inputs](https://github.com/helix-editor/helix/pull/12036)~~
   - ~~[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics~~ Merged in 24.07  🎉
   - ~~[snippet_placeholder #9801](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab~~ Merged
 
