@@ -22,6 +22,7 @@ cargo install --path helix-term
   - [#6468 zen mode like D](https://github.com/helix-editor/helix/discussions/6468)
   - [#11223 commandline ](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
 - **origin**
+  - [icons v2](https://github.com/helix-editor/helix/pull/12369)
   - [rust fmt](https://github.com/helix-editor/helix/pull/12768) 
   - ~[#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)~
   - [#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308) lsp document color support
@@ -197,5 +198,3 @@ soft-wrap = { enable = true, wrap-at-text-width = true }
 ## leptos view
 
 使用 `rstml`
-
-

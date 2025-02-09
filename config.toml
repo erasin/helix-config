@@ -14,11 +14,9 @@
 # ----- test
 
 # X #8675 plugin system use steel scheme
-# X #2869 icons
+# X #12369 icons v2
 # #8021 event system
 # #6118 sticky-context
-
-
 
 theme = "onelight_local"
 
@@ -122,9 +120,10 @@ right = [
   "file-type",
 ]
 separator = "│"
-# mode.normal = "正常"
-# mode.insert = "插入"
-# mode.select = "选择"
+
+mode.normal = "󰫻 "
+mode.insert = "󰫲 "
+mode.select = "󰬃 "
 
 # [#5768]
 # s-e 切换显示
@@ -133,12 +132,31 @@ separator = "│"
 # position = "left"
 # column-width = 22
 
-
 # [#6118]
 # [editor.sticky-context]
 # enable = true
 # # indicator = true
 # max-lines = 10
+
+# [#12369] icons v2
+[editor.icons.vcs]
+enabled = true
+
+[editor.icons.mime]
+enabled = true
+php = ""
+gd = ""
+gdshader = ""
+godot = ""
+
+[editor.icons.diagnostic]
+error = ""
+warning = ""
+info = ""
+hint = ""
+
+[editor.icons.lsp]
+enabled = true
 
 [keys.normal]
 # W = "@miw"
