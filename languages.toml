@@ -97,7 +97,7 @@ only = [
 command = "lsp-ai"
 
 [language-server.lsp-ai.config.memory]
-file_store = { }
+file_store = {}
 
 [language-server.lsp-ai.config.models.model1]
 type = "ollama"
@@ -194,8 +194,13 @@ args = ["127.0.0.1", "6005"]
 [[language]]
 name = "gdscript"
 language-servers = [
-{name="godot", except-features=["color-provider"]},
-"hx-lsp", "typos-lsp", "llm-lsp"]
+  { name = "godot", except-features = [
+    "color-provider",
+  ] },
+  "hx-lsp",
+  "typos-lsp",
+  "llm-lsp",
+]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -389,7 +394,7 @@ globalStoragePath = "/home/erasin/.config/php/"                       # os.homed
 
 [[language]]
 name = "php"
-language-servers = [ "intelephense", "typos-lsp",  "llm-lsp"]
+language-servers = ["intelephense", "typos-lsp", "llm-lsp"]
 
 # ----------- python pyright --------------
 
@@ -452,7 +457,7 @@ auto-format = true
 
 [[language]]
 name = "lua"
-language-servers = [ "lua-language-server", "llm-lsp"]
+language-servers = ["lua-language-server", "llm-lsp"]
 
 [language-server.lua-language-server]
 args = ["--locale", "zh-cn"]
@@ -551,11 +556,8 @@ language-servers = ["texlab"]
 text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
-# ---- typst ----
-# https://myriad-dreamin.github.io/tinymist//frontend/helix.html
-[language-server.tinymist]
-command = "tinymist"
-
+# # ---- typst ----
+# # https://myriad-dreamin.github.io/tinymist//frontend/helix.html
 # In project .helix/languages.toml setting main file.
 #
 # [language-server.tinymist.config]
@@ -565,7 +567,7 @@ command = "tinymist"
 
 [[language]]
 name = "typst"
-language-servers = ["tinymist", "hx-lsp", "typos-lsp"]
+language-servers = ["tinymist", "hx-lsp"]
 formatter = { command = "typst", args = ["c"] }
 text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
@@ -612,7 +614,7 @@ language-servers = ["beancount-lsp", "hx-lsp"]
 
 [[grammar]]
 name = "beancount"
-source = { git = "https://github.com/polarmutex/tree-sitter-beancount", rev="9bc460a05b5f096d69568b5fb36105032ff4ff97" }
+source = { git = "https://github.com/polarmutex/tree-sitter-beancount", rev = "9bc460a05b5f096d69568b5fb36105032ff4ff97" }
 
 [[language]]
 name = "fluent"
@@ -672,4 +674,4 @@ allowOpenUri = true
 
 [[language]]
 name = "dart"
-language-servers = [ "dart", "llm-lsp", "hx-lsp"]
+language-servers = ["dart", "llm-lsp", "hx-lsp"]

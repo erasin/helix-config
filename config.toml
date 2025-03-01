@@ -18,7 +18,7 @@
 # #8021 event system
 # #6118 sticky-context
 
-theme = "onelight_local"
+theme = "onedark_local"
 
 # [#2869]
 # icons= "nerd"

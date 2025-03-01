@@ -28,15 +28,17 @@
 ] @punctuation.bracket
 
 (subgraph
-  id: (id) @namespace)
-
-(node_id (id) @type)
+  id: (id
+    (identifier) @namespace)
+)
 
 (attribute
-  name: (id) @attribute)
+  name: (id
+    (identifier) @type)
+  value: (id
+    (identifier) @constant)
+)
 
-[
-  (comment)
-  (preproc)
-] @comment
+(comment) @comment
 
+(preproc) @keyword.directive

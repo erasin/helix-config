@@ -1,7 +1,8 @@
 (single_line_comment) @comment
 (multi_line_comment) @comment
 
-(node (identifier) @attribute)
+(node
+    (identifier) @variable)
 
 (prop (identifier) @attribute)
 

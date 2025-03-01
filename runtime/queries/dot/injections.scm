@@ -1,7 +1,7 @@
 ((comment) @injection.content
  (#set! injection.language "comment"))
 
-((html_string) @injection.content
+((html_internal) @injection.content
   (#set! injection.language "html"))
 
 ; ((attribute 
