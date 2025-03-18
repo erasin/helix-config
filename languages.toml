@@ -4,6 +4,8 @@ only = [
   "rust",
   "rustfmt",
   "c",
+  "cpp",
+  "java",
   # 
   "go",
   "gomod",
@@ -147,8 +149,12 @@ command = "hx-lsp"
 command = "typos-lsp"
 config.diagnosticSeverity = "Warning"
 
-# ---------- rust -----
 
+[language-server.cspell]
+command = "cspell-lsp"
+args = ["--stdio", "--dictionary", "/home/erasin/.config/cspell/dict.txt"]
+
+# ---------- rust -----
 [language-server.rust-analyzer.config]
 inlayHints.bindingModeHints.enable = false
 inlayHints.closingBraceHints.minLines = 10
@@ -160,7 +166,7 @@ cargo.features = "all"
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp", "llm-lsp"]
+language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp", "llm-lsp", "cspell"]
 
 [language.debugger]
 name = "lldb-dap"
@@ -321,6 +327,12 @@ language-servers = [
   "tailwindcss-ls",
 ]
 
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+
+
 [[language]]
 name = "html"
 file-types = ["html", "xhtml"]
@@ -334,13 +346,18 @@ language-servers = [
 ]
 
 [[language]]
+name = "xml"
+language-servers = [ "vscode-html-language-server" ]
+
+[[language]]
 name = "vue"
 language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "llm-lsp"]
 
 [[language]]
 name = "tsx"
 language-servers = [
-  "typescript-language-server",
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
@@ -350,7 +367,8 @@ language-servers = [
 [[language]]
 name = "jsx"
 language-servers = [
-  "typescript-language-server",
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
@@ -365,7 +383,8 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fd
 name = "javascript"
 auto-format = true
 language-servers = [
-  "typescript-language-server",
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
   "hx-lsp",
   "typos-lsp",
   "llm-lsp",
@@ -375,7 +394,8 @@ language-servers = [
 name = "typescript"
 auto-format = true
 language-servers = [
-  "typescript-language-server",
+  # "typescript-language-server",
+  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
   "hx-lsp",
   "typos-lsp",
   "llm-lsp",
@@ -387,7 +407,7 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 
 # ----------- php --------------
 [language-server.intelephense.config]
-licenceKey = "/home/erasin/.config/apikeys/intelephenser_licence.txt"
+licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
 storagePath = "/home/erasin/.config/php/"                             # os.tmpdir()
 globalStoragePath = "/home/erasin/.config/php/"                       # os.homedir()
 # clearCache = false # clean state
@@ -544,7 +564,7 @@ file-types = [
 [[language]]
 name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
-language-servers = ["marksman", "markdown-oxide", "hx-lsp", "typos-lsp"]
+language-servers = ["marksman", "markdown-oxide", "hx-lsp", "typos-lsp", "cspell"]
 # 设定 zen-mode-like
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
@@ -644,7 +664,7 @@ source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995
 [[language]]
 name = "ron"
 file-types = ["ron", "trickfilm"]
-formatter = { command = 'ronfmt', args = ["-w", "80"] }
+formatter = { command = 'ronfmt' }
 
 # for rust leptos
 [[language]]
@@ -658,8 +678,14 @@ name = "rstml"
 source = { git = "https://github.com/rayliwell/tree-sitter-rstml", subpath = "rstml", rev = "07a8e3b9bda09b648a6ccaca09e15dea3adf956f" }
 
 # --- steel -----
-[language-server.steel]
+[language-server.steel-language-server]
 command = "steel-language-server"
+args = []
+
+# [[language]]
+# name = "scheme"
+# language-servers = [ "steel-language-server" ]
+
 
 # # project/.helix/languages.toml
 # [[language]]

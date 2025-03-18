@@ -34,7 +34,7 @@ cargo install --path helix-term
 - **trash**
   - [#2869](https://github.com/helix-editor/helix/pull/2869) --icons 支持--
 
-建议使用 Alacritty/wezterm + Tmux + Helix
+建议使用 kitty/Alacritty/wezterm + Tmux + Helix
 
 ## 文档
 

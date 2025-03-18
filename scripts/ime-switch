@@ -87,7 +87,7 @@ function osx_re {
 
 # RIME 1 
 # 用于记录当前输入法的值
-ibus_cache_file="$HOME/.cache/ibus/ibus-method-input"
+ibus_cache_file="/tmp/ibus-method-input"
 ibus_method_en="0|"
 # ibus_method_en="1|A"
 ibus_method_cn="1|小"
@@ -157,7 +157,7 @@ function ibus_re {
 
 # RIME 1 
 # 用于记录当前输入法的值
-fcitx5_cache_file="$HOME/.cache/fcitx5-method-input"
+fcitx5_cache_file="/tmp/fcitx5-method-input"
 fcitx5_method_en="keyboard-us"
 fcitx5_method_cn="rime"
 touch $fcitx5_cache_file
