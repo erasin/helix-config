@@ -1,6 +1,8 @@
 使用 HELIX EDITOR
 ===
 
+> 迁移路径 -> <https://github.com/erasin/dotfiles>
+
 > <https://erasin.wang/helix/>
 
 使用自定义分支
