@@ -1,7 +1,7 @@
 使用 HELIX EDITOR
 ===
 
-> 迁移路径 -> <https://github.com/erasin/dotfiles>
+> **迁移路径** -> <https://github.com/erasin/dotfiles/tree/main/helix>
 
 > <https://erasin.wang/helix/>
 
