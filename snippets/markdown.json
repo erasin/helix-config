@@ -1,9 +1,4 @@
 {
-  "markdown a": {
-    "prefix": "mda",
-    "body": "mda in helix: ${1:abc} : ${2:cde}",
-    "description": "test a info content in helix"
-  },
   "zola": {
     "prefix": "zola",
     "body": [

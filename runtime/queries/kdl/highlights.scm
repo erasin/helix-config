@@ -1,23 +1,39 @@
-(single_line_comment) @comment
-(multi_line_comment) @comment
+[
+  (single_line_comment)
+  (multi_line_comment)
+] @comment
 
 (node
-    (identifier) @variable)
+  (identifier) @variable)
 
-(prop (identifier) @attribute)
+(node
+  (identifier) @function
+  (node_field) @has
+  (#one-line? @has))
 
-(type (_) @type) @punctuation.bracket
+(node_children
+  (node
+    (identifier) @type.parameter))
+
+(prop
+  (identifier) @attribute)
+
+(type
+  (_) @type) @punctuation.bracket
 
 (keyword) @keyword
 
 (string) @string
+
 (number) @constant.numeric
+
 (boolean) @constant.builtin.boolean
 
 "." @punctuation.delimiter
 
 "=" @operator
 
-"{" @punctuation.bracket
-"}" @punctuation.bracket
- 
+[
+  "{"
+  "}"
+] @punctuation.bracket

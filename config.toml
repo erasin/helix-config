@@ -3,26 +3,20 @@
 # https://gitee.com/erasin/helix/tree/local-dev
 # use pr
 # #5768 tree_explore_local https://gitee.com/erasin/helix/tree/tree_explore_local 
-# #6417 inline-diagnostics  https://github.com/helix-editor/helix/pull/6417 
-# #9801 snippet_placeholder  https://github.com/helix-editor/helix/pull/9801
-# #6531 lang-config-open  https://github.com/erasin/helix/lang-config-open
-# #5199 tutor-zh  https://github.com/erasin/helix/tree/tutor-zh
-# #6468 zen mode like https://github.com/helix-editor/helix/discussions/6468 
-# statusline-word-count
+# #my-tool https://gitee.com/erasin/helix/tree/my-tool
+  # #6417 inline-diagnostics  https://github.com/helix-editor/helix/pull/6417 
+  # #9801 snippet_placeholder  https://github.com/helix-editor/helix/pull/9801
+  # #6531 lang-config-open  https://github.com/erasin/helix/lang-config-open
+  # #5199 tutor-zh  https://github.com/erasin/helix/tree/tutor-zh
+  # #6468 zen mode like https://github.com/helix-editor/helix/discussions/6468 
+  # statusline-word-count
 
 
-# ----- test
-
+# helix
 # X #8675 plugin system use steel scheme
 # X #12369 icons v2
-# #8021 event system
-# #6118 sticky-context
 
 theme = "onedark_local"
-
-# [#2869]
-# icons= "nerd"
-# icons= "nerdfonts"
 
 [editor]
 # 真彩支持
@@ -53,6 +47,8 @@ end-of-line-diagnostics = "hint"
 
 #[local-dev:commandline] hide commandline
 commandline = false
+editor-config = true
+
 
 [editor.soft-wrap]
 enable = true
@@ -60,12 +56,6 @@ enable = true
 # max-indent-retain = 40
 # wrap-indicator = "↪ "
 # wrap-at-text-width = true # zen-mode center View.inner_area
-
-# [#2869]
-# [editor.icons]
-# bufferline = true
-# picker = true
-# statusline = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -97,13 +87,11 @@ skip-levels = 0
 
 # 状态栏定义
 [editor.statusline]
-# [#2869] file-type-icon
 left = [
   "mode",
   "spinner",
   "version-control",
   "read-only-indicator",
-  # "file-type-icon",
   "file-name",
   "file-modification-indicator",
 ]
@@ -139,23 +127,23 @@ mode.select = "󰬃 "
 # max-lines = 10
 
 # [#12369] icons v2
-[editor.icons.vcs]
+[icons.vcs]
 enabled = true
 
-[editor.icons.mime]
+[icons.mime]
 enabled = true
 php = ""
 gd = ""
 gdshader = ""
 godot = ""
 
-[editor.icons.diagnostic]
+[icons.diagnostic]
 error = ""
 warning = ""
 info = ""
 hint = ""
 
-[editor.icons.lsp]
+[icons.lsp]
 enabled = true
 
 [keys.normal]
@@ -199,7 +187,7 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "w" = { r = ":reload", c = ":config-reload" }
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
-# "o" = "diagnostics_popup"
+"o" = [":open %sh{ file-picker }"] # dotfile/scripts/file-picker
 
 [keys.insert]
 # smart tab

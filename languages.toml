@@ -200,9 +200,7 @@ args = ["127.0.0.1", "6005"]
 [[language]]
 name = "gdscript"
 language-servers = [
-  { name = "godot", except-features = [
-    "color-provider",
-  ] },
+  "godot",
   "hx-lsp",
   "typos-lsp",
   "llm-lsp",

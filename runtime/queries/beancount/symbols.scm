@@ -1,5 +1,5 @@
 (transaction) @definition.struct
 [
-  (open),
+  (open)
   (option)
 ] @definition.constant

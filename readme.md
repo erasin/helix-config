@@ -1,7 +1,7 @@
 使用 HELIX EDITOR
 ===
 
-> **迁移路径** -> <https://github.com/erasin/dotfiles/tree/main/helix>
+> 迁移路径 -> <https://github.com/erasin/dotfiles>
 
 > <https://erasin.wang/helix/>
 
@@ -18,16 +18,18 @@ cargo install --path helix-term
 - **local**
   - [#5768 tree_explorer](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
     - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
-    - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
-  - [#6531 lang-config-open](https://github.com/erasin/helix/lang-config-open) lang-config-open
-  - [#5199 tutor-zh ](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
-  - [#6468 zen mode like D](https://github.com/helix-editor/helix/discussions/6468)
-  - [#11223 commandline ](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
+  - [my-tool](https://github.com/erasin/helix/tree/my-tool) 本地工具合并
+    - [#6531 lang-config-open](https://github.com/erasin/helix/lang-config-open) lang-config-open
+    - [#5199 tutor-zh ](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
+    - [#6468 zen mode like D](https://github.com/helix-editor/helix/discussions/6468)
+    - [#11223 commandline ](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
+    - statusline-word-count
+  - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
+
 - **origin**
-  - [icons v2](https://github.com/helix-editor/helix/pull/12369)
-  - [rust fmt](https://github.com/helix-editor/helix/pull/12768) 
-  - ~[#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)~
-  - [#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308) lsp document color support
+  - [#12369 icons v2](https://github.com/helix-editor/helix/pull/12369)
+  - [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
+  - ~~[#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308)~~ lsp document color support
   - ~~[#12214 incomplete_completion ](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests~~
   - ~~[#12036 fix: better display of prompts on long inputs](https://github.com/helix-editor/helix/pull/12036)~~
   - ~~[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics~~ Merged in 24.07  🎉
