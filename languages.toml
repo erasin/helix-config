@@ -36,6 +36,7 @@ only = [
   #
   "dart",
   "kotlin",
+  "swift",
   "groovy",
   # 
   "json",
@@ -56,7 +57,7 @@ only = [
   # 
   "git-config",
   "git-commit",
-  "git-ignore",
+  "gitignore",
   "git-rebase",
   "git-attributes",
   "sshclientconfig",
@@ -94,41 +95,27 @@ only = [
   "yuck",
 ]
 
+
+# 这里定义 lsp-ai
+# lsp-ai, helix-gpt, llm-lsp 
+
 # ollama [lsp-ai](https://github.com/SilasMarvin/lsp-ai)
-[language-server.lsp-ai]
-command = "lsp-ai"
+# [language-server.lsp-ai]
+# command = "lsp-ai"
+# args = ["--config", "/home/erasin/.config/helix/lsp-ai2.json"]
 
-[language-server.lsp-ai.config.memory]
-file_store = {}
-
-[language-server.lsp-ai.config.models.model1]
-type = "ollama"
-model = "deepseek-r1:8b"
-
-[language-server.lsp-ai.config.completion]
-model = "model1"
-
-[language-server.lsp-ai.config.completion.parameters]
-max_tokens = 32
-max_context = 1024
-
-[[language-server.lsp-ai.config.chat]]
-trigger = "!C"
-action_display_name = "Chat"
-model = "model1"
-
-[language-server.lsp-ai.config.chat.parameters]
-max_context = 4096
-max_tokens = 1024
-# system = "You are a code assistant chatbot. The user will ask you for assistance coding and you will do you best to answer succinctly and accurately"
-system = "你是一个代码助理聊天机器人。用户会要求您协助编码，您将尽最大努力简洁准确地回答。"
-
-
+# llm-lsp
 # 使用 https://github.com/rosarp/llm-lsp/ 对接AI，自动补全
 # 使用前需要执行 `llm-lsp generate-config` 初始化 `~/.config/llm-lsp/` 的配置
-[language-server.llm-lsp]
+[language-server.lsp-ai]
 command = "llm-lsp"
 args = ["server", "-p", "codeium"]
+
+# helix-gpt 
+# https://github.com/leona/helix-gpt
+# [language-server.lsp-ai]
+# command = "helix-gpt"
+# args = ["--handler", "ollama", "--ollamaModel", "qwen2.5-coder", "--ollamaTimeout": "10000"]
 
 # ----- rust ----
 # [language-server.rust-analyzer.config]
@@ -166,7 +153,7 @@ cargo.features = "all"
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp", "llm-lsp", "cspell"]
+language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp", "lsp-ai", "cspell"]
 
 [language.debugger]
 name = "lldb-dap"
@@ -189,7 +176,7 @@ language-servers = [
   "golangci-lint-lsp",
   "hx-lsp",
   "typos-lsp",
-  "llm-lsp",
+  "lsp-ai",
 ]
 
 # ----------- godot4 -------------
@@ -199,12 +186,7 @@ args = ["127.0.0.1", "6005"]
 
 [[language]]
 name = "gdscript"
-language-servers = [
-  "godot",
-  "hx-lsp",
-  "typos-lsp",
-  "llm-lsp",
-]
+language-servers = ["godot", "hx-lsp", "typos-lsp", "lsp-ai"]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -328,8 +310,31 @@ language-servers = [
 
 [[language]]
 name = "json"
-language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  "hx-lsp",
+]
 
+[[language]]
+name = "jsonc"
+file-types = [
+  "jsonc",
+  "code-snippets",
+  { glob = "tsconfig.json" },
+  { glob = "bun.lock" },
+]
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+  { name = "hx-lsp", only-features = [
+    "document-colors",
+  ] },
+]
 
 [[language]]
 name = "html"
@@ -340,37 +345,39 @@ language-servers = [
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
-  "llm-lsp",
+  "lsp-ai",
 ]
 
 [[language]]
 name = "xml"
-language-servers = [ "vscode-html-language-server" ]
+language-servers = ["vscode-html-language-server"]
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "llm-lsp"]
+language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "lsp-ai"]
 
 [[language]]
 name = "tsx"
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
-  "llm-lsp",
+  "lsp-ai",
 ]
 
 [[language]]
 name = "jsx"
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "tailwindcss-ls",
   "hx-lsp",
   "typos-lsp",
-  "llm-lsp",
+  "lsp-ai",
 ]
 
 [[grammar]]
@@ -382,10 +389,11 @@ name = "javascript"
 auto-format = true
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "hx-lsp",
   "typos-lsp",
-  "llm-lsp",
+  "lsp-ai",
 ]
 
 [[language]]
@@ -393,10 +401,11 @@ name = "typescript"
 auto-format = true
 language-servers = [
   # "typescript-language-server",
-  { name = "typescript-language-server", except-features = [ "format" ] }, "biome",
+  { name = "typescript-language-server", except-features = ["format"] },
+  "biome",
   "hx-lsp",
   "typos-lsp",
-  "llm-lsp",
+  "lsp-ai",
 ]
 
 [[language]]
@@ -406,13 +415,13 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
-storagePath = "/home/erasin/.config/php/"                             # os.tmpdir()
-globalStoragePath = "/home/erasin/.config/php/"                       # os.homedir()
+storagePath = "/home/erasin/.config/php/"                            # os.tmpdir()
+globalStoragePath = "/home/erasin/.config/php/"                      # os.homedir()
 # clearCache = false # clean state
 
 [[language]]
 name = "php"
-language-servers = ["intelephense", "typos-lsp", "llm-lsp"]
+language-servers = ["intelephense", "typos-lsp", "lsp-ai"]
 
 # ----------- python pyright --------------
 
@@ -468,14 +477,14 @@ file-types = [
 ]
 roots = ["pyproject.toml", "pyrightconfig.json"]
 # formatter = { command = "ruff", args = ["format"] }
-language-servers = ["pyright", "ruff-lsp", "hx-lsp", "typos-lsp", "llm-lsp"]
+language-servers = ["pyright", "ruff-lsp", "hx-lsp", "typos-lsp", "lsp-ai"]
 auto-format = true
 
 # ------------ lua --------------
 
 [[language]]
 name = "lua"
-language-servers = ["lua-language-server", "llm-lsp"]
+language-servers = ["lua-language-server", "lsp-ai"]
 
 [language-server.lua-language-server]
 args = ["--locale", "zh-cn"]
@@ -562,7 +571,14 @@ file-types = [
 [[language]]
 name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
-language-servers = ["marksman", "markdown-oxide", "hx-lsp", "typos-lsp", "cspell"]
+language-servers = [
+  "marksman",
+  "markdown-oxide",
+  "hx-lsp",
+  "typos-lsp",
+  "cspell",
+  "lsp-ai",
+]
 # 设定 zen-mode-like
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
@@ -698,4 +714,12 @@ allowOpenUri = true
 
 [[language]]
 name = "dart"
-language-servers = ["dart", "llm-lsp", "hx-lsp"]
+language-servers = ["dart", "lsp-ai", "hx-lsp"]
+
+[[language]]
+name = "kdl"
+language-servers = ["hx-lsp"]
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }

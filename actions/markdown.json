@@ -1,13 +1,13 @@
 {
 	"bold": {
 		"title": "bold",
-		"filter": "",
+		"filter": "SEL=\"${TM_SELECTED_TEXT}\"; [ ${#SEL} -gt 1 ] && echo -n 1;",
 		"shell": ["echo -n \"**${TM_SELECTED_TEXT}**\""],
 		"description": "bold"
 	},
 	"italic": {
 		"title": "italic",
-		"filter": "",
+		"filter": "SEL=\"${TM_SELECTED_TEXT}\"; [ ${#SEL} -gt 1 ] && echo -n 1;",
 		"shell": ["echo -n \"_${TM_SELECTED_TEXT}_\""],
 		"description": "italic"
 	}
