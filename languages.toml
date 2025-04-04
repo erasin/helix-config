@@ -1,100 +1,5 @@
-[use-grammars]
-only = [
-  # 
-  "rust",
-  "rustfmt",
-  "c",
-  "cpp",
-  "java",
-  # 
-  "go",
-  "gomod",
-  "gowork",
-  "gotmpl",
-  # 
-  "python",
-  "bash",
-  "lua",
-  "scheme",
-  "tsq",
-  "query",
-  "sql",
-  # 
-  "php",
-  "php-only",
-  # 
-  "html",
-  "css",
-  "scss",
-  "javascript",
-  "jsdoc",
-  "typescript",
-  "jsx",
-  "vue",
-  "svelte",
-  "tsx",
-  #
-  "dart",
-  "kotlin",
-  "swift",
-  "groovy",
-  # 
-  "json",
-  "jsonc",
-  "json5",
-  "toml",
-  "yaml",
-  "xml",
-  "ini",
-  "kdl",
-  "ron",
-  # 
-  "gdscript",
-  "godot-resource",
-  "glsl",
-  "wgsl",
-  "gdshader",
-  # 
-  "git-config",
-  "git-commit",
-  "gitignore",
-  "git-rebase",
-  "git-attributes",
-  "sshclientconfig",
-  # 
-  "hosts",
-  "env",
-  "make",
-  # 
-  "comment",
-  "diff",
-  "regex",
-  "rstml",
-  "protobuf",
-  # 
-  "latex",
-  "typst",
-  "markdown",
-  "markdown_inline",
-  "task",
-  "todotxt",
-  "mail",
-  # 
-  "log",
-  "glicol",
-  # 
-  "dot",
-  "hurl",
-  "http",
-  "po",
-  "fluent",
-  "pest",
-  "beancount",
-  "slint",
-  #
-  "yuck",
-]
-
+# [use-grammars]
+# only = [ ]
 
 # 这里定义 lsp-ai
 # lsp-ai, helix-gpt, llm-lsp 
@@ -311,9 +216,7 @@ language-servers = [
 [[language]]
 name = "json"
 language-servers = [
-  { name = "vscode-json-language-server", except-features = [
-    "format",
-  ] },
+  { name = "vscode-json-language-server", except-features = [ "format" ] },
   "biome",
   "hx-lsp",
 ]
@@ -327,13 +230,9 @@ file-types = [
   { glob = "bun.lock" },
 ]
 language-servers = [
-  { name = "vscode-json-language-server", except-features = [
-    "format",
-  ] },
+  { name = "vscode-json-language-server", except-features = [ "format" ] },
   "biome",
-  { name = "hx-lsp", only-features = [
-    "document-colors",
-  ] },
+  { name = "hx-lsp", only-features = [ "document-colors" ] },
 ]
 
 [[language]]
@@ -718,8 +617,9 @@ language-servers = ["dart", "lsp-ai", "hx-lsp"]
 
 [[language]]
 name = "kdl"
-language-servers = ["hx-lsp"]
+language-servers = [ { name = "hx-lsp", only-features = [ "document-colors" ] } ]
 
 [[language]]
 name = "toml"
+language-servers = [ "taplo", { name = "hx-lsp", only-features = [ "document-colors" ] } ]
 formatter = { command = "taplo", args = ["fmt", "-"] }

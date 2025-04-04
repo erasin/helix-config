@@ -15,7 +15,8 @@ tabstop = { modifiers = ["italic"], bg = "grey-300" }
 "diff.delta.conflict" = {fg = "blue"}
 
 # 使用 term 默认的背景色，提供 opacity 透明功能
-"ui.background" = { bg = "white"}
+"ui.background" = { }
+# "ui.background" = { bg = "white"}
 
 # "ui.popup.info" = { fg = "blue" }
 "ui.picker.header" = { fg = "purple"}

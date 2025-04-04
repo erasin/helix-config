@@ -99,7 +99,8 @@ inherits = "onedark"
 "diff.delta.moved" = { fg = "gold" }
 "diff.delta.conflict" = {fg = "blue"}
 
-"ui.background" = { bg = "black" }
+# "ui.background" = { bg = "black" }
+"ui.background" = { } # 使用终端色彩，支持透明
 "ui.background.separator" = { bg = "black" }
 
 "ui.cursor" = { fg = "black", bg = "grey-600" }
