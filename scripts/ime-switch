@@ -1,1 +1,271 @@
-/home/erasin/dotfiles/scripts/ime-switch.sh
+#!/usr/bin/env bash
+#
+# ime-switch 
+# 为 helix/vim 提供自动切换输入法
+# esc 调用脚本切换为英文
+# insert 自动返回为记录输入法
+# 参数：
+# 0 重置输入法为英文
+# 1 返回记录的输入法
+# 2 自动切换记录的输入法和英文输入
+
+# window 可以参考 neuims
+# macos 使用 macism 切换
+# linux 
+#     ibus 使用 dbus
+#     fcitx5 使用 fcitx5-remote
+
+action=0
+if [ $# -eq 1 ]; then
+    action=$1
+fi
+
+os_name=$(uname)
+
+### mac Drawin
+
+# -------------- macism --------------------
+
+# 用于记录当前输入法的值
+osx_cache_file="$HOME/.cache/ime-method-input"
+osx_method_en="com.apple.keylayout.ABC"
+osx_method_cn="im.rime.inputmethod.Squirrel.Hans"
+touch $osx_cache_file
+
+function osx_set {
+    macism $1
+}
+
+function osx_get {
+    echo $(macism)
+}
+
+function osx_toggle {
+    current_input_method=$(osx_get)
+    if [ "$current_input_method" != "$osx_method_en" ]; then
+        osx_set $osx_method_en
+    else
+        osx_set $osx_method_cn
+    fi
+}
+
+function osx_en {
+    # 用于记录当前输入法的值
+    current_input_method=$(osx_get)
+
+    # 检查是否为英文
+    if [ "$current_input_method" != "$osx_method_en" ]; then
+        osx_set $osx_method_en
+        # 记录最新值到缓存文件
+        echo $current_input_method > "$osx_cache_file"
+    else
+        # 这里 多次使用 esc 的话，还是会记录为 英文
+        echo "$osx_method_en" > "$osx_cache_file"
+    fi
+}
+
+function osx_re {
+    local current_input_method=$(osx_get)
+
+    # 读取记录的上次的输入法 
+    # 如果输入法状态被保存在文件中，读取上次的值
+    if [ -f "$osx_cache_file" ]; then
+        cached_input_method=$(cat "$osx_cache_file")
+
+        # 如果上次保存的输入法状态和当前输入法状态不同，则更新当前输入法状态
+        if [ "$cached_input_method" != "$current_input_method" ]; then
+            osx_set $cached_input_method
+        fi
+    else
+        # 如果文件不存在，保存当前输入法状态到文件中
+        echo "$current_input_method" > "$osx_cache_file"
+    fi
+}
+
+### linux
+
+# -------------- ibus ------------------
+
+# 配置 config.toml 设置 esc 执行 脚本 切换英文
+# 使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
+# 在 gnome 下需要插件, d-bus send
+# https://github.com/kevinhwang91/gnome-shell-ibus-switcher
+
+## 我使用的输入法 0 为英文， 1 为 rime ， rime 又记录了 A 和 (输入法的头个汉字),
+# 比如我使用的小鹤双拼， 则显式为 1:小
+
+# RIME 1 
+# 用于记录当前输入法的值
+ibus_cache_file="/tmp/ibus-method-input"
+ibus_method_en="0|"
+# ibus_method_en="1|A"
+ibus_method_cn="1|小"
+touch $ibus_cache_file
+
+# 获取当前的输入法
+function ibus_get {
+    cmd_read_im="dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.CurrentSource"
+
+    current_input_method=$(awk '{$1=$1};1' <<< $(eval "$cmd_read_im"))
+
+    echo $current_input_method
+}
+
+function ibus_set {
+    local ime_method=$1
+    # id=$(echo $ime_method | awk -F "|" '{print $1}')
+    # method=$(echo $ime_method | awk -F "|" '{print $2}')
+    IFS='|' read -r id method <<< $ime_method
+    
+    cmd_switch_ibus="dbus-send --session --type=method_call --print-reply=literal --dest=org.gnome.Shell /org/gnome/Shell/Extensions/IbusSwitcher org.gnome.Shell.Extensions.IbusSwitcher.SwitchSource uint32:$id string:$method"
+    eval "$cmd_switch_ibus"
+}
+
+function ibus_toggle {
+    current_input_method=$(ibus_get)
+    if [ "$current_input_method" != "$ibus_method_en" ]; then
+        ibus_set $ibus_method_en
+    else
+        ibus_set $ibus_method_cn
+    fi
+}
+
+function ibus_en {
+    # 用于记录当前输入法的值
+    current_input_method=$(ibus_get)
+
+    # 检查是否为英文 0|,不是则切换, 这里用的是 pinyin | rime, 根据自己的 ibus 处理
+    if [ "$current_input_method" != "$ibus_method_en" ]; then
+        ibus_set $ibus_method_en
+        # 记录最新值到缓存文件
+        echo $current_input_method > "$ibus_cache_file"
+    else
+        # 这里 多次使用 esc 的话，还是会记录为 0|
+        echo "$ibus_method_en" > "$ibus_cache_file"
+    fi
+} 
+
+function ibus_re {
+    local current_input_method=$(ibus_get)
+    # 读取记录的上次的输入法 
+    # 如果输入法状态被保存在文件中，读取上次的值
+    if [ -f "$ibus_cache_file" ]; then
+        cached_input_method=$(cat "$ibus_cache_file")
+
+        # 如果上次保存的输入法状态和当前输入法状态不同，则更新当前输入法状态
+        if [ "$cached_input_method" != "$current_input_method" ]; then
+            ibus_set $cached_input_method
+        fi
+    else
+        # 如果文件不存在，保存当前输入法状态到文件中
+        echo "$current_input_method" > "$ibus_cache_file"
+    fi
+}
+
+# ----------------- fcitx5 ---------------------
+
+# RIME 1 
+# 用于记录当前输入法的值
+fcitx5_cache_file="/tmp/fcitx5-method-input"
+fcitx5_method_en="keyboard-us"
+fcitx5_method_cn="rime"
+touch $fcitx5_cache_file
+
+# 获取当前的输入法
+function fcitx5_get {
+    cmd_read_im="fcitx5-remote -n"
+    current_input_method=$(eval "$cmd_read_im")
+    echo $current_input_method
+}
+
+function fcitx5_set {
+    local ime_method=$1
+    cmd_switch="fcitx5-remote -s $ime_method"
+    eval "$cmd_switch"
+}
+
+function fcitx5_toggle {
+    current_input_method=$(fcitx5_get)
+    if [ "$current_input_method" != "$fcitx5_method_en" ]; then
+        fcitx5_set $fcitx5_method_en
+    else
+        fcitx5_set $fcitx5_method_cn
+    fi
+}
+
+function fcitx5_en {
+    # 用于记录当前输入法的值
+    current_input_method=$(fcitx5_get)
+
+    # 检查是否为英文 0|,不是则切换, 这里用的是 pinyin | rime, 根据自己的 fcitx5 处理
+    if [ "$current_input_method" != "$fcitx5_method_en" ]; then
+        fcitx5_set $fcitx5_method_en
+        # 记录最新值到缓存文件
+        echo $current_input_method > "$fcitx5_cache_file"
+    else
+        # 这里 多次使用 esc 的话，还是会记录为 0|
+        echo "$fcitx5_method_en" > "$fcitx5_cache_file"
+    fi
+} 
+
+function fcitx5_re {
+    local current_input_method=$(fcitx5_get)
+    # 读取记录的上次的输入法 
+    # 如果输入法状态被保存在文件中，读取上次的值
+    if [ -f "$fcitx5_cache_file" ]; then
+        cached_input_method=$(cat "$fcitx5_cache_file")
+
+        # 如果上次保存的输入法状态和当前输入法状态不同，则更新当前输入法状态
+        if [ "$cached_input_method" != "$current_input_method" ]; then
+            fcitx5_set $cached_input_method
+        fi
+    else
+        # 如果文件不存在，保存当前输入法状态到文件中
+        echo "$current_input_method" > "$fcitx5_cache_file"
+    fi
+}
+
+#=======================
+
+# 检查是否为macOS系统
+if [[ $(uname) == "Darwin" ]]; then
+
+    case $action in 
+        0) osx_en ;;
+        1) osx_re ;;
+        *) osx_toggle ;;
+    esac
+
+# 检查是否为Linux系统
+elif [[ $(uname) == "Linux" ]]; then
+
+    if type fcitx5-remote &> /dev/null ; then 
+        case $action in 
+            0) fcitx5_en ;;
+            1) fcitx5_re ;;
+            *) fcitx5_toggle ;;
+        esac
+    fi
+
+    if command -v ibus &> /dev/null ; then 
+        case $action in 
+            0) ibus_en ;;
+            1) ibus_re ;;
+            *) ibus_toggle ;;
+        esac
+    fi
+
+    ## 仅使用 ibus 输入
+    # if [ $is_re -eq 0 ]; then
+    #     current_input_method=$(ibus engine)
+    #     echo "$current_input_method" > "$ibus_cache_file"
+    #     ibus engine "xkb:us::eng"
+    # else
+    #     cached_input_method=$(cat "$ibus_cache_file")
+    #     if [[ "$cached_input_method" != "" ]];then
+    #         ibus engine $cached_input_method
+    #     fi
+    # fi
+else
+    echo "无法确定当前系统"
+fi

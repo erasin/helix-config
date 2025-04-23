@@ -1,0 +1,10 @@
+{
+	"send": {
+		"title": "send request",
+		"filter": "",
+		"shell": [
+			"alacritty --hold --working-directory ${TM_DIRECTORY} -e hurl ${TM_FILENAME}  | bat -l json"
+		],
+		"description": "hurl send"
+	}
+}

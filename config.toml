@@ -152,8 +152,7 @@ enabled = true
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
 
-# "C-r" = { s = ":write", e = "reveal_current_file", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
-"C-r" = { s = ":write", r = ":reload", c = ":config-reload", "t" = ":pipe-to bash ~/.config/helix/scripts/hx-sh 'cargo run'"}
+"C-r" = { s = ":write", r = ":reload", c = ":config-reload" }
 "C-s" = ":write"
 "C-j" = "save_selection"
 # "C-z" = "normal_mode"                  # replace suspend
@@ -187,7 +186,12 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "w" = { r = ":reload", c = ":config-reload" }
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
-"o" = [":open %sh{ file-picker }"] # dotfile/scripts/file-picker
+
+[keys.normal.space.o]
+"o" = ":open %sh{ ~/.config/helix/scripts/file-picker }" # dotfile/scripts/file-picker.sh 需要yazi
+# "r" = ":sh tmux popup -xC -yC -w90%% -h90%% -E scooter"
+# https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
+"r" = [":sh alacritty -T \"find-replace\" --working-directory $(pwd) -e scooter", ":reload"]
 
 [keys.insert]
 # smart tab

@@ -1,4 +1,9 @@
 {
+	"clip": {
+		"prefix": "clip",
+		"body": ["$CLIPBOARD"],
+		"description": "clipboard"
+	},
 	"dui": {
 		"prefix": "dui",
 		"body": "✓",

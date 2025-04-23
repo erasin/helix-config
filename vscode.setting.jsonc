@@ -1,0 +1,113 @@
+{
+  // vim
+  // 基础 Vim 配置
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.showcmd": true,
+  
+  // Normal 模式键位
+  "vim.normalModeKeyBindingsNonRecursive": [
+
+    { "before": ["w"], "commands": ["cursorWordStartRight"] },
+    { "before": ["b"], "commands": ["cursorWordStartLeft"] },
+    { "before": ["e"], "commands": ["cursorWordEndRight"] },
+    { "before": ["W"], "commands": ["cursorWordStartRight"] }, // 与w相同
+    { "before": ["B"], "commands": ["cursorWordStartLeft"] },  // 与b相同
+    { "before": ["E"], "commands": ["cursorWordEndRight"] },   // 与e相同
+
+    // 文件操作
+    { "before": ["<space>", "f", "s"], "commands": ["workbench.action.files.save"] },
+    { "before": ["<space>", "f", "q"], "commands": ["workbench.action.closeActiveEditor"] },
+    
+    // 窗口分割
+    { "before": ["<space>", "w", "v"], "commands": ["workbench.action.splitEditorRight"] },
+    { "before": ["<space>", "w", "s"], "commands": ["workbench.action.splitEditorDown"] },
+  
+    // 窗口导航
+    { "before": ["<space>", "w", "h"], "commands": ["workbench.action.navigateLeft"] },
+    { "before": ["<space>", "w", "j"], "commands": ["workbench.action.navigateDown"] },
+    { "before": ["<space>", "w", "k"], "commands": ["workbench.action.navigateUp"] },
+    { "before": ["<space>", "w", "l"], "commands": ["workbench.action.navigateRight"] },
+  
+    // 窗口关闭
+    { "before": ["<space>", "w", "c"], "commands": ["workbench.action.closeActiveEditor"] },
+    
+    // 搜索
+    { "before": ["<space>", "s", "f"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["<space>", "/"], "commands": ["actions.find"] },
+    
+
+      // ========== Navigation ==========
+    // File navigation
+    { "before": ["g", "g"], "commands": ["workbench.action.gotoLine"] }, // Go to line or start of file
+    { "before": ["g", "e"], "after": ["G"] }, // Go to end of file
+    { "before": ["g", "f"], "commands": ["editor.action.revealDefinitionAside"] }, // Go to file in selection
+    
+    // Line navigation
+    { "before": ["g", "h"], "after": ["^"] }, // Start of line
+    { "before": ["g", "l"], "after": ["$"] }, // End of line
+    { "before": ["g", "s"], "after": ["^"] }, // First non-whitespace (same as ^ in Vim)
+    
+    // Screen navigation
+    { "before": ["g", "t"], "commands": ["cursorTop"] }, // Top of screen
+    { "before": ["g", "c"], "commands": ["cursorMiddle"] }, // Middle of screen
+    { "before": ["g", "b"], "commands": ["cursorBottom"] }, // Bottom of screen
+    
+    // ========== LSP Navigation ==========
+    { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] }, // Go to definition
+      { "before": ["g", "y"], "commands": ["editor.action.goToTypeDefinition"] }, // Go to type definition
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] }, // Go to references
+    { "before": ["g", "i"], "commands": ["editor.action.goToImplementation"] }, // Go to implementation
+    
+    // ========== File/Buffer Navigation ==========
+    { "before": ["g", "a"], "commands": ["workbench.action.navigateBack"] }, // Last accessed file
+    { "before": ["g", "m"], "commands": ["workbench.action.openRecent"] }, // Last modified files
+    { "before": ["g", "n"], "commands": ["workbench.action.nextEditor"] }, // Next buffer
+    { "before": ["g", "p"], "commands": ["workbench.action.previousEditor"] }, // Previous buffer
+    { "before": ["g", "."], "commands": ["workbench.action.navigateToLastEditLocation"] }, // Last modification
+
+    // ========== Existing Space Keybindings ==========
+    // (Keep your existing space keybindings here)
+    { "before": ["<space>", "k"], "commands": ["editor.action.showHover"] },
+    { "before": ["<space>", "r"], "commands": ["editor.action.rename"] },
+    { "before": ["<space>", "a"], "commands": ["editor.action.quickFix"] },
+    { "before": ["<space>", "d"], "commands": ["editor.action.marker.nextInFiles"] },
+    { "before": ["<space>", "s"], "commands": ["workbench.action.gotoSymbol"] },
+    { "before": ["<space>", "c"], "commands": ["editor.action.commentLine"] },
+    { "before": ["<space>", "C"], "commands": ["editor.action.blockComment"] },
+    { "before": ["<space>", "b"], "commands": ["workbench.action.showAllEditors"] },
+    { "before": ["<space>", "e"], "commands": ["workbench.view.explorer"] },
+    { "before": ["<space>", "f"], "commands": ["workbench.action.quickOpen"] },
+
+    { "before": ["/"], "commands": ["actions.find"] },
+    { "before": ["?"], "commands": ["workbench.action.findInFiles"] },
+    { "before": [";"], "commands": ["cancelSelection"] },
+    { "before": [","], "commands": ["cursorUndo"] },
+
+    // 向下添加多光标 (类似 Helix 的 C)
+    { "before": ["C"], "commands": ["editor.action.insertCursorBelow"] },
+    { "before": ["<A-C>"], "commands": ["editor.action.insertCursorAbove"] },
+  ],
+  
+  // 可视模式键位
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["g", "h"], "after": ["^"] },
+    { "before": ["g", "l"], "after": ["$"] },
+    { "before": ["g", "f"], "commands": ["editor.action.revealDefinitionAside"] },
+
+    // 编辑操作
+    { "before": ["d"], "commands": ["delete"] },
+    { "before": ["c"], "commands": ["delete", "i"] },
+    { "before": ["y"], "commands": ["editor.action.clipboardCopyAction"] },
+    { "before": ["p"], "commands": ["editor.action.clipboardPasteAction"] },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": ["="], "commands": ["editor.action.formatSelection"] },
+    { "before": ["<space>", "c"], "commands": ["editor.action.commentLine"] },
+    { "before": ["<space>", "C"], "commands": ["editor.action.blockComment"] },
+    { "before": ["<space>", "r"], "commands": ["editor.action.rename"] },
+  ],
+
+}

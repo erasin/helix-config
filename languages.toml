@@ -1,5 +1,6 @@
 # [use-grammars]
 # only = [ ]
+#
 
 # 这里定义 lsp-ai
 # lsp-ai, helix-gpt, llm-lsp 
@@ -13,8 +14,9 @@
 # 使用 https://github.com/rosarp/llm-lsp/ 对接AI，自动补全
 # 使用前需要执行 `llm-lsp generate-config` 初始化 `~/.config/llm-lsp/` 的配置
 [language-server.lsp-ai]
-command = "llm-lsp"
-args = ["server", "-p", "codeium"]
+command = ""
+# command = "llm-lsp"
+# args = ["server", "-p", "codeium"]
 
 # helix-gpt 
 # https://github.com/leona/helix-gpt
@@ -33,16 +35,8 @@ args = ["server", "-p", "codeium"]
 [language-server.hx-lsp]
 command = "hx-lsp"
 
-# ------ typos lsp ------
-# https://github.com/tekumara/typos-lsp
-# https://github.com/crate-ci/typos
-# Add _typos.toml enable
-[language-server.typos-lsp]
-command = "typos-lsp"
-config.diagnosticSeverity = "Warning"
-
-
-[language-server.cspell]
+# https://github.com/vlabo/cspell-lsp
+[language-server.cspell-lsp]
 command = "cspell-lsp"
 args = ["--stdio", "--dictionary", "/home/erasin/.config/cspell/dict.txt"]
 
@@ -58,7 +52,7 @@ cargo.features = "all"
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "hx-lsp", "typos-lsp", "lsp-ai", "cspell"]
+language-servers = ["rust-analyzer", "hx-lsp", "cspell-lsp", "lsp-ai"]
 
 [language.debugger]
 name = "lldb-dap"
@@ -80,7 +74,7 @@ language-servers = [
   "gopls",
   "golangci-lint-lsp",
   "hx-lsp",
-  "typos-lsp",
+  "cspell-lsp",
   "lsp-ai",
 ]
 
@@ -91,7 +85,7 @@ args = ["127.0.0.1", "6005"]
 
 [[language]]
 name = "gdscript"
-language-servers = ["godot", "hx-lsp", "typos-lsp", "lsp-ai"]
+language-servers = ["godot", "hx-lsp", "cspell-lsp", "lsp-ai"]
 
 [language.debugger]
 name = "lldb-vscode"
@@ -141,7 +135,7 @@ auto-format = true
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "\t" }
-# language-servers = ["gdshader-lsp", "hx-lsp", "typos-lsp"]
+# language-servers = ["gdshader-lsp", "hx-lsp", "cspell-lsp"]
 
 [[grammar]]
 name = "gdshader"
@@ -232,7 +226,7 @@ file-types = [
 language-servers = [
   { name = "vscode-json-language-server", except-features = [ "format" ] },
   "biome",
-  { name = "hx-lsp", only-features = [ "document-colors" ] },
+  # { name = "hx-lsp", only-features = [ "document-colors" ] },
 ]
 
 [[language]]
@@ -243,7 +237,7 @@ language-servers = [
   "emmet-language-server",
   "tailwindcss-ls",
   "hx-lsp",
-  "typos-lsp",
+  "cspell-lsp",
   "lsp-ai",
 ]
 
@@ -253,7 +247,7 @@ language-servers = ["vscode-html-language-server"]
 
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "typos-lsp", "lsp-ai"]
+language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "cspell-lsp", "lsp-ai"]
 
 [[language]]
 name = "tsx"
@@ -263,7 +257,7 @@ language-servers = [
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
-  "typos-lsp",
+  "cspell-lsp",
   "lsp-ai",
 ]
 
@@ -275,7 +269,7 @@ language-servers = [
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
-  "typos-lsp",
+  "cspell-lsp",
   "lsp-ai",
 ]
 
@@ -291,7 +285,7 @@ language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
-  "typos-lsp",
+  "cspell-lsp",
   "lsp-ai",
 ]
 
@@ -303,7 +297,6 @@ language-servers = [
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
-  "typos-lsp",
   "lsp-ai",
 ]
 
@@ -320,7 +313,7 @@ globalStoragePath = "/home/erasin/.config/php/"                      # os.homedi
 
 [[language]]
 name = "php"
-language-servers = ["intelephense", "typos-lsp", "lsp-ai"]
+language-servers = ["intelephense", "lsp-ai"]
 
 # ----------- python pyright --------------
 
@@ -376,7 +369,7 @@ file-types = [
 ]
 roots = ["pyproject.toml", "pyrightconfig.json"]
 # formatter = { command = "ruff", args = ["format"] }
-language-servers = ["pyright", "ruff-lsp", "hx-lsp", "typos-lsp", "lsp-ai"]
+language-servers = ["pyright", "ruff-lsp", "hx-lsp", "lsp-ai"]
 auto-format = true
 
 # ------------ lua --------------
@@ -389,6 +382,7 @@ language-servers = ["lua-language-server", "lsp-ai"]
 args = ["--locale", "zh-cn"]
 
 # 建议使用 .luarc.json 配置服务器
+# {"$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/refs/heads/master/setting/schema-zh-cn.json"}
 
 # https://luals.github.io/wiki/configuration/
 [language-server.lua-language-server.config.Lua.hint]
@@ -399,12 +393,14 @@ paramName = "All"
 paramType = true
 await = true
 
-[language-server.lua-language-server.config.Lua.workspace]
-library = [
-  "${3rd}/love2d/library",
-  "${3rd}/busted/library",
-  "${3rd}/Defold/library",
-]
+
+
+# [language-server.lua-language-server.config.Lua.workspace]
+# library = [
+#   "${3rd}/love2d/library",
+#   "${3rd}/busted/library",
+#   "${3rd}/Defold/library",
+# ]
 
 [language-server.lua-language-server.config.Lua.runtime]
 nonstandardSymbol = [
@@ -474,9 +470,7 @@ language-servers = [
   "marksman",
   "markdown-oxide",
   "hx-lsp",
-  "typos-lsp",
-  "cspell",
-  "lsp-ai",
+  "cspell-lsp",
 ]
 # 设定 zen-mode-like
 # text-width = 80
@@ -485,9 +479,7 @@ language-servers = [
 # ---- latex ----
 [[language]]
 name = "latex"
-language-servers = ["texlab"]
-text-width = 80
-soft-wrap = { enable = true, wrap-at-text-width = true }
+language-servers = [ "texlab", "hx-lsp" ]
 
 # # ---- typst ----
 # # https://myriad-dreamin.github.io/tinymist//frontend/helix.html
@@ -623,3 +615,7 @@ language-servers = [ { name = "hx-lsp", only-features = [ "document-colors" ] } 
 name = "toml"
 language-servers = [ "taplo", { name = "hx-lsp", only-features = [ "document-colors" ] } ]
 formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[[language]]
+name = "hurl"
+language-servers = [ "hx-lsp" ]
