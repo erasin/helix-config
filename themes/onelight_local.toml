@@ -1,23 +1,9 @@
 # 继承 onlight
 inherits = "onelight"
 
-tabstop = { modifiers = ["italic"], bg = "grey-300" }
-
-"ui.text.directory" = { fg = "blue", underline = { style = "line" } }
-
-# "ui.text.focus" = { fg = "red", bg = "grey-300", modifiers = ["bold"] }
-
 "attribute" = { fg = "pink" }
 "special" = { fg = "blue" }
-"property" = { fg = "purple" }
-"module" = { fg = "blue" }
-"markup.raw.block" = { fg = "brown" }
-"diff.delta.conflict" = {fg = "blue"}
 
 # 使用 term 默认的背景色，提供 opacity 透明功能
 # "ui.background" = { }
 "ui.background" = { bg = "white"}
-
-# "ui.popup.info" = { fg = "blue" }
-"ui.picker.header" = { fg = "purple"}
-"ui.picker.header.active" = { fg = "blue"}

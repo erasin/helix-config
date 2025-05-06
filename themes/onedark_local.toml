@@ -124,8 +124,9 @@ inherits = "onedark"
 "ui.window" = { fg = "gold" }
 "ui.help" = { fg = "white", bg = "gray" }
 
-"ui.picker.header" = { fg = "purple"}
-"ui.picker.header.active" = { fg = "blue"}
+"ui.picker.header" = { fg = "blue"}
+"ui.picker.header.column" = { fg = "blue"}
+"ui.picker.header.column.active" = { fg = "purple"}
 
 "ui.text" = { fg = "white" }
 "ui.text.focus" = { fg = "white", bg = "light-black", modifiers = ["bold"] }
@@ -143,7 +144,7 @@ inherits = "onedark"
 "ui.virtual.jump-label" = { fg = "white", bg = "gray", modifiers = ["bold" ] }
 
 "ui.menu" = { fg = "white", bg = "gray" }
-"ui.menu.selected" = { fg = "black", bg = "blue" }
+"ui.menu.selected" = { fg = "black", bg = "blue", modifiers = ["bold" ] }
 "ui.menu.scroll" = { fg = "light-blue", bg = "light-gray" }
 
 "ui.selection" = { bg = "faint-gray" }
@@ -166,7 +167,9 @@ inherits = "onedark"
 "error" = { fg="red", modifiers = ["bold"] }
 
 tabstop = { modifiers = ["italic"], bg = "grey-800" }
-"ui.text.directory" = { fg = "blue" }
+
+# path
+"ui.text.directory" = { fg = "green", underline = { style = "line" } }
 
 [palette]
 

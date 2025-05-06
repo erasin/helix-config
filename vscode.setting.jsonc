@@ -1,6 +1,6 @@
 {
   // vim
-  // 基础 Vim 配置
+  // 基础 Vim 配置 helix keymap
   "vim.leader": "<space>",
   "vim.hlsearch": true,
   "vim.incsearch": true,
@@ -39,7 +39,7 @@
     { "before": ["<space>", "/"], "commands": ["actions.find"] },
     
 
-      // ========== Navigation ==========
+    // ========== Navigation ==========
     // File navigation
     { "before": ["g", "g"], "commands": ["workbench.action.gotoLine"] }, // Go to line or start of file
     { "before": ["g", "e"], "after": ["G"] }, // Go to end of file
@@ -88,7 +88,7 @@
 
     // 向下添加多光标 (类似 Helix 的 C)
     { "before": ["C"], "commands": ["editor.action.insertCursorBelow"] },
-    { "before": ["<A-C>"], "commands": ["editor.action.insertCursorAbove"] },
+    { "before": ["<A-C>"], "commands": ["editor.action.insertCursorAbove"] }
   ],
   
   // 可视模式键位
@@ -107,7 +107,7 @@
     { "before": ["="], "commands": ["editor.action.formatSelection"] },
     { "before": ["<space>", "c"], "commands": ["editor.action.commentLine"] },
     { "before": ["<space>", "C"], "commands": ["editor.action.blockComment"] },
-    { "before": ["<space>", "r"], "commands": ["editor.action.rename"] },
-  ],
+    { "before": ["<space>", "r"], "commands": ["editor.action.rename"] }
+  ]
 
 }
