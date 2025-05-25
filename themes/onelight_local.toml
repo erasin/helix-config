@@ -7,3 +7,6 @@ inherits = "onelight"
 # 使用 term 默认的背景色，提供 opacity 透明功能
 # "ui.background" = { }
 "ui.background" = { bg = "white"}
+
+"markup.list.checked" = { fg = "green", modifiers = ["bold"]}
+"markup.list.unchecked" = { fg = "blue", modifiers = ["bold"]}

@@ -6,11 +6,6 @@
 (node
   (identifier) @variable)
 
-(node
-  (identifier) @function
-  (node_field) @has
-  (#one-line? @has))
-
 (node_children
   (node
     (identifier) @type.parameter))

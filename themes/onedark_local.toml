@@ -79,8 +79,8 @@ inherits = "onedark"
 "markup.list" = { fg = "red" }
 "markup.list.unnumbered" = { fg = "red" }
 "markup.list.numbered" = { fg = "red" }
-"markup.list.checked" = { fg = "green" }
-"markup.list.unchecked" = { fg = "blue" }
+"markup.list.checked" = { fg = "green", modifiers = ["bold"]}
+"markup.list.unchecked" = { fg = "blue", modifiers = ["bold"]}
 "markup.bold" = { fg = "gold", modifiers = ["bold"] }
 "markup.italic" = { fg = "purple", modifiers = ["italic"] }
 "markup.strikethrough" = { fg = "red", modifiers = ["crossed_out"] }
