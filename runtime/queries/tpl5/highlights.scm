@@ -1,17 +1,44 @@
-; 基本元素
 (line_comment) @comment.line
 (block_comment) @comment.block
-(string) @string
-(number) @number
 
-(control) @keyword.control.conditional
-(control_repeat) @keyword.control.repeat
+(number (float)) @constant.numeric.float
+(number (integer)) @constant.numeric.integer
+(boolean) @constant.builtin.boolean
+(string) @string
+
+ [
+  "if"
+  "range"
+  "in"
+  "notin"
+  "switch"
+  "case"
+  "defined"
+  "else"
+  "default"
+] @keyword.control.conditional
+
+[
+  "volist"
+  "foreach"
+  "for"
+] @keyword.control.repeat
+
+
 (attribute) @variable.other.member
 
 [
-  (block_keyword)
-  (compare_keyword)
-  (extend_keyword)
+  "neq"
+  "eq"
+  "egt"
+  "elt"
+  "lt"
+  "gt"
+  "notempty"
+  "empty"
+  "block"
+  "literal"
+  "extend"
 ] @keyword
 
 "include" @keyword.control.import
@@ -28,6 +55,9 @@
 [
   "|"
   "."
+  "AND"
+  "OR"
+  "=="
 ] @operator
 
 [

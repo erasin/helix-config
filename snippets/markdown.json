@@ -4,6 +4,11 @@
 		"body": ["$CLIPBOARD"],
 		"description": "clipboard"
 	},
+	"code": {
+		"prefix": "dui",
+		"body": "```${1}\n${2}\n```",
+		"description": "对号"
+	},
 	"dui": {
 		"prefix": "dui",
 		"body": "✓",

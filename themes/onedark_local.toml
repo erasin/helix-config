@@ -1,6 +1,42 @@
 # 继承 onedark
 inherits = "onedark"
 
+"ui.statusline.version-control" = { fg = "light-black", bg = "green"}
+"ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
+"ui.statusline.file-modification-indicator" = { fg = "red", bg = "light-black"}
+"ui.statusline.file-line-ending" = { fg = "light-black", bg = "blue", modifiers = ["bold"]}
+"ui.statusline.selections" = { fg = "light-black", bg = "purple"}
+"ui.statusline.primary-selection-length" = { fg = "light-black", bg = "cyan"}
+
+# "ui.statusline.spinner" = { fg = "", bg = ""}
+# "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
+# "ui.statusline.file-absolute-path" = { fg = "", bg = ""}
+# "ui.statusline.file-base-name" = { fg = "", bg = ""}
+# "ui.statusline.file-modification-indicator" = { fg = "red", bg = "light-black"}
+# "ui.statusline.file-encoding" = { fg = "", bg = ""}
+# "ui.statusline.file-line-ending" = { fg = "light-black", bg = "blue", modifiers = ["bold"]}
+# "ui.statusline.file-indent-style" = { fg = "", bg = ""}
+# "ui.statusline.read-only-indicator" = { fg = "", bg = ""}
+# "ui.statusline.total-line-numbers" = { fg = "", bg = ""}
+# "ui.statusline.file-type" = { fg = "", bg = ""}
+# "ui.statusline.diagnostics" = { fg = "", bg = ""}
+# "ui.statusline.workspace-diagnostics" = { fg = "", bg = ""}
+# "ui.statusline.selections" = { fg = "light-black", bg = "purple"}
+# "ui.statusline.primary-selection-length" = { fg = "light-black", bg = "cyan"}
+# "ui.statusline.position" = { fg = "", bg = ""}
+# "ui.statusline.position-percentage" = { fg = "", bg = ""}
+# "ui.statusline.separator" = { fg = "", bg = ""}
+# "ui.statusline.spacer" = { fg = "", bg = ""}
+# "ui.statusline.version-control" = { fg = "light-black", bg = "green"}
+# "ui.statusline.register" = { fg = "purple", bg = "light-black"}
+
+
+
+
+
+"ui.statusline.word-count" = { fg = "light-black", bg = "gold"}
+
+
 "attribute" = { fg = "pink" }
 "label" = { fg = "cyan" }
 "operator" = { fg = "red" }
@@ -129,7 +165,7 @@ inherits = "onedark"
 "ui.picker.header.column.active" = { fg = "purple"}
 
 "ui.text" = { fg = "white" }
-"ui.text.focus" = { fg = "white", bg = "light-black", modifiers = ["bold"] }
+"ui.text.focus" = { fg = "blue", bg = "light-black", modifiers = ["bold"] }
 "ui.text.inactive" = { fg = "grey-800" }
 "ui.text.info" = { fg = "white" }
 
@@ -142,6 +178,7 @@ inherits = "onedark"
 "ui.virtual.inlay-hint.parameter" = { fg = "light-gray", modifiers = ["italic"] }
 "ui.virtual.inlay-hint.type" = { fg = "light-gray" }
 "ui.virtual.jump-label" = { fg = "white", bg = "gray", modifiers = ["bold" ] }
+"ui.virtual.inline-blame" = { fg = "grey-700" }
 
 "ui.menu" = { fg = "white", bg = "gray" }
 "ui.menu.selected" = { fg = "black", bg = "blue", modifiers = ["bold" ] }

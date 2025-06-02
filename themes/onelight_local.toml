@@ -1,6 +1,8 @@
 # 继承 onlight
 inherits = "onelight"
 
+"ui.virtual.inline-blame" = { fg = "grey" }
+
 "attribute" = { fg = "pink" }
 "special" = { fg = "blue" }
 

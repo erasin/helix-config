@@ -1,7 +1,7 @@
 使用 HELIX EDITOR
 ===
 
-> 迁移路径 -> <https://github.com/erasin/dotfiles>
+> <h2>已经迁移到 <https://github.com/erasin/dotfiles></h2>
 
 > <https://erasin.wang/helix/>
 
@@ -17,17 +17,19 @@ cargo install --path helix-term
 ```
 - **local**
   - [#5768 tree_explorer](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
-    - 分支维护[tree_explore_local](https://gitee.com/erasin/helix/tree/tree_explore_local)
+    - 分支维护[tree_explore_local](https://github.com/erasin/helix/tree/tree_explore_local)
   - [my-tool](https://github.com/erasin/helix/tree/my-tool) 本地工具合并
     - [#6531 lang-config-open](https://github.com/erasin/helix/lang-config-open) lang-config-open
     - [#5199 tutor-zh ](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
-    - [#6468 zen mode like D](https://github.com/helix-editor/helix/discussions/6468)
+    - [#6468 zen mode like](https://github.com/erasin/helix/tree/zen-mode) [discussions](https://github.com/helix-editor/helix/discussions/6468)
     - [#11223 commandline ](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
-    - statusline-word-count
+    - [statusline-word-count](https://github.com/erasin/helix/tree/statusline-word-count)
+    - [#13666 Status elements Style support](https://github.com/helix-editor/helix/pull/13666)
   - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
 
 - **origin**
   - [#12369 icons v2](https://github.com/helix-editor/helix/pull/12369)
+  - [#13206 Word completion](https://github.com/helix-editor/helix/pull/13206)
   - [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
   - ~~[#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308)~~ lsp document color support
   - ~~[#12214 incomplete_completion ](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests~~
