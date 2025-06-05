@@ -1,6 +1,23 @@
 # 继承 onlight
 inherits = "onelight"
 
+"ui.statusline.version-control" = { fg = "white", bg = "green"}
+"ui.statusline.file-name" = { fg = "blue", bg = "grey-300"}
+"ui.statusline.file-modification-indicator" = { fg = "red", bg = "grey-300", modifiers = ["bold"]}
+
+"ui.statusline.register" = { fg = "white", bg = "pink"}
+"ui.statusline.selections" = { fg = "black", bg = "grey-300"}
+"ui.statusline.primary-selection-length" = { fg = "cyan", bg = "grey-300"}
+"ui.statusline.word-count" = { fg = "light-blue", bg = "grey-300"}
+
+"ui.statusline.file-encoding" = { fg = "white", bg = "cyan"}
+"ui.statusline.file-indent-style" = { fg = "white", bg = "light-blue"}
+"ui.statusline.file-line-ending" = { fg = "black", bg = "grey-300", modifiers = ["bold"]}
+
+"ui.statusline.position" = { fg = "green", bg = "grey-300"}
+"ui.statusline.position-percentage" = { fg = "white", bg = "light-blue"}
+# "ui.statusline.file-type" = { fg = "", bg = ""}
+
 "ui.virtual.inline-blame" = { fg = "grey" }
 
 "attribute" = { fg = "pink" }

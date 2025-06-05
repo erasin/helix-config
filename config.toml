@@ -1,21 +1,5 @@
-# 使用分支
-# https://github.com/erasin/helix/tree/local-dev
-# https://gitee.com/erasin/helix/tree/local-dev
-# use pr
-# #5768 tree_explore_local https://gitee.com/erasin/helix/tree/tree_explore_local 
-# #my-tool https://gitee.com/erasin/helix/tree/my-tool
-  # #6417 inline-diagnostics  https://github.com/helix-editor/helix/pull/6417 
-  # #9801 snippet_placeholder  https://github.com/helix-editor/helix/pull/9801
-  # #6531 lang-config-open  https://github.com/erasin/helix/lang-config-open
-  # #5199 tutor-zh  https://github.com/erasin/helix/tree/tutor-zh
-  # #6468 zen mode like https://github.com/helix-editor/helix/discussions/6468 
-  # statusline-word-count
-
-
-# helix
-# X #8675 plugin system use steel scheme https://github.com/helix-editor/helix/pull/8675
-# X #12369 icons v2 https://github.com/helix-editor/helix/pull/12369
-# X #13133 Inline Git Blame https://github.com/helix-editor/helix/pull/13133
+# 使用 自定义发布版本
+# https://github.com/erasin/helix
 
 theme = "onedark_local"
 
@@ -39,16 +23,15 @@ end-of-line-diagnostics = "hint" # 关联 editor.inline-diagnostics
 # rulers = [81, 121]   # 标尺
 # text-width = 80  # reflow 自动分割换行, 支持软换行
 # popup-border = "all"
-
 # bufferline = "multiple"  # always | multiple | nerver
+
+# [branch:commandline] commandline hide
+commandline = false
+
 # [editor.gutters]
 # layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 
-#[local-dev:commandline] hide commandline
-commandline = false
-editor-config = true
-
-#[#13133]
+# [Inline Git Blame #13133]
 [editor.inline-blame]
 show = "cursor-line"
 auto-fetch = true
@@ -66,13 +49,11 @@ normal = "block"
 select = "underline"
 
 [editor.lsp]
-# 服务器语言信息提示 
 display-messages = true
 display-progress-messages = true
-# 内联提示
 display-inlay-hints = true
 
-# [6417] inline diagnostic
+# [#6417] inline diagnostic
 [editor.inline-diagnostics]
 cursor-line = "hint"
 # DiagnosticFilter : disable, hint, info, waring, error
@@ -101,19 +82,20 @@ left = [
 center = ["diagnostics"]
 right = [
   "register",
-  "selections",
+  "position",
   "primary-selection-length",
-  'word-count', # local: statusline-word-count
+  "selections",
+  'word-count', # [branch:statusline-word-count]
   "file-encoding",
   "file-indent-style",
   "file-line-ending",
-  "position",
   "position-percentage",
   "file-type",
+  "spacer"
 ]
 separator = "│"
 
-mode.normal = "󰫻 "
+mode.normal = " "
 mode.insert = "󰫲 "
 mode.select = "󰬃 "
 
@@ -187,7 +169,7 @@ I = [
   "insert_at_line_start",
   ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
 ]
-# use `li` or remap `after insert`
+# a = "@li" or remap `after insert`
 a = [
   "move_char_right",
   "insert_mode",

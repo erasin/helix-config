@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# tmux
 # 参数：
 # -v : 竖直拆分 (可选)
 # -p : 项目路径 {project}

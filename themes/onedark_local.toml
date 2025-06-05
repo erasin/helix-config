@@ -1,12 +1,23 @@
 # 继承 onedark
 inherits = "onedark"
 
+
 "ui.statusline.version-control" = { fg = "light-black", bg = "green"}
 "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
-"ui.statusline.file-modification-indicator" = { fg = "red", bg = "light-black"}
-"ui.statusline.file-line-ending" = { fg = "light-black", bg = "blue", modifiers = ["bold"]}
-"ui.statusline.selections" = { fg = "light-black", bg = "purple"}
-"ui.statusline.primary-selection-length" = { fg = "light-black", bg = "cyan"}
+"ui.statusline.file-modification-indicator" = { fg = "red", bg = "light-black", modifiers = ["bold"]}
+
+"ui.statusline.register" = { fg = "light-black", bg = "pink"}
+"ui.statusline.selections" = { fg = "white", bg = "light-black"}
+"ui.statusline.primary-selection-length" = { fg = "cyan", bg = "light-black"}
+"ui.statusline.word-count" = { fg = "light-blue", bg = "light-black"}
+
+"ui.statusline.file-encoding" = { fg = "black", bg = "cyan"}
+"ui.statusline.file-indent-style" = { fg = "black", bg = "light-blue"}
+"ui.statusline.file-line-ending" = { fg = "white", bg = "light-black", modifiers = ["bold"]}
+
+"ui.statusline.position" = { fg = "green", bg = "light-black"}
+"ui.statusline.position-percentage" = { fg = "light-black", bg = "light-blue"}
+# "ui.statusline.file-type" = { fg = "", bg = ""}
 
 # "ui.statusline.spinner" = { fg = "", bg = ""}
 # "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
@@ -29,13 +40,6 @@ inherits = "onedark"
 # "ui.statusline.spacer" = { fg = "", bg = ""}
 # "ui.statusline.version-control" = { fg = "light-black", bg = "green"}
 # "ui.statusline.register" = { fg = "purple", bg = "light-black"}
-
-
-
-
-
-"ui.statusline.word-count" = { fg = "light-black", bg = "gold"}
-
 
 "attribute" = { fg = "pink" }
 "label" = { fg = "cyan" }

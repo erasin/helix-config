@@ -1,54 +1,118 @@
 使用 HELIX EDITOR
 ===
 
-> <p style="font-size:16px;"> 已经迁移到 https://github.com/erasin/dotfiles </p>
+> 已经迁移到 <https://github.com/erasin/dotfiles>
 
+## local-dev
 
-> <https://erasin.wang/helix/>
+<https://github.com/erasin/helix/releases> 自发布版本，不定期发布。
 
-使用自定义分支
+[github.com/erasin/helix](https://github.com//helix/) 默认分支为 `local-dev`, 该分支为自己发布的开发版本。
 
-- <https://github.com/erasin/helix/tree/local-dev>
-- <https://gitee.com/erasin/helix/tree/local-dev>
+基于官方 Master 分支，包含了一些没有合并的代码以及PR，在插件成熟之前，为了方便使用 helix ，自己定制 hx 使用。
+
+**主要功能**
+
+- 文件目录 tree_explorer
+- 图标功能 icons
+- 配置命令 lang-config-open, lang-config-open-workspace
+- 隐藏命令行
+- git blame
+- 文本单词补全
+- zen mode like
 
 ```sh
 git clone -b local-dev https://github.com/erasin/helix
 cd helix
 cargo install --path helix-term
 ```
-- **local**
-  - [#5768 tree_explorer](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
-    - 分支维护[tree_explore_local](https://github.com/erasin/helix/tree/tree_explore_local)
-  - [my-tool](https://github.com/erasin/helix/tree/my-tool) 本地工具合并
-    - [#6531 lang-config-open](https://github.com/erasin/helix/lang-config-open) lang-config-open
-    - [#5199 tutor-zh ](https://github.com/erasin/helix/tree/tutor-zh) tutor zh_cn 中文文档
-    - [#6468 zen mode like](https://github.com/erasin/helix/tree/zen-mode) [discussions](https://github.com/helix-editor/helix/discussions/6468)
-    - [#11223 commandline ](https://github.com/helix-editor/helix/pull/11223) 隐藏 commandline
-    - [statusline-word-count](https://github.com/erasin/helix/tree/statusline-word-count)
-    - [#13666 Status elements Style support](https://github.com/helix-editor/helix/pull/13666)
-  - 使用 hx-lsp <https://github.com/erasin/hx-lsp>
 
-- **origin**
-  - [#12369 icons v2](https://github.com/helix-editor/helix/pull/12369)
-  - [#13206 Word completion](https://github.com/helix-editor/helix/pull/13206)
-  - [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
-  - ~~[#12308 Color swatches](https://github.com/helix-editor/helix/pull/12308)~~ lsp document color support
-  - ~~[#12214 incomplete_completion ](https://github.com/helix-editor/helix/pull/12214)  implement incomplete completion requests~~
-  - ~~[#12036 fix: better display of prompts on long inputs](https://github.com/helix-editor/helix/pull/12036)~~
-  - ~~[inline-diagnostics #6417](https://github.com/helix-editor/helix/pull/6417) 内联 Diagnostics~~ Merged in 24.07  🎉
-  - ~~[snippet_placeholder #9801](https://github.com/helix-editor/helix/pull/9801) code snippet smart tab~~ Merged
+## PR 合并
 
-- **trash**
-  - [#2869](https://github.com/helix-editor/helix/pull/2869) --icons 支持--
+- [#12369 Icons v2](https://github.com/helix-editor/helix/pull/12369)
+- [#13133 Inline git blame](https://github.com/helix-editor/helix/pull/13133)
+- [#13206 Word completion](https://github.com/helix-editor/helix/pull/13206)
+- [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
+- [#5768  tree_explorer](https://github.com/helix-editor/helix/pull/5768) 文件目录支持
+  - 分支维护 [tree_explorer_local](https://github.com/erasin/helix/tree/tree_explorer_local)
 
-建议使用 kitty/Alacritty/wezterm + Tmux + Helix
+
+**观察中**
+  - [#6118 sticky context](https://github.com/helix-editor/helix/pull/6118)
+
+
+## 自定义功能
+
+- statusline-theme [#13666](https://github.com/helix-editor/helix/pull/13666)
+- commandline [#11223](https://github.com/helix-editor/helix/pull/11223)
+- lang-config-open [#6531](https://github.com/helix-editor/helix/pull/6531)
+- tutor-zh [#5199](https://github.com/helix-editor/helix/pull/5199)
+- statusline-word-count
+- zen-mode-like
+
+**TODO**:
+
+- [ ] i18n translate
+
+### commandline 隐藏
+
+```toml
+[editor]
+commandline = false
+```
+
+### lang-config-open
+
+提供命令
+
+- `:lang-config-open`
+- `:lang-config-open-workspace`
+
+### tutor-zh
+
+提供中文文档
+
+- `:tutor zh-cn`
+
+### statusline-word-count
+
+为 `statusline` 提供 `word-count` 文本字数统计元素。
+
+### zen-mode-like
+
+在使用 markdown 增加写入体验 
+
+`.helix/config.toml` 处理回车换行的时候保持垂直居中
+
+```toml
+[editor]
+zen-mode = true
+
+[keys.insert]
+# Return/Enter
+"ret" = ["insert_newline", 'align_view_center']
+```
+
+## hx-lsp 作为补充功能
+
+[hx-lsp](https://github.com/erasin/hx-lsp) 使用 LSP 协议，为编辑器提供了 snippets 和 action 功能，以及 markdown 部分功能。
+
+## 终端
+
+**Linux/MacOS** 建议使用 [kitty](https://github.com/kovidgoyal/kitty) / [Alacritty](https://github.com/alacritty/alacritty) .
+
+**Windows** 建议使用 [windows terminal](https://github.com/microsoft/terminal) .
+
 
 ## 文档
 
 - 官方文档 <https://docs.helix-editor.com/>
+- 第三方文档 <https://helix-editor.vercel.app/>
 - 配置文档中文 <https://zjp-cn.github.io/helix-book/title-page.html>
 
-## highlight
+## 文本高亮 highlight
+
+参考 [language.toml](https://github.com/helix-editor/helix/blob/master/languages.toml) 修改自己语言配置。
 
 配置 `languages.toml`
 
@@ -60,10 +124,9 @@ only = [
 ]
 ```
 
-> 注意有些语言有嵌入语法。
+> 注意有些语言有嵌入语法，如果没有加入配置，会导致部分内嵌语言失效。
 
 使用 `hx -g fetch && hx -g build` 更新 `runtime/grammars`。
-
 
 ## 配置
 
@@ -77,46 +140,49 @@ only = [
 
 配置路径加载顺序
 
-- ~/.config/helix/
-- PROJECT_PATH/.helix/
+- `~/.config/helix/`
+- `{PROJECT_PATH}/.helix/`
 
-因为我自己使用的自己编译的文件，需要设定置环境变量 `HELIX_RUNTIME` 为 helix 项目的 runtime 文件夹路径。
+> 如果使用自己编译文件，使用项目本身的 `runtime`，需要设定置环境变量 `HELIX_RUNTIME` 为 helix 项目的 runtime 文件夹路径。
 
 runtime 加载配置顺序为：
 
-- ~/.config/helix/runtime
-- HELIX_RUNTIME
+- `~/.config/helix/runtime`
+- `{HELIX_RUNTIME}`
 
+###  文件过滤器
 
-### ignore
+helix 支持文件过滤配置 `ignore`，主要用于内置文件搜索过滤，规则配置和 `.gitignore` 相同。
 
-文件过滤器
+一般配合 `.gitignore` 规则使用。
 
 - `~/.config/helix/ignore`
-- `PROJECT_PATH/.ignore`
-- `PROJECT_PATH/.helix/ignore`
+- `{PROJECT_PATH}/.ignore`
+- `{PROJECT_PATH}/.helix/ignore`
+
+> 比如 `.gitignore` 过滤文件 `config.toml`, 在 `.helix/ignore` 中添加 `!config.toml`, 则在文件搜索时可以获取该文件。
 
 
-### 背景透明
+## 背景透明
 
-可以自定义透明背景，创建自定义主题,比如 `onedark_local.toml`
+如果终端(比如 Alacritty)设定了窗口的透明，helix 需要修改主题适配处理。
+
+比如：创建自定义主题 `onedark_local.toml`
 
 ```toml
 # 继承
 inherits = "onedark"
 
 # 自定义
-
 # background 为空，使用 term 的背景，支持透明
 "ui.background" = {}
 ```
 
-## scripts
+## 脚本 scripts
 
+- ime-switch 为 Linux/MacOS 提供了切换输入法
 - hx-open 在 tmux 中打开调用
 - hx-sh 利用 tmux 执行命令
-- ime-switch 使用 gnome-shell dbus 切换输入法
-
 
 ## 输入法切换
 
@@ -139,19 +205,26 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 ```
 
-### mac 下
+**macos** 
 
 参看 [macism](https://github.com/laishulu/macism)
 
-### linux gnome 环境下 ibus 切换 
+**Linux ibus**
 
-配置 config.toml 设置 esc 执行 脚本 切换英文
-使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题
-在 gnome 下需要插件[gnome shell ibus switcher](https://github.com/kevinhwang91/gnome-shell-ibus-switcher)
+使用 `ibus engine xkb:us:eng` 在 wayland 下出现不一致问题.
+
+在gnome下需要插件[gnome shell ibus switcher](https://github.com/kevinhwang91/gnome-shell-ibus-switcher)
+
+> 如果路径不是 "/org/gnome/Shell/Extensions/IbusSwitcher" , 需要自己修改路径。
+
+**Linux fcitx5**
+
+使用 `fcitx5-remote -s $ime_method` 命令切换输入法 
+
 
 ## AI 
 
-在 Steel 插件未落地之前使用 lsp 作为AI补充
+在 Steel 插件未落地之前使用 lsp 作为AI补充, 不过体验都不太好
 
 - <https://github.com/SilasMarvin/lsp-ai> 支持本地模型等等
 - <https://github.com/rosarp/llm-lsp/> 支持 Codeium.ai
@@ -177,31 +250,3 @@ set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
 set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
 ```
 
-## Language
-
-### markdown 输入
-
-为项目创建 `.helix/config.toml` 和 `.helix/languages.toml`
-
-`.helix/config.toml` 处理回车换行的时候保持垂直居中
-
-```toml
-[keys.insert]
-# Return/Enter
-"ret" = ["insert_newline", 'align_view_center']
-```
-
-`.helix/languages.toml` 使用 markdown 保持宽度并水平居中
-
-```toml
-
-[[language]]
-name = "markdown"
-text-width = 80
-soft-wrap = { enable = true, wrap-at-text-width = true }
-
-```
-
-## leptos view
-
-使用 `rstml`
