@@ -1,7 +1,7 @@
 使用 HELIX EDITOR
 ===
 
-> 已经迁移到 <https://github.com/erasin/dotfiles>
+> 同步更新到 <https://github.com/erasin/dotfiles>
 
 ## local-dev
 
