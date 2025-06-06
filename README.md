@@ -7,7 +7,7 @@
 
 <https://github.com/erasin/helix/releases> 自发布版本，不定期发布。
 
-[github.com/erasin/helix](https://github.com//helix/) 默认分支为 `local-dev`, 该分支为自己发布的开发版本。
+[github.com/erasin/helix](https://github.com/erasin/helix/) 默认分支为 `local-dev`, 该分支为自己发布的开发版本。
 
 基于官方 Master 分支，包含了一些没有合并的代码以及PR，在插件成熟之前，为了方便使用 helix ，自己定制 hx 使用。
 
