@@ -1,7 +1,7 @@
 使用 HELIX EDITOR
 ===
 
-> 同步更新到 <https://github.com/erasin/dotfiles>
+> 已经迁移到 <https://github.com/erasin/dotfiles>
 
 ## local-dev
 
@@ -26,6 +26,7 @@ git clone -b local-dev https://github.com/erasin/helix
 cd helix
 cargo install --path helix-term
 ```
+
 ![Screenshot from 2025-06-05 21-44-47](https://github.com/user-attachments/assets/d051752c-a243-4490-b934-19d65b009caa)
 
 ## PR 合并
@@ -103,6 +104,45 @@ zen-mode = true
 **Linux/MacOS** 建议使用 [kitty](https://github.com/kovidgoyal/kitty) / [Alacritty](https://github.com/alacritty/alacritty) .
 
 **Windows** 建议使用 [windows terminal](https://github.com/microsoft/terminal) .
+
+### window terminal
+
+下面是 windows terminal 配置，需要注意的地方有
+
+- font.face 字体需要支持 nerd font
+- intenseTextStyle 设置高亮加粗，否则 helix 的一些加粗无法正确渲染
+- rendering.graphicsAPI 选择 direct2d , 渲染 icon 宽字符使用
+
+```json
+
+{
+  "profiles": {
+    "defaults": {
+      "adjustIndistinguishableColors": "never",
+      "antialiasingMode": "cleartype",
+      "colorScheme": "One Half Light",
+      "font": {
+        "axes": {},
+        "builtinGlyphs": true,
+        "face": " Cascadia Mono, Symbols Nerd Font Mono",
+        "features": {}
+      },
+      "intenseTextStyle": "all", 
+      "opacity": 100,
+      "padding": "0",
+      "startingDirectory": "E:\\",
+      "suppressApplicationTitle": false,
+      "useAcrylic": false
+    },
+    "rendering.graphicsAPI": "direct2d",
+    "schemes": [],
+    "snapToGridOnResize": true,
+    "theme": "light",
+    "themes": []
+  }
+}
+```
+
 
 
 ## 文档
