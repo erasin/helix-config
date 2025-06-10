@@ -9,6 +9,7 @@
 #     open-floating true
 # }
 # 
+# "o" = ":open %sh{ ~/.config/helix/scripts/file-picker }"
 # 
 tmp="$(mktemp -t yazi-picker.XXXXXX)"
 alacritty -T "file-picker" --working-directory $(pwd) -e yazi --chooser-file "$tmp"

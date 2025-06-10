@@ -1,0 +1,19 @@
+# 打开文件和替换
+[keys.normal.space.o]
+# windows 需要 E: 写入权限
+# https://github.com/sxyazi/yazi/pull/2461
+o = [
+  ':insert-output yazi %{buffer_name} --chooser-file=E:\tmp-yazi-file',
+  ':open %sh{type E:\tmp-yazi-file}',
+  ':redraw',
+  ':sh del E:\tmp-yazi-file',
+]
+
+# https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
+# error https://github.com/thomasschafer/scooter/issues/155
+# r = [
+#   ":write-all",
+#   ":insert-output scooter | Out-Host ",
+#   ":redraw",
+#   ":reload-all"
+# ]

@@ -1,0 +1,240 @@
+{
+    "PHP Opening Tag": {
+        "prefix": "php",
+        "body": [
+            "<?php",
+            "",
+            "$0"
+        ],
+        "description": "Insert PHP opening tag"
+    },
+    "PHP Echo Short Tag": {
+        "prefix": "phpe",
+        "body": [
+            "<?= $1 ?>"
+        ],
+        "description": "Insert PHP echo short tag"
+    },
+    "PHP Class": {
+        "prefix": "class",
+        "body": [
+            "namespace ${0:$TM_FILEPATH};",
+            "",
+            "class ${1:$TM_FILENAME_BASE}",
+            "{",
+            "\t$2",
+            "}"
+        ],
+        "description": "Create a new PHP class"
+    },
+    "PHP Method": {
+        "prefix": "method",
+        "body": [
+            "${1:public} function ${2:methodName}(${3:parameters})",
+            "{",
+            "\t$4",
+            "}"
+        ],
+        "description": "Create a new PHP method"
+    },
+    "PHP Constructor": {
+        "prefix": "construct",
+        "body": [
+            "public function __construct(${1:parameters})",
+            "{",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a PHP constructor"
+    },
+    "PHP If Statement": {
+        "prefix": "if",
+        "body": [
+            "if (${1:condition}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create an if statement"
+    },
+    "PHP If-Else Statement": {
+        "prefix": "ife",
+        "body": [
+            "if (${1:condition}) {",
+            "\t$2",
+            "} else {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create an if-else statement"
+    },
+    "PHP Foreach Loop": {
+        "prefix": "foreach",
+        "body": [
+            "foreach ($${1:array} as $${2:key} => $${3:value}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a foreach loop"
+    },
+    "PHP For Loop": {
+        "prefix": "for",
+        "body": [
+            "for ($${1:i} = ${2:0}; $${1:i} < ${3:count}; $${1:i}++) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a for loop"
+    },
+    "PHP While Loop": {
+        "prefix": "while",
+        "body": [
+            "while (${1:condition}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a while loop"
+    },
+    "PHP Switch Statement": {
+        "prefix": "switch",
+        "body": [
+            "switch (${1:variable}) {",
+            "\tcase '${2:value}':",
+            "\t\t$3",
+            "\t\tbreak;",
+            "\t",
+            "\tdefault:",
+            "\t\t$0",
+            "\t\tbreak;",
+            "}"
+        ],
+        "description": "Create a switch statement"
+    },
+    "PHP Try catch": {
+        "prefix": "trycatch",
+        "body": [
+            "try {",
+            "\t${1}",
+            "} catch(\\Exception $${2:e}) {",
+            "\techo 'Error: ' . $${2:e}->getMessage();",
+            "}"
+        ],
+        "description": "Create a try-catch"
+    },
+    "PHP Throw Exception": {
+        "prefix": "throw",
+        "body": [
+            "throw new \\Exception($1);"
+        ],
+        "description": "Create a Throw Error"
+    },
+    "PHP Function": {
+        "prefix": "function",
+        "body": [
+            "function ${1:functionName}(${2:parameters})",
+            "{",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create a new PHP function"
+    },
+    "PHP Variable": {
+        "prefix": "var",
+        "body": [
+            "$${1:variable} = ${2:value};"
+        ],
+        "description": "Create a PHP variable"
+    },
+    "PHP Constant": {
+        "prefix": "const",
+        "body": [
+            "const ${1:CONSTANT_NAME} = ${2:value};"
+        ],
+        "description": "Create a PHP constant"
+    },
+    "PHP PDO Connection": {
+        "prefix": "pdo",
+        "body": [
+            "try {",
+            "\t$${1:dbh} = new PDO('${2:mysql}:host=${3:localhost};dbname=${4:test}', $${5:username}, $${6:password});",
+            "\t$${1:dbh}->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);",
+            "} catch(\\PDOException $${7:e}) {",
+            "\techo 'Error: ' . $${7:e}->getMessage();",
+            "}"
+        ],
+        "description": "Create a PDO database connection"
+    },
+    "PHP PDO Prepare": {
+        "prefix": "pdoprepare",
+        "body": [
+            "$${1:stmt} = $${2:dbh}->prepare('${3:SQL_QUERY}');",
+            "$${1:stmt}->execute(${4:params});",
+            "$${5:result} = $${1:stmt}->fetchAll(PDO::FETCH_ASSOC);"
+        ],
+        "description": "Create a PDO prepared statement"
+    },
+    "PHP var_dump": {
+        "prefix": "vd",
+        "body": [
+            "var_dump(${1:variable});"
+        ],
+        "description": "Dump variable information"
+    },
+    "PHP print_r": {
+        "prefix": "pr",
+        "body": [
+            "echo '<pre>';",
+            "print_r(${1:variable});",
+            "echo '</pre>';"
+        ],
+        "description": "Print human-readable variable information"
+    },
+    "PHP die with var_dump": {
+        "prefix": "dd",
+        "body": [
+            "var_dump(${1:variable});",
+            "die();"
+        ],
+        "description": "Dump variable and die"
+    },
+    "ThinkPHP5 Db Trans": {
+        "prefix": "tpdbtrans",
+        "body": [
+            "// 启动事务",
+            "Db::startTrans();",
+            "try {",
+            "\t$1",
+            "\t// 提交事务",
+            "\tDb::commit();",
+            "} catch (\\Exception $${2:e}) {",
+            "\t// 回滚事务",
+            "\tDb::rollback();",
+            "\t${0}",
+            "}"
+        ],
+        "description": "Create ThinkPHP Db Transaction"
+    },
+    "ThinkPHP5 Controler Create": {
+        "prefix": "tpController",
+        "body": [
+            "namespace $1;\n",
+            "use think\\Controller;\n",
+            "class ${TM_FILENAME_BASE} extends Controller",
+            "{",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create ThinkPHP Controller"
+    },
+    "ThinkPHP5 Model Create": {
+        "prefix": "tpModel",
+        "body": [
+            "namespace $1;\n",
+            "use think\\Model;\n",
+            "class ${TM_FILENAME_BASE} extends Model",
+            "{",
+            "\t$0",
+            "}"
+        ],
+        "description": "Create ThinkPHP Model"
+    }
+}

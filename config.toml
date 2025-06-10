@@ -96,8 +96,8 @@ right = [
 separator = "│"
 
 mode.normal = " "
-mode.insert = "󰫲 "
-mode.select = "󰬃 "
+mode.insert = " "
+mode.select = " "
 
 diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
@@ -122,7 +122,7 @@ enabled = true
 [icons.kind]
 enabled = true
 number = ""
-string = "󰅳"
+string = ""
 function = "󰊕"
 color = "󰌁"
 
@@ -132,32 +132,40 @@ php = { glyph = "", color = "#1976D2" }
 godot = { glyph = "", color = "#2196F3" }
 gd = { glyph = "", color = "#2196F3" }
 gdshader = { glyph = "󰘷", color = "#9C27B0" }
-wgsl = { glyph = "󰘷", color = "#9C27B0" }
+wgsl = { glyph = "", color = "#9C27B0" }
+cj = ""
 yml = ""
 yaml = ""
 conf= ""
-kdl= ""
+kdl= ""
 Makefile = ""
-ron = ""
+ron = "󰔘"
+db = ""
+sql = "󰆼"
+jsonc = ""
+json5 = ""
+"ignore" = "󰈉"
+".ignore" = "󰈉"
 
-[icons.diagnostic]
-error = ""
-warning = ""
-info = ""
-hint = ""
+# [icons.diagnostic]
+# error = "" 
+# warning = ""
+# info = ""
+# hint = ""
 
 [keys.normal]
 # W = "@miw"
 # smart tab
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
-"C-r" = { s = ":write", r = ":reload", c = ":config-reload" }
+
+"\\" = ":reflow" # |
+"X" = "extend_line_above"
+
 "C-s" = ":write"
 "C-j" = "save_selection"
-# "C-z" = "normal_mode"                  # replace suspend
 "A-/" = "toggle_comments"
-"\\" = ":reflow"                                         # |
-"X" = "extend_line_above"
+
 "Z" = { "Z" = [":quit"] }
 "z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
 
@@ -165,16 +173,9 @@ S-tab = "move_parent_node_start"
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 # 插入模式，恢复输入法
 i = ["insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
-I = [
-  "insert_at_line_start",
-  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
-]
+I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1" ]
 # a = "@li" or remap `after insert`
-a = [
-  "move_char_right",
-  "insert_mode",
-  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
-]
+a = ["move_char_right", "insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1" ]
 A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 o = ["open_below", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
@@ -186,12 +187,27 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "." = "file_picker_in_current_buffer_directory"
 "n" = "signature_help"
 
-# 打开文件和替换
+# 打开 yazi 文件浏览器
 [keys.normal.space.o]
-"o" = ":open %sh{ ~/.config/helix/scripts/file-picker }" # dotfile/scripts/file-picker.sh 需要yazi
-# "r" = ":sh tmux popup -xC -yC -w90%% -h90%% -E scooter"
+# "o" = ":open %sh{ ~/.config/helix/scripts/file-picker }"
+# https://github.com/sxyazi/yazi/pull/2461
+o = [
+  ':sh rm -f /tmp/yazi-file',
+  ':insert-output yazi %{buffer_name} --chooser-file=/tmp/yazi-file',
+  ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/yazi-file}',
+  ':redraw',
+]
+
+# 全局搜索
 # https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
-"r" = [":sh alacritty -T \"find-replace\" --working-directory $(pwd) -e scooter", ":reload"]
+# "r" = [":sh alacritty -T \"find-replace\" --working-directory $(pwd) -e scooter", ":reload"]
+r = [
+    # ":write-all",
+    ":insert-output scooter >/dev/tty",
+    ":redraw",
+    ":reload-all"
+]
 
 [keys.insert]
 # smart tab
