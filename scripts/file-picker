@@ -14,3 +14,12 @@ tmp="$(mktemp -t yazi-picker.XXXXXX)"
 alacritty -T "file-picker" --working-directory $(pwd) -e yazi --chooser-file "$tmp"
 cat -- "$tmp"
 rm -f -- "$tmp"
+
+# https://github.com/helix-editor/helix/discussions/12934
+# C-y = [
+#   ':sh rm -f /tmp/unique-file',
+#   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file',
+#   ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+#   ':open %sh{cat /tmp/unique-file}',
+#   ':redraw',
+# ]
