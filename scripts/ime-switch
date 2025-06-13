@@ -9,7 +9,7 @@
 # 1 返回记录的输入法
 # 2 自动切换记录的输入法和英文输入
 
-# window 可以参考 neuims
+# window 可以使用 <https://github.com/erasin/win-ime-switch>
 # macos 使用 macism 切换
 # linux 
 #     ibus 使用 dbus
