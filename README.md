@@ -1,8 +1,6 @@
 使用 HELIX EDITOR
 ===
 
-> 已经迁移到 <https://github.com/erasin/dotfiles>
-
 ## local-dev
 
 <https://github.com/erasin/helix/releases> 自发布版本，不定期发布。
@@ -225,6 +223,19 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 
 使用 `fcitx5-remote -s $ime_method` 命令切换输入法 
 
+
+**Windows**
+
+- <https://github.com/erasin/win-ime-switch> windows 在命令行下切换输入法
+
+```toml
+"esc" = ["normal_mode", ":pipe-to win-ime-switch en"]
+i = ["insert_mode", ":pipe-to win-ime-switch --toggle"]
+# ....
+  
+[keys.insert]
+"esc" = ["normal_mode", ":pipe-to win-ime-switch en"]
+```
 
 ## AI 
 
