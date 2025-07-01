@@ -1,8 +1,10 @@
 # 继承 onedark
 inherits = "onedark"
 
+"ui.statusline.explorer" = { fg = "blue", bg = "light-black", modifiers = ["bold"]}
+# "ui.statusline.inactive" = { fg = "light-gray", bg = "light-black" }
 
-"ui.statusline.version-control" = { fg = "light-black", bg = "green"}
+"ui.statusline.version-control" = { fg = "light-black", bg = "green", modifiers = ["bold"]}
 "ui.statusline.file-name" = { fg = "blue", bg = "light-black"}
 "ui.statusline.file-modification-indicator" = { fg = "red", bg = "light-black", modifiers = ["bold"]}
 
@@ -139,8 +141,8 @@ inherits = "onedark"
 "diff.delta.moved" = { fg = "gold" }
 "diff.delta.conflict" = {fg = "blue"}
 
-"ui.background" = { bg = "black" }
-# "ui.background" = { } # 使用终端色彩，支持透明
+# "ui.background" = { bg = "black" }
+"ui.background" = { } # 使用终端色彩，支持透明
 "ui.background.separator" = { bg = "black" }
 
 "ui.cursor" = { fg = "black", bg = "grey-600" }

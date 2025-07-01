@@ -291,7 +291,7 @@ auto-format = true
 language-servers = [
   # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
-  "biome",
+  # "biome",
   "hx-lsp",
   "cspell-lsp",
   "lsp-ai",
@@ -637,19 +637,14 @@ name = "rstml"
 source = { git = "https://github.com/rayliwell/tree-sitter-rstml", subpath = "rstml", rev = "07a8e3b9bda09b648a6ccaca09e15dea3adf956f" }
 
 # --- steel -----
-[language-server.steel-language-server]
+[language-server.steel]
 command = "steel-language-server"
-args = []
 
-# [[language]]
-# name = "scheme"
-# language-servers = [ "steel-language-server" ]
+[[language]]
+name = "scheme"
+shebangs = ["scheme", "guile", "chicken", "steel"]
+language-servers = [ "steel", "hx-lsp" ]
 
-
-# # project/.helix/languages.toml
-# [[language]]
-# name = "scheme"
-# language-servers = ["steel"]
 # --- dart ---
 [language-server.dart.config]
 closingLabels = true
@@ -697,4 +692,7 @@ indent = { tab-width = 4, unit = "    " }
 name = "cangjie"
 source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8b2e5adfc6fa5c6c36998d1" }
 # source = { git = "https://gitcode.com/OpenCangjieCommunity/tree-sitter-cangjie", rev = "8640e9a0d55b52b1b8bcd0b7ce9632a40f188905" }
-# 
+
+[[language]]
+name = "env"
+file-types = ["env", { glob = ".env" }, { glob = ".env.*" }, { glob = ".envrc" }, { glob = ".envrc.*" }]

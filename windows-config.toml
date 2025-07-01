@@ -1,19 +1,25 @@
-# 打开文件和替换
-[keys.normal.space.o]
-# windows 需要 E: 写入权限
-# https://github.com/sxyazi/yazi/pull/2461
-o = [
-  ':insert-output yazi %{buffer_name} --chooser-file=E:\tmp-yazi-file',
-  ':open %sh{type E:\tmp-yazi-file}',
-  ':redraw',
-  ':sh del E:\tmp-yazi-file',
-]
+# windows 下修改配置
 
-# https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
-# error https://github.com/thomasschafer/scooter/issues/155
-# r = [
-#   ":write-all",
-#   ":insert-output scooter | Out-Host ",
-#   ":redraw",
-#   ":reload-all"
-# ]
+[editor]
+default-line-ending = 'crlf'
+
+# 输入法切换
+# https://github.dev/erasin/win-ime-switch
+[keys.normal]
+"esc" = ["normal_mode", ":pipe-to win-ime-switch en"]
+i = ["insert_mode", ":pipe-to win-ime-switch --toggle"]
+I = ["insert_at_line_start", ":pipe-to win-ime-switch --toggle"]
+a = ["move_char_right", "insert_mode", ":pipe-to win-ime-switch --toggle"]
+A = ["insert_at_line_end", ":pipe-to win-ime-switch --toggle"]
+o = ["open_below", ":pipe-to win-ime-switch --toggle"]
+O = ["open_above", ":pipe-to win-ime-switch --toggle"]
+
+[keys.normal.space.o]
+# 打开 yazi
+"e" = [":open %sh{ powershell -File C:/Users/Administrator/AppData/Roaming/helix/scripts/yazi-picker.ps1 }"]
+# 搜索替换
+"s" = [":sh powershell -File C:/Users/Administrator/AppData/Roaming/helix/scripts/scooter-picker.ps1"]
+
+# 输入法切换
+[keys.insert]
+"esc" = ["normal_mode", ":pipe-to win-ime-switch en"]

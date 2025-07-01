@@ -40,7 +40,6 @@ cargo install --path helix-term
 **观察中**
   - [#6118 sticky context](https://github.com/helix-editor/helix/pull/6118)
 
-
 ## 自定义功能
 
 - statusline-theme [#13666](https://github.com/helix-editor/helix/pull/13666)
@@ -53,6 +52,37 @@ cargo install --path helix-term
 **TODO**:
 
 - [ ] i18n translate
+
+### explorer
+
+分支维护 [tree_explorer_local](https://github.com/erasin/helix/tree/tree_explorer_local)
+
+基于 <helix-editor/helix#5768> 修改
+
+- tree 渲染
+- 鼠标支持
+  - 点击
+  - 滚动
+- ICON V2 (local-dev 支持)
+- 状态栏样式支持 [#13666](https://github.com/helix-editor/helix/pull/13666) 
+  - `ui.statusline.explorer`
+  - `ui.statusline.inactive.explorer`
+
+```toml
+
+# [#5768]
+# space e 显示
+[editor.explorer]
+position = "left"
+column-width = 22
+```
+theme 
+
+```toml
+inherits = "onedark"
+"ui.statusline.explorer" = { fg = "blue", bg = "light-black", modifiers = ["bold"]}
+```
+> 其他样式包括 `ui.menu.selected`, `ui.text`, `ui.text.directory`
 
 ### commandline 隐藏
 

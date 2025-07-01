@@ -1,0 +1,160 @@
+{
+    "Hurl Block": {
+        "prefix": "hurl",
+        "body": [
+            "POST {{base_url}}$1",
+            "Token: {{token}}",
+            "Content-Type: application/json",
+            "[Options]",
+            "",
+            "[Query]",
+            "",
+            "[Form]",
+            "",
+            "[BasicAuth]",
+            "",
+            "[Cookies]",
+            "",
+            "$0",
+            "",
+            "HTTP *",
+            "",
+            "[Captures]",
+            "",
+            "[Asserts]",
+            ""
+        ],
+        "description": "Request with common headers"
+    },
+    "Basic option": {
+        "prefix": "option basic",
+        "body": [
+            "OPTIONS {{base_url}}",
+            "[Options]",
+            "very-verbose: true",
+            "variable: base_url=\"http://${1}/\"",
+            "variable: username=\"$2\"",
+            "variable: password=\"$3\""
+        ],
+        "description": "Basic GET request ith validation"
+    },
+    "GET Request": {
+        "prefix": "get",
+        "body": "GET {{base_url}}$1",
+        "description": "基础 GET 请求行"
+    },
+    "POST Request": {
+        "prefix": "post",
+        "body": "POST {{base_url}}$1",
+        "description": "基础 POST 请求行"
+    },
+    "Content-Type JSON": {
+        "prefix": "header ContentType",
+        "body": "Content-Type: application/json",
+        "description": "JSON 内容类型头"
+    },
+    "Basic Auth": {
+        "prefix": "header Auth",
+        "body": "Authorization: Basic ${1:base64String}",
+        "description": "基础认证头"
+    },
+    "Bearer Token": {
+        "prefix": "header token bearer",
+        "body": "Authorization: Bearer ${1:token}",
+        "description": "Bearer 认证头"
+    },
+    "Options Block": {
+        "prefix": "option",
+        "body": [
+            "[Options]",
+            "very-verbose: true",
+            "$0"
+        ],
+        "description": "配置选项块"
+    },
+    "Variable Option": {
+        "prefix": "option variable",
+        "body": "variable: ${1:var}=${2:value}",
+        "description": "设置重试次数"
+    },
+    "Verbose Option": {
+        "prefix": "option verbose",
+        "body": "very-verbose: true",
+        "description": "设置重试次数"
+    },
+    "Retry Option": {
+        "prefix": "option retry",
+        "body": "retry: ${1:3}",
+        "description": "设置重试次数"
+    },
+    "Form Block": {
+        "prefix": "from block",
+        "body": [
+            "[Form]",
+            "${1:key}:${2:value}"
+        ],
+        "description": "表单格式请求体"
+    },
+    "Captures Block": {
+        "prefix": "captures",
+        "body": [
+            "[Captures]",
+            "${1:var}: ${2:query}"
+        ],
+        "description": "变量捕获代码块"
+    },
+    "Asserts Block": {
+        "prefix": "asserts ",
+        "body": [
+            "[Asserts]",
+            "${1:expression}"
+        ],
+        "description": "断言代码块"
+    },
+    "Query": {
+        "prefix": "query",
+        "body": [
+            "xpath,jsonpath,cookie,header,variable "
+        ],
+        "description": "Query"
+    },
+    "Query JSONPath": {
+        "prefix": "query jsonpath",
+        "body": "jsonpath \"${1:$.path}\"",
+        "description": "JSON 路径捕获"
+    },
+    "File Body": {
+        "prefix": "filebody",
+        "body": "file,${1:./path/to/file}",
+        "description": "文件内容作为请求体"
+    },
+    "File Upload": {
+        "prefix": "hupload",
+        "body": [
+            "POST ${1:https://example.com/upload}",
+            "Content-Type: multipart/form-data; boundary=boundary",
+            "",
+            "--boundary",
+            "Content-Disposition: form-data; name=\"file\"; filename=\"${2:image.jpg}\"",
+            "Content-Type: ${3|image/jpeg,application/pdf,text/plain|}",
+            "",
+            "file,${4:./path/to/file}",
+            "--boundary--"
+        ],
+        "description": "Multipart file upload"
+    },
+    "MY API": {
+        "prefix": "apiblock",
+        "body": [
+            "# ",
+            "#------------------",
+            "POST {{base_url}}$1",
+            "Token: {{token}}",
+            "Content-Type: application/json",
+            "",
+            "HTTP *",
+            ""
+        ],
+        "description": "Request with common headers"
+    }
+}
