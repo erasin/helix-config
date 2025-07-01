@@ -25,7 +25,8 @@ cd helix
 cargo install --path helix-term
 ```
 
-![Screenshot from 2025-06-05 21-44-47](https://github.com/user-attachments/assets/d051752c-a243-4490-b934-19d65b009caa)
+![helix dev 25 07 01](https://github.com/user-attachments/assets/e36abb31-bbc0-42ff-bcb9-d999b93ef493)
+
 
 ## PR 合并
 
