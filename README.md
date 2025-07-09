@@ -5,7 +5,7 @@
 
 <https://github.com/erasin/helix/releases> 自发布版本，不定期发布。
 
-[github.com/erasin/helix](https://github.com/erasin/helix/) 默认分支为 `local-dev`, 该分支为自己发布的开发版本。
+[github.com/erasin/helix](https://github.com/erasin/helix/) 默认分支为 `local-dev`, 该分支为自己发布的开发版本。配置可以参看 [github.com/erasin/helix-config](https://github.com/erasin/helix-config/).
 
 基于官方 Master 分支，包含了一些没有合并的代码以及PR，在插件成熟之前，为了方便使用 helix ，自己定制 hx 使用。
 
@@ -25,11 +25,12 @@ cd helix
 cargo install --path helix-term
 ```
 
-![Screenshot from 2025-06-05 21-44-47](https://github.com/user-attachments/assets/d051752c-a243-4490-b934-19d65b009caa)
+![helix dev 25 07 01](https://github.com/user-attachments/assets/e36abb31-bbc0-42ff-bcb9-d999b93ef493)
 
 ## PR 合并
 
 - [#12369 Icons v2](https://github.com/helix-editor/helix/pull/12369)
+  - 需要 [Nerd Fonts](https://www.nerdfonts.com/) 字体支持，linux用户可以参考 [erasin/dotfiles/fontconfig](https://github.com/erasin/dotfiles/tree/main/fontconfig)
 - [#13133 Inline git blame](https://github.com/helix-editor/helix/pull/13133)
 - [#13206 Word completion](https://github.com/helix-editor/helix/pull/13206)
 - [#12275 Syntax symbol pickers](https://github.com/helix-editor/helix/pull/12275)
@@ -110,9 +111,18 @@ commandline = false
 
 ### zen-mode-like
 
-在使用 markdown 增加写入体验 
+在使用 markdown 增加写入体验
 
-`.helix/config.toml` 处理回车换行的时候保持垂直居中
+仅仅 markdown 使用 zen-mode 可以配置 `.helix/languages.toml`
+
+```toml
+[[language]]
+name = "markdown"
+text-width = 80
+zen-mode = true
+```
+
+或者全部 zen-mode `.helix/config.toml` 处理回车换行的时候保持垂直居中
 
 ```toml
 [editor]
@@ -213,6 +223,8 @@ inherits = "onedark"
 ## 脚本 scripts
 
 - ime-switch 为 Linux/MacOS 提供了切换输入法
+- scooter-picker.sh/ps1 全局替换工具，需要 [scooter](https://github.com/thomasschafer/scooter)
+- yazi-picker.sh/ps1 文件浏览器 需要 [yazi](https://github.com/sxyazi/yazi)
 - hx-open 在 tmux 中打开调用
 - hx-sh 利用 tmux 执行命令
 
@@ -271,6 +283,7 @@ i = ["insert_mode", ":pipe-to win-ime-switch --toggle"]
 
 在 Steel 插件未落地之前使用 lsp 作为AI补充, 不过体验都不太好
 
+- <https://github.com/sigoden/aichat> terminal ai chat
 - <https://github.com/SilasMarvin/lsp-ai> 支持本地模型等等
 - <https://github.com/rosarp/llm-lsp/> 支持 Codeium.ai
 - <https://github.com/leona/helix-gpt> 支持 gpt
