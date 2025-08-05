@@ -28,6 +28,8 @@ end-of-line-diagnostics = "hint" # 关联 editor.inline-diagnostics
 # [branch:commandline] commandline hide
 commandline = false
 
+rainbow-brackets = true #[#13530] 彩色括号
+
 # [editor.gutters]
 # layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 
