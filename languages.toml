@@ -51,6 +51,7 @@ inlayHints.discriminantHints.enable = "fieldless"
 inlayHints.lifetimeElisionHints.enable = "skip_trivial"
 inlayHints.typeHints.hideClosureInitialization = false
 cargo.features = "all"
+check.command = "clippy"
 
 [[language]]
 name = "rust"
@@ -172,6 +173,7 @@ args = ["--stdio"]
 [language-server.typescript-language-server.config]
 hostInfo = "helix"
 locale = "zh-CN"
+# config = {userLanguages = { rust = "html", "*.rs" = "html" } }
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -196,7 +198,7 @@ includeInlayVariableTypeHints = true
 [[language]]
 name = "svelte"
 roots = ["package.json"]
-language-servers = ["svelteserver", "tailwindcss-ls"]
+language-servers = ["svelteserver", "tailwindcss-ls", "hx-lsp"]
 
 [[language]]
 name = "scss"
@@ -217,7 +219,7 @@ language-servers = [
 name = "json"
 language-servers = [
   # "vscode-css-language-server",
-  { name = "vscode-json-language-server", except-features = [ "format" ] },
+  { name = "vscode-json-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
 ]
@@ -232,9 +234,9 @@ file-types = [
 ]
 language-servers = [
   # "vscode-css-language-server",
-  { name = "vscode-json-language-server", except-features = [ "format" ] },
+  { name = "vscode-json-language-server", except-features = ["format"] },
   "biome",
-  { name = "hx-lsp", only-features = [ "document-colors" ] },
+  { name = "hx-lsp", only-features = ["document-colors"] },
 ]
 
 [[language]]
@@ -291,7 +293,7 @@ auto-format = true
 language-servers = [
   # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
-  # "biome",
+  "biome",
   "hx-lsp",
   "cspell-lsp",
   "lsp-ai",
@@ -315,15 +317,13 @@ formatter = { command = 'prettier', args = ["--parser", "yaml"] }
 # ----------- php --------------
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/.config/tokens/intelephenser_licence.txt"
-globalStoragePath = "/home/erasin/.config/php/"  # os.homedir()
+globalStoragePath = "/home/erasin/.config/php/"
 # clearCache = false # clean state
 [language-server.intelephense.config.intelephense]
 # stubs = ["redis"]
 [language-server.intelephense.config.intelephense.environment]
-phpVersion = "7.4.0"
-includePaths = [ 
-  "/home/erasin/.config/php/stubs/"
-]
+# phpVersion = "7.4.0"
+includePaths = ["/home/erasin/.config/php/stubs/"]
 
 [[language]]
 name = "php"
@@ -345,22 +345,22 @@ command = "/home/erasin/Development/project/php-dap/target/debug/php-dap"
 name = "Listen for Xdebug"
 request = "launch"
 # completion = [ "ignored" ]
-args = {  } 
+args = {}
 
 
-[[language]]
-name = "tpl5"
-scope = "source.tpl5"
-injection-regex = "tpl5"
-file-types = ["tpl5"]
-comment-token = "{//"
-block-comment-tokens = { start = "{/*", end = "*/}" }
-indent = { tab-width = 2, unit = "  " }
+# [[language]]
+# name = "tpl5"
+# scope = "source.tpl5"
+# injection-regex = "tpl5"
+# file-types = ["tpl5", { glob = "views/*.thml" }]
+# comment-token = "{//"
+# block-comment-tokens = { start = "{/*", end = "*/}" }
+# indent = { tab-width = 2, unit = "  " }
 
-[[grammar]]
-name = "tpl5"
-# source = { path = "/home/erasin/Development/project/tree-sitter-tpl5", rev = "" }
-source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
+# [[grammar]]
+# name = "tpl5"
+# # source = { path = "/home/erasin/Development/project/tree-sitter-tpl5", rev = "" }
+# source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
 
 
 # ----------- python pyright --------------
@@ -440,7 +440,6 @@ setType = true
 paramName = "All"
 paramType = true
 await = true
-
 
 
 # [language-server.lua-language-server.config.Lua.workspace]
@@ -533,7 +532,7 @@ language-servers = [
 # ---- latex ----
 [[language]]
 name = "latex"
-language-servers = [ "texlab", "hx-lsp" ]
+language-servers = ["texlab", "hx-lsp"]
 
 # # ---- typst ----
 # # https://myriad-dreamin.github.io/tinymist//frontend/helix.html
@@ -569,18 +568,6 @@ language-servers = ["glicol-lsp"]
 [[grammar]]
 name = "glicol"
 source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
-
-
-[[language]]
-name = "mail"
-scope = "source.eml"
-injection-regex = "mail"
-file-types = ["eml"]
-indent = { tab-width = 4, unit = "\t" }
-
-[[grammar]]
-name = "mail"
-source = { git = "https://github.com/dagle/tree-sitter-mail", rev = "a668550628e9a76bcac4864864dd9d60c91be27f" }
 
 [language-server.beancount-lsp]
 command = "beancount-language-server"
@@ -623,18 +610,7 @@ source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995
 [[language]]
 name = "ron"
 file-types = ["ron", "trickfilm"]
-formatter = { command = 'ronfmt' }
-
-# for rust leptos
-[[language]]
-name = "rstml"
-scope = "scope.rstml"
-file-types = []
-injection-regex = "rstml"
-
-[[grammar]]
-name = "rstml"
-source = { git = "https://github.com/rayliwell/tree-sitter-rstml", subpath = "rstml", rev = "07a8e3b9bda09b648a6ccaca09e15dea3adf956f" }
+formatter = { command = 'ronfmt' , args = ["%{buffer_name}"] }
 
 # --- steel -----
 [language-server.steel]
@@ -643,7 +619,7 @@ command = "steel-language-server"
 [[language]]
 name = "scheme"
 shebangs = ["scheme", "guile", "chicken", "steel"]
-language-servers = [ "steel", "hx-lsp" ]
+language-servers = ["steel", "hx-lsp"]
 
 # --- dart ---
 [language-server.dart.config]
@@ -658,16 +634,41 @@ language-servers = ["dart", "lsp-ai", "hx-lsp"]
 
 [[language]]
 name = "kdl"
-language-servers = [ { name = "hx-lsp", only-features = [ "document-colors" ] } ]
+language-servers = [{ name = "hx-lsp", only-features = ["document-colors"] }]
+
+[language-server.taplo]
+config = {}
 
 [[language]]
 name = "toml"
-language-servers = [ "taplo", { name = "hx-lsp", only-features = [ "document-colors" ] } ]
+language-servers = [
+  "taplo",
+  { name = "hx-lsp", only-features = [
+    "document-colors",
+  ] },
+]
 formatter = { command = "taplo", args = ["fmt", "-"] }
 
 [[language]]
 name = "hurl"
-language-servers = [ "hx-lsp" ]
+language-servers = ["hx-lsp"]
+
+[[grammar]]
+name = "hurl"
+source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "ff07a42d9ec95443b5c1b57ed793414bf7b79be5" }
+
+
+# https://github.com/antaalt/shader-sense
+[language-server.shader-language-server]
+command = "shader-language-server"
+
+[[language]]
+name = "wgsl"
+language-servers = [ "wgsl-analyzer", "hx-lsp" ]
+
+[[language]]
+name = "wesl"
+language-servers = [ "wgsl-analyzer", "hx-lsp" ]
 
 # [[language]]
 # name = "wgsl"
@@ -695,4 +696,25 @@ source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a
 
 [[language]]
 name = "env"
-file-types = ["env", { glob = ".env" }, { glob = ".env.*" }, { glob = ".envrc" }, { glob = ".envrc.*" }]
+file-types = [
+  "env",
+  { glob = ".env" },
+  { glob = ".env.*" },
+  { glob = ".envrc" },
+  { glob = ".envrc.*" },
+]
+
+[[language]]
+name = "hexdump"
+scope = "source.hexdump"
+injection-regex = "hexdump"
+file-types = ["hexdump"]
+roots = []
+auto-format = false
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "hexdump"
+source = { git = "https://github.com/rush-rs/tree-sitter-hexdump", rev = "09eaf4fcfed00be93928d7d3d82b490cd1343b80"}
+

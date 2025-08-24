@@ -157,7 +157,9 @@
 
 (field name: (identifier) @variable.other.member)
 
-(dot_index_expression field: (identifier) @variable.other.member)
+; (dot_index_expression
+;   table: (identifier) @type
+;   field: (identifier) @variable.other.member)
 
 (table_constructor
 [
@@ -182,6 +184,7 @@
   name: [
     (identifier) @function
     (dot_index_expression
+      table: (identifier) @type
       field: (identifier) @function)
   ])
 
@@ -194,6 +197,7 @@
     name: [
       (identifier) @function
       (dot_index_expression
+        table: (identifier) @type
         field: (identifier) @function)
     ])
   (expression_list .

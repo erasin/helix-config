@@ -61,10 +61,9 @@
 ] @operator
 
 [
-  "("
-  ")"
-  "{"
-  "}"
+  "<?php" "?>"
+  "(" ")"
+  "{" "}"
 ] @punctuation.bracket
 
 [

@@ -1,2 +1,0 @@
-(node
-  (identifier) @definition.constant)

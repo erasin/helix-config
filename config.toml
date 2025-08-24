@@ -33,6 +33,10 @@ rainbow-brackets = true #[#13530] 彩色括号
 # [editor.gutters]
 # layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 
+[editor.word-completion]
+enable = true
+trigger-length = 4
+
 # [Inline Git Blame #13133]
 [editor.inline-blame]
 show = "cursor-line"
@@ -134,7 +138,8 @@ php = { glyph = "", color = "#1976D2" }
 godot = { glyph = "", color = "#2196F3" }
 gd = { glyph = "", color = "#2196F3" }
 gdshader = { glyph = "󰘷", color = "#9C27B0" }
-wgsl = { glyph = "", color = "#9C27B0" }
+wgsl = { glyph = "", color = "#E06C75" }
+wesl = { glyph = "", color = "#E06C75" }
 cj = ""
 yml = ""
 yaml = ""
@@ -199,6 +204,8 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker.sh }"
 # scooter 搜索
 "s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
+"g" = ":sh bash ~/.config/helix/scripts/lazygit-picker.sh"
+
 
 # BUG:  
 # https://github.com/sxyazi/yazi/pull/2461

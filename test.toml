@@ -2,8 +2,9 @@ theme = "onedark_local"
 
 [editor]
 true-color = true
+undercurl = true
+auto-completion = true
+auto-info = true
+cursorline = true  # 光标 行高亮
 color-modes = true
-# zen-mode = true
-# [editor.explorer]
-# position = "right"
-# column-width = 22
+idle-timeout = 40
