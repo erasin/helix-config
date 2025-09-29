@@ -25,8 +25,11 @@ end-of-line-diagnostics = "hint" # 关联 editor.inline-diagnostics
 # popup-border = "all"
 # bufferline = "multiple"  # always | multiple | nerver
 
-# [branch:commandline] commandline hide
+
+# commandline {{{ ---------------------------------------------
+# [#11223] [branch:commandline] commandline hide
 commandline = false
+# commandline }}} ---------------------------------------------
 
 rainbow-brackets = true #[#13530] 彩色括号
 
@@ -37,10 +40,12 @@ rainbow-brackets = true #[#13530] 彩色括号
 enable = true
 trigger-length = 4
 
+# git blame {{{ ---------------------------------------------
 # [Inline Git Blame #13133]
 [editor.inline-blame]
 show = "cursor-line"
 auto-fetch = true
+# git blame }}} ---------------------------------------------
 
 [editor.soft-wrap]
 enable = true
@@ -60,7 +65,7 @@ display-progress-messages = true
 display-inlay-hints = true
 # inlay-hints-length-limit = 40
 
-# [#6417] inline diagnostic
+# inline diagnostic
 [editor.inline-diagnostics]
 cursor-line = "hint"
 # DiagnosticFilter : disable, hint, info, waring, error
@@ -109,18 +114,23 @@ mode.select = " "
 diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
 
+# explorer {{{ ---------------------------------------------
 # [#5768]
 # space e 显示
 [editor.explorer]
 position = "left"
 column-width = 22
+# explorer }}} ---------------------------------------------
 
+# sticky {{{ ---------------------------------------------
 # [#6118]
 # [editor.sticky-context]
 # enable = true
 # # indicator = true
 # max-lines = 10
+# sticky }}} ---------------------------------------------
 
+# icons {{{ ---------------------------------------------
 # [#12369] icons v2
 [icons.vcs]
 enabled = true
@@ -157,12 +167,12 @@ json5 = ""
 "env" = ""
 "hurl" = { glyph = "", color = "#DE3163" }
 
-
 [icons.diagnostic]
 error = " " 
 warning = " "
 info = ""
 hint = "󰮥 "
+# icon }}}---------------------------------------------
 
 [keys.normal]
 # W = "@miw"

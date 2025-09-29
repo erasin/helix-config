@@ -1,0 +1,47 @@
+{
+  "binding": {
+    "prefix": "binding group",
+    "body": "@group(${1:0}) @binding(${2:0}) var<${3:uniform}> $4: $5; "
+  },
+  "location": {
+    "prefix": "location",
+    "body": "@location(${1:0}) "
+  },
+  "builtin position": {
+    "prefix": "builtin position",
+    "body": "@builtin(position) ${1:postion:} vec4<f32>"
+  },
+  "builtin vertex_index": {
+    "prefix": "builtin vertex_index",
+    "body": "@builtin(vertex_index) ${1:vertex_index:} vec4<f32>"
+  },
+  "bevy vertex": {
+    "prefix": "vertex bevy",
+    "body": [
+      "struct Vertex {",
+      "    @location(0) position: vec3<f32>,",
+      "    @location(1) normal: vec3<f32>,",
+      "    @location(2) uv: vec2<f32>,",
+      "};\n",
+      "struct VertexOutput {",
+      "    @builtin(position) position: vec4<f32>,",
+      "    @location(0) color: vec4<f32>,",
+      "};\n",
+      "@vertex",
+      "fn vertex(in: Vertex) -> VertexOutput {",
+      "    var out: VertexOutput;",
+      "}"
+    ]
+  },
+  "bevy fragment": {
+    "prefix": "fragment bevy",
+    "body": [
+      "@fragment",
+      "fn frag_main($1) -> ${2:@location(0) vec4<f32>} {\n    $0\n}"
+    ]
+  },
+  "compute": {
+    "prefix": "compute",
+    "body": ["@compute @workgroup_size(${1:1})", "fn main($2) {\n    $0\n}"]
+  }
+}

@@ -8,3 +8,8 @@ auto-info = true
 cursorline = true  # 光标 行高亮
 color-modes = true
 idle-timeout = 40
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"

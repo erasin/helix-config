@@ -1,1 +1,1 @@
-(node (identifier) @definition.constant)
+(node (identifier) @definition.type)

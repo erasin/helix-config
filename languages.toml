@@ -81,6 +81,16 @@ language-servers = [
   "lsp-ai",
 ]
 
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+compositeLiteralTypes = true
+constantValues = true
+functionTypeParameters = true
+ignoredError = true
+parameterNames = true
+rangeVariableTypes = true
+
 # ----------- godot4 -------------
 [language-server.godot]
 command = "nc"
@@ -372,7 +382,8 @@ args = ["--stdio"]
 # 禁用 diagnostics, format, 使用 ruff-lsp
 except-features = ["diagnostics", "format"]
 
-#  https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+# https://microsoft.github.io/pyright/#/configuration
 #  为 pyright 在 pyproject.toml 中设置 venv 路径适配 rye 等 venv 
 # ```toml
 #  [tool.pyright]
@@ -380,6 +391,7 @@ except-features = ["diagnostics", "format"]
 #  venv = ".venv"
 # ```
 
+# locale seting : LANG=zh-cn 没有使用zh_cn posix标准
 [language-server.pyright.config]
 settings.python.analysis = { autoImportCompletions = true, typeCheckingMode = "on", autoSearchPaths = true, useLibraryCodeForTypes = true, diagnosticMode = "openFilesOnly" }
 
@@ -636,6 +648,10 @@ language-servers = ["dart", "lsp-ai", "hx-lsp"]
 name = "kdl"
 language-servers = [{ name = "hx-lsp", only-features = ["document-colors"] }]
 
+[[grammar]]
+name = "kdl"
+source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-kdl", rev = "b37e3d58e5c5cf8d739b315d6114e02d42e66664" }
+
 [language-server.taplo]
 config = {}
 
@@ -718,3 +734,6 @@ indent = { tab-width = 2, unit = "  " }
 name = "hexdump"
 source = { git = "https://github.com/rush-rs/tree-sitter-hexdump", rev = "09eaf4fcfed00be93928d7d3d82b490cd1343b80"}
 
+[[language]]
+name = "ruby"
+language-servers = [ "ruby-lsp", "solargraph", "hx-lsp" ]

@@ -13,5 +13,5 @@ selected_file=$(basename "$selected_path")
 
 # Run Alacritty with Vim, passing folder and file paths as arguments
 alacritty -T ${PWD##*/} --config-file=${HOME}/.config/alacritty/hx.toml -e hx -w $selected_folder $selected_path
-# kitty hx -w $selected_folder $selected_path
+# kitty -T ${PWD##*/} -e hx -w $selected_folder $selected_path
 
