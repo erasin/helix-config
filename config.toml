@@ -142,7 +142,7 @@ string = ""
 function = "󰊕"
 color = "󰌁"
 
-[icons.mime]
+[icons.fs]
 enabled = true
 php = { glyph = "", color = "#1976D2" }
 godot = { glyph = "", color = "#2196F3" }
