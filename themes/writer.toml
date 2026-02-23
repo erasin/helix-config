@@ -1,0 +1,6 @@
+inherits = "onelight_local"
+
+"ui.cursorline" = { fg = "black" }
+
+"ui.text" = { fg = "grey" }
+

@@ -1,38 +1,38 @@
 {
 	"Ok": {
-		"postfix": "ok",
+		"prefix": "ok",
 		"body": "Ok(${receiver})",
 		"description": "Wrap the expression in a `Result::Ok`",
 		"scope": "expr"
 	},
 	"Box::pin": {
-		"postfix": "pinbox",
+		"prefix": "pinbox",
 		"body": "Box::pin(${receiver})",
 		"requires": "std::boxed::Box",
 		"description": "Put the expression into a pinned `Box`",
 		"scope": "expr"
 	},
 	"Arc::new": {
-		"postfix": "arc",
+		"prefix": "arc",
 		"body": "Arc::new(${receiver})",
 		"requires": "std::sync::Arc",
 		"description": "Put the expression into an `Arc`",
 		"scope": "expr"
 	},
 	"Some": {
-		"postfix": "some",
+		"prefix": "some",
 		"body": "Some(${receiver})",
 		"description": "Wrap the expression in an `Option::Some`",
 		"scope": "expr"
 	},
 	"Err": {
-		"postfix": "err",
+		"prefix": "err",
 		"body": "Err(${receiver})",
 		"description": "Wrap the expression in a `Result::Err`",
 		"scope": "expr"
 	},
 	"Rc::new": {
-		"postfix": "rc",
+		"prefix": "rc",
 		"body": "Rc::new(${receiver})",
 		"requires": "std::rc::Rc",
 		"description": "Put the expression into an `Rc`",

@@ -16,9 +16,21 @@ O = ["open_above", ":pipe-to win-ime-switch --toggle"]
 
 [keys.normal.space.o]
 # 打开 yazi
-"e" = [":open %sh{ powershell -File C:/Users/Administrator/AppData/Roaming/helix/scripts/yazi-picker.ps1 }"]
+
+[keys.normal]
+C-y = [
+  ':sh del C:\unique-file',
+  ':insert-output yazi.exe "%{buffer_name}" --chooser-file=C:\unique-file',
+  ':open %sh{type C:\unique-file}',
+  ':redraw',
+]
+
+## ---- 使用脚本
+"e" = [":open %sh{ powershell -ExecutionPolicy Bypass -File D:/erasin/dotfiles/helix/scripts/yazi-picker.ps1 }"]
 # 搜索替换
-"s" = [":sh powershell -File C:/Users/Administrator/AppData/Roaming/helix/scripts/scooter-picker.ps1"]
+"s" = [":sh powershell -ExecutionPolicy Bypass -File D:/erasin/dotfiles/helix/scripts/scooter-picker.ps1"]
+"g" = [":sh powershell -ExecutionPolicy Bypass -File D:/erasin/dotfiles/helix/scripts/lazygit-picker.ps1"]
+
 
 # 输入法切换
 [keys.insert]

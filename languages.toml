@@ -1,48 +1,45 @@
-# 过滤
+# Helix 语言服务器与语言配置
+# https://docs.helix-editor.com/language-configuration.html
+# 参考: https://github.com/helix-editor/helix/blob/master/languages.toml
+
+# ==================== 语法高亮 Grammar ====================
 # [use-grammars]
-# only = []
-#
+# only = []  # 只加载指定语言 grammar
 
-# 这里定义 lsp-ai
-# lsp-ai, helix-gpt, llm-lsp 
+# ==================== AI 语言服务器 ====================
+# lsp-ai: https://github.com/SilasMarvin/lsp-ai
+# llm-lsp: https://github.com/rosarp/llm-lsp
+# helix-gpt: https://github.com/leona/helix-gpt
 
-# ollama [lsp-ai](https://github.com/SilasMarvin/lsp-ai)
+# Ollama + lsp-ai
 # [language-server.lsp-ai]
 # command = "lsp-ai"
-# args = ["--config", "/home/erasin/.config/helix/lsp-ai2.json"]
+# args = ["--config", "/path/to/config.json"]
 
-# llm-lsp
-# 使用 https://github.com/rosarp/llm-lsp/ 对接AI，自动补全
-# 使用前需要执行 `llm-lsp generate-config` 初始化 `~/.config/llm-lsp/` 的配置
-[language-server.lsp-ai]
-command = ""
+# llm-lsp (支持 Codeium)
+# [language-server.lsp-ai]
 # command = "llm-lsp"
 # args = ["server", "-p", "codeium"]
 
-# helix-gpt 
-# https://github.com/leona/helix-gpt
+# helix-gpt (支持 Ollama)
 # [language-server.lsp-ai]
 # command = "helix-gpt"
-# args = ["--handler", "ollama", "--ollamaModel", "qwen2.5-coder", "--ollamaTimeout": "10000"]
+# args = ["--handler", "ollama", "--ollamaModel", "qwen2.5-coder"]
 
-# ----- rust ----
-# [language-server.rust-analyzer.config]
-# cargo.features = "all"
-# checkOnSave.features = "all"
-
-# ------ snippets lsp -----
-# https://github.com/erasin/hx-lsp 
-# ./snippets
+# ==================== Snippets LSP ====================
+# hx-lsp: https://github.com/erasin/hx-lsp
+# 提供 snippets 和 action 功能
 [language-server.hx-lsp]
 command = "hx-lsp"
 
-# https://github.com/vlabo/cspell-lsp
-[language-server.cspell-lsp]
-command = ""
-# command = "cspell-lsp"
-args = ["--stdio", "--dictionary", "/home/erasin/.config/cspell/dict.txt"]
+# ==================== 拼写检查 ====================
+# Harper: https://github.com/Automattic/harper
+# https://writewithharper.com/docs/integrations/language-server#Dictionaries
+[language-server.harper-ls.config.harper-ls]
+# diagnosticSeverity = "warning"
+linters = { spaces = false }
 
-# ---------- rust -----
+# ==================== Rust ====================
 [language-server.rust-analyzer.config]
 inlayHints.bindingModeHints.enable = false
 inlayHints.closingBraceHints.minLines = 10
@@ -50,13 +47,14 @@ inlayHints.closureReturnTypeHints.enable = "with_block"
 inlayHints.discriminantHints.enable = "fieldless"
 inlayHints.lifetimeElisionHints.enable = "skip_trivial"
 inlayHints.typeHints.hideClosureInitialization = false
-cargo.features = "all"
-check.command = "clippy"
+cargo.features = "all"                 # 启用所有 Cargo features
+check.command = "clippy"                # 使用 clippy 检查
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer", "hx-lsp", "cspell-lsp"]
+language-servers = ["rust-analyzer", "hx-lsp", "harper-ls"]
 
+# Rust 调试器配置
 [language.debugger]
 name = "lldb-dap"
 transport = "stdio"
@@ -70,21 +68,18 @@ args = { program = "{0}", initCommands = [
   "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py",
 ] }
 
-# ---------- golang ----------------
+# ==================== Go ====================
 [[language]]
 name = "go"
 language-servers = [
   "gopls",
   "golangci-lint-lsp",
   "hx-lsp",
-  "cspell-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
-
-# [language-server.gopls.config.ui]
-# diagnostic.staticcheck = true
-
+# Go 代码提示配置
 [language-server.gopls.config.hints]
 assignVariableTypes = true
 compositeLiteralFields = true
@@ -95,26 +90,22 @@ ignoredError = true
 parameterNames = true
 rangeVariableTypes = true
 
-# ----------- godot4 -------------
+# ==================== Godot 4 / GDScript ====================
 [language-server.godot]
 command = "nc"
 args = ["127.0.0.1", "6005"]
 
 [[language]]
 name = "gdscript"
-language-servers = ["godot", "hx-lsp", "cspell-lsp", "lsp-ai"]
+language-servers = ["godot", "hx-lsp", "harper-ls", "lsp-ai"]
 
+# GDScript 调试器
 [language.debugger]
 name = "lldb-vscode"
 transport = "stdio"
 command = "lldb-vscode"
 
-# [[language.debugger.templates]]
-# name = "binary"
-# request = "launch"
-# completion = [ { name = "binary", completion = "filename" } ]
-# args = { program = "{0}", initCommands = [ "command script import /home/erasin/.config/helix/scripts/lldb_vscode_rustc_primer.py" ] }
-
+# GDB Server 附加调试
 [[language.debugger.templates]]
 name = "gdbserver attach"
 request = "attach"
@@ -130,16 +121,13 @@ args = { attachCommands = [
   "attach {2}",
 ] }
 
+# Godot 资源文件
 [[language]]
 name = "godot-resource"
 scope = "source.tscn"
 file-types = ["tscn", "tres", "godot", "gdextension", "import"]
 
-# [language.debugger]
-# name ="gdscript"
-# https://ask.godotengine.org/122563/how-to-get-the-godot-lsp-to-work-with-nvim-lsp
-
-
+# ==================== GDShader ====================
 [[language]]
 name = "gdshader"
 scope = "source.gdshader"
@@ -148,12 +136,12 @@ file-types = ["shader", "gdshader", "gdshaderinc"]
 shebangs = []
 roots = ["project.godot"]
 auto-format = true
-# formatter = { command = "", args = ["-"] }
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "\t" }
-# language-servers = ["gdshader-lsp", "hx-lsp", "cspell-lsp"]
+# language-servers = ["gdshader-lsp", "hx-lsp", "harper-ls"]
 
+# GDShader 自定义 Grammar
 [[grammar]]
 name = "gdshader"
 source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "ffd9f958df13cae04593781d7d2562295a872455" }
@@ -161,33 +149,37 @@ source = { git = "https://github.com/GodOfAvacyn/tree-sitter-gdshader", rev = "f
 # [language-server.gdshader-lsp]
 # command = "gdshader-lsp"
 
+# ==================== Web 开发 ====================
 
-# format slint
-# https://biomejs.dev/guides/editors/third-party-extensions/#helix 
-# https://biomejs.dev/formatter/#options
+# Biome: https://biomejs.dev (格式化/检查)
 [language-server.biome]
 command = "biome"
 args = ["lsp-proxy"]
 
-# ------ emmet support -------------
+# Emmet: HTML/CSS 缩写扩展
 [language-server.emmet-language-server]
-# command="emmet-language-server"
 command = "emmet-ls"
 args = ["--stdio"]
 
-# ------ tailwindcss-language-server -------
-
+# TailwindCSS: https://tailwindcss.com
 [language-server.tailwindcss-ls]
-# helix-twcss, use hx-tw replace tailwindcss-language-server
-# command = "hx-tw"
+# command = "hx-tw"  # 替代方案
 command = "tailwindcss-language-server"
 args = ["--stdio"]
 
-# -------- typescript -----------
+[language-server.tailwindcss-ls.config]
+userLanguages = { rust = "html", "*.rs" = "html" }
+
+[language-server.tailwindcss-ls.config.tailwindCSS.experimental]
+classRegex = [
+  # Dioxus 支持
+  ["class: \"(.*)\""],
+]
+
+# ==================== TypeScript / JavaScript ====================
 [language-server.typescript-language-server.config]
 hostInfo = "helix"
 locale = "zh-CN"
-# config = {userLanguages = { rust = "html", "*.rs" = "html" } }
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -197,7 +189,6 @@ includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = false
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayVariableTypeHints = true
-# includeInlayVariableTypeHintsWhenTypeMatchesName = true
 
 [language-server.typescript-language-server.config.javascript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -208,16 +199,18 @@ includeInlayParameterNameHintsWhenArgumentMatchesName = false
 includeInlayPropertyDeclarationTypeHints = true
 includeInlayVariableTypeHints = true
 
-# --- svelte ---
+# Svelte
 [[language]]
 name = "svelte"
 roots = ["package.json"]
 language-servers = ["svelteserver", "tailwindcss-ls", "hx-lsp"]
 
+# SCSS
 [[language]]
 name = "scss"
 file-types = ["scss"]
 
+# CSS
 [[language]]
 name = "css"
 file-types = ["css"]
@@ -228,16 +221,16 @@ language-servers = [
   "tailwindcss-ls",
 ]
 
-
+# JSON
 [[language]]
 name = "json"
 language-servers = [
-  # "vscode-css-language-server",
   { name = "vscode-json-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
 ]
 
+# JSONC / TSConfig
 [[language]]
 name = "jsonc"
 file-types = [
@@ -247,12 +240,12 @@ file-types = [
   { glob = "bun.lock" },
 ]
 language-servers = [
-  # "vscode-css-language-server",
   { name = "vscode-json-language-server", except-features = ["format"] },
   "biome",
   { name = "hx-lsp", only-features = ["document-colors"] },
 ]
 
+# HTML
 [[language]]
 name = "html"
 file-types = ["html", "xhtml"]
@@ -261,42 +254,45 @@ language-servers = [
   "emmet-language-server",
   "tailwindcss-ls",
   "hx-lsp",
-  "cspell-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
+# XML
 [[language]]
 name = "xml"
 language-servers = ["vscode-html-language-server"]
 
+# Vue
 [[language]]
 name = "vue"
-language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "cspell-lsp", "lsp-ai"]
+language-servers = ["vuels", "tailwindcss-ls", "hx-lsp", "harper-ls", "lsp-ai"]
 
+# TSX
 [[language]]
 name = "tsx"
 language-servers = [
-  # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
-  "cspell-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
+# JSX
 [[language]]
 name = "jsx"
 language-servers = [
-  # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "tailwindcss-ls",
   "hx-lsp",
-  "cspell-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
+# JavaScript
 [[grammar]]
 name = "jsdoc"
 source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fde205b59a1d9792efc21ee0b6d50bbd35ff14" }
@@ -305,139 +301,95 @@ source = { git = "https://github.com/tree-sitter/tree-sitter-jsdoc", rev = "49fd
 name = "javascript"
 auto-format = true
 language-servers = [
-  # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
-  "cspell-lsp",
+  "harper-ls",
   "lsp-ai",
 ]
 
+# TypeScript
 [[language]]
 name = "typescript"
 auto-format = true
 language-servers = [
-  # "typescript-language-server",
   { name = "typescript-language-server", except-features = ["format"] },
   "biome",
   "hx-lsp",
   "lsp-ai",
 ]
 
+# ==================== YAML ====================
 [[language]]
 name = "yaml"
 formatter = { command = 'prettier', args = ["--parser", "yaml"] }
+language-servers = ["hx-lsp"]
 
-# ----------- php --------------
+# ==================== PHP ====================
 [language-server.intelephense.config]
 licenceKey = "/home/erasin/dotfile/tokens/intelephenser"
 globalStoragePath = "/home/erasin/.config/php/"
-# clearCache = false # clean state
+
 [language-server.intelephense.config.intelephense]
 # stubs = ["redis"]
-[language-server.intelephense.config.intelephense.environment]
-# phpVersion = "7.4.0"
 includePaths = ["/home/erasin/.config/php/stubs/"]
 
 [[language]]
 name = "php"
 language-servers = ["intelephense", "hx-lsp"]
 
-# [language.debugger]
-# name = "vscode-php-debug"
-# transport = "stdio"
-# command = "node"
-# args = [ "/home/erasin/.vscode-oss/extensions/xdebug.php-debug-1.36.0-universal/out/phpDebug.js" ]
-
+# PHP Xdebug 调试器
 [language.debugger]
 name = "php-xdebug-dap"
 transport = "stdio"
 command = "/home/erasin/Development/project/php-dap/target/debug/php-dap"
-# args = ['--stdio']
 
 [[language.debugger.templates]]
 name = "Listen for Xdebug"
 request = "launch"
-# completion = [ "ignored" ]
 args = {}
 
-
-# [[language]]
-# name = "tpl5"
-# scope = "source.tpl5"
-# injection-regex = "tpl5"
-# file-types = ["tpl5", { glob = "views/*.thml" }]
-# comment-token = "{//"
-# block-comment-tokens = { start = "{/*", end = "*/}" }
-# indent = { tab-width = 2, unit = "  " }
-
-# [[grammar]]
-# name = "tpl5"
-# # source = { path = "/home/erasin/Development/project/tree-sitter-tpl5", rev = "" }
-# source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
-
-
-# ----------- python pyright --------------
-
-# https://github.com/microsoft/pyright
+# ==================== Python ====================
+# Pyright: https://github.com/microsoft/pyright
 [language-server.pyright]
 command = "pyright-langserver"
 args = ["--stdio"]
-# 禁用 diagnostics, format, 使用 ruff-lsp
+# 禁用 diagnostics/format，使用 ruff-lsp
 except-features = ["diagnostics", "format"]
 
-# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
-# https://microsoft.github.io/pyright/#/configuration
-#  为 pyright 在 pyproject.toml 中设置 venv 路径适配 rye 等 venv 
-# ```toml
-#  [tool.pyright]
-#  venvPath = "."
-#  venv = ".venv"
-# ```
-
-# locale seting : LANG=zh-cn 没有使用zh_cn posix标准
 [language-server.pyright.config]
-settings.python.analysis = { autoImportCompletions = true, typeCheckingMode = "on", autoSearchPaths = true, useLibraryCodeForTypes = true, diagnosticMode = "openFilesOnly" }
+# 配置参考: pyproject.toml [tool.pyright]
+settings.python.analysis = {
+  autoImportCompletions = true,
+  typeCheckingMode = "on",
+  autoSearchPaths = true,
+  useLibraryCodeForTypes = true,
+  diagnosticMode = "openFilesOnly"
+}
 
+# Pylsp (可选)
 [language-server.pylsp.config]
 pylsp.plugins.rope_autoimport.enabled = true
 
-# https://github.com/mtshiba/pylyzer
+# Pylyzer: https://github.com/mtshiba/pylyzer
 [language-server.pylyzer]
 command = "pylyzer"
 args = ["--server"]
 
-# https://github.com/astral-sh/ruff-lsp
+# Ruff: https://docs.astral.sh/ruff
 [language-server.ruff-lsp]
-command = "ruff-lsp"
-args = ["--ignore", "E501", "E402"]
-
-# support ruff check
-# support ruff format
-
-# https://docs.astral.sh/ruff/configuration/
-# use pyproject.toml [tool.ruff]
+command = "ruff"
+args = ["server"]
 
 [[language]]
 name = "python"
-file-types = [
-  "py",
-  "pyi",
-  "py3",
-  "pyw",
-  "ptl",
-  ".pythonstartup",
-  ".pythonrc",
-  "SConstruct",
-  "mel",
-]
-roots = ["pyproject.toml", "pyrightconfig.json"]
+file-types = ["py", "pyi", "py3", "pyw", "ptl", ".pythonstartup", ".pythonrc", "SConstruct", "mel"]
+roots = ["pyproject.toml", "pyrightconfig.json", "ty.toml"]
 # formatter = { command = "ruff", args = ["format"] }
-language-servers = ["pyright", "ruff-lsp", "hx-lsp", "lsp-ai"]
+language-servers = ["ty", "ruff-lsp", "hx-lsp", "lsp-ai"]
 auto-format = true
 
-# ------------ lua --------------
-
+# ==================== Lua ====================
 [[language]]
 name = "lua"
 language-servers = ["lua-language-server", "lsp-ai"]
@@ -445,10 +397,7 @@ language-servers = ["lua-language-server", "lsp-ai"]
 [language-server.lua-language-server]
 args = ["--locale", "zh-cn"]
 
-# 建议使用 .luarc.json 配置服务器
-# {"$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/refs/heads/master/setting/schema-zh-cn.json"}
-
-# https://luals.github.io/wiki/configuration/
+# 配置参考: .luarc.json
 [language-server.lua-language-server.config.Lua.hint]
 enable = true
 arrayIndex = "Enable"
@@ -457,108 +406,60 @@ paramName = "All"
 paramType = true
 await = true
 
-
-# [language-server.lua-language-server.config.Lua.workspace]
-# library = [
-#   "${3rd}/love2d/library",
-#   "${3rd}/busted/library",
-#   "${3rd}/Defold/library",
-# ]
-
 [language-server.lua-language-server.config.Lua.runtime]
-nonstandardSymbol = [
-  "+=",
-  "-=",
-  "*=",
-  "/=",
-  "//=",
-  "%=",
-  "<<=",
-  ">>=",
-  "&=",
-  "|=",
-  "^=",
-]
-
+nonstandardSymbol = ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="]
 special = { "import" = "require" }
 
+# 自定义 Lua Grammar (支持更多语法)
 [[grammar]]
 name = "lua"
-# source = { git = "https://github.com/MunifTanjim/tree-sitter-lua", rev = "9668709211b2e683f27f414454a8b51bf0a6bda1" }
 source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769a3fcf7f40dcaaa94509023ff7fea6" }
-# source = { path = "/home/erasin/Development/project/tree-sitter-lua", rev = "" }
 
-# ----------- git ---------------
-
+# ==================== Git ====================
 [[language]]
 name = "git-commit"
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
+# ==================== INI ====================
 [[language]]
 name = "ini"
 scope = "source.ini"
 file-types = [
   "ini",
   # Systemd unit files
-  "service",
-  "automount",
-  "device",
-  "mount",
-  "path",
-  "service",
-  "slice",
-  "socket",
-  "swap",
-  "target",
-  "timer",
+  "service", "automount", "device", "mount", "path", "socket", "swap", "target", "timer", "slice",
   # Podman quadlets
-  "container",
-  "volume",
-  "kube",
-  "network",
+  "container", "volume", "kube", "network",
   { glob = ".editorconfig" },
   { glob = "rclone.conf" },
-  "properties",
-  "cfg",
-  "directory",
-  "desktop",
+  "properties", "cfg", "directory", "desktop",
 ]
 
-# iwe for markdown
-# https://github.com/iwe-org/iwe 
+# ==================== Markdown ====================
+# IWE: https://github.com/iwe-org/iwe
 [language-server.iwe]
 command = "iwes"
 
-# --- markdown ----
+# Markdown 配置
 [[language]]
 name = "markdown"
 formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
-  "marksman",
-  # "markdown-oxide",
-  # "iwe",
+  "markdown-oxide",
   "hx-lsp",
-  "cspell-lsp",
+  "harper-ls",
 ]
-# auto-format = true # optional, enable format-on-save
-# 设定 zen-mode-like
+# auto-format = true
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
 
-# ---- latex ----
+# ==================== LaTeX ====================
 [[language]]
 name = "latex"
 language-servers = ["texlab", "hx-lsp"]
 
-# # ---- typst ----
-# # https://myriad-dreamin.github.io/tinymist//frontend/helix.html
-# In project .helix/languages.toml setting main file.
-#
-# [language-server.tinymist.config]
-# typstExtraArgs = ["main.typ"]
-# exportPdf = "onType"
-# outputPath = "$root/target/$dir/$name"
-
+# ==================== Typst ====================
+# 参考: https://myriad-dreamin.github.io/tinymist//frontend/helix.html
 [[language]]
 name = "typst"
 language-servers = ["tinymist", "hx-lsp"]
@@ -566,12 +467,11 @@ formatter = { command = "typst", args = ["c"] }
 text-width = 80
 soft-wrap = { enable = true, wrap-at-text-width = true }
 
-# --- glicol ----
+# ==================== Glicol ====================
 # https://github.com/TenStrings/glicol-lsp
 [language-server.glicol-lsp]
 command = "glicol-lsp"
 
-# https://github.com/chaosprint/glicol
 [[language]]
 name = "glicol"
 scope = "source.glicol"
@@ -585,6 +485,7 @@ language-servers = ["glicol-lsp"]
 name = "glicol"
 source = { git = "https://github.com/TenStrings/tree-sitter-glicol", rev = "da7b171e87462afa6c74ad772742ec485f821072" }
 
+# ==================== Beancount ====================
 [language-server.beancount-lsp]
 command = "beancount-language-server"
 args = ["--stdio"]
@@ -598,6 +499,7 @@ language-servers = ["beancount-lsp", "hx-lsp"]
 name = "beancount"
 source = { git = "https://github.com/polarmutex/tree-sitter-beancount", rev = "9bc460a05b5f096d69568b5fb36105032ff4ff97" }
 
+# ==================== Fluent ====================
 [[language]]
 name = "fluent"
 scope = "source.ftl"
@@ -608,9 +510,9 @@ indent = { tab-width = 4, unit = "    " }
 
 [[grammar]]
 name = "fluent"
-# source = { git = "https://github.com/tree-sitter/tree-sitter-fluent", rev = "858fdd6f1e81992e00d3541bfb31bac9365d7a47" }
 source = { git = "https://github.com/erasin/tree-sitter-fluent", rev = "14ad08028c0287ca8c10ce620377f581e17dddb2" }
 
+# ==================== HTTP ====================
 [[language]]
 name = "http"
 scope = "source.http"
@@ -623,12 +525,13 @@ indent = { tab-width = 4, unit = "    " }
 name = "http"
 source = { git = "https://github.com/rest-nvim/tree-sitter-http", rev = "e061995f0caf2fa30f68fa1fdf2c08bcbd4629a8" }
 
+# ==================== Ron ====================
 [[language]]
 name = "ron"
 file-types = ["ron", "trickfilm"]
-formatter = { command = 'ronfmt' , args = ["%{buffer_name}"] }
+formatter = { command = 'ronfmt', args = ["%{buffer_name}"] }
 
-# --- steel -----
+# ==================== Scheme ====================
 [language-server.steel]
 command = "steel-language-server"
 
@@ -637,7 +540,7 @@ name = "scheme"
 shebangs = ["scheme", "guile", "chicken", "steel"]
 language-servers = ["steel", "hx-lsp"]
 
-# --- dart ---
+# ==================== Dart ====================
 [language-server.dart.config]
 closingLabels = true
 outline = true
@@ -648,6 +551,7 @@ allowOpenUri = true
 name = "dart"
 language-servers = ["dart", "lsp-ai", "hx-lsp"]
 
+# ==================== KDL ====================
 [[language]]
 name = "kdl"
 language-servers = [{ name = "hx-lsp", only-features = ["document-colors"] }]
@@ -656,6 +560,7 @@ language-servers = [{ name = "hx-lsp", only-features = ["document-colors"] }]
 name = "kdl"
 source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-kdl", rev = "b37e3d58e5c5cf8d739b315d6114e02d42e66664" }
 
+# ==================== TOML ====================
 [language-server.taplo]
 config = {}
 
@@ -663,12 +568,11 @@ config = {}
 name = "toml"
 language-servers = [
   "taplo",
-  { name = "hx-lsp", only-features = [
-    "document-colors",
-  ] },
+  { name = "hx-lsp", only-features = ["document-colors"] },
 ]
 formatter = { command = "taplo", args = ["fmt", "-"] }
 
+# ==================== Hurl ====================
 [[language]]
 name = "hurl"
 language-servers = ["hx-lsp"]
@@ -677,26 +581,20 @@ language-servers = ["hx-lsp"]
 name = "hurl"
 source = { git = "https://github.com/pfeiferj/tree-sitter-hurl", rev = "597efbd7ce9a814bb058f48eabd055b1d1e12145" }
 
-# https://github.com/antaalt/shader-sense
+# ==================== Shader (Wgsl/Wesl) ====================
+# Shader Language Server
 [language-server.shader-language-server]
 command = "shader-language-server"
 
 [[language]]
 name = "wgsl"
-language-servers = [ "wgsl-analyzer", "hx-lsp" ]
+language-servers = ["wgsl-analyzer", "hx-lsp"]
 
 [[language]]
 name = "wesl"
-language-servers = [ "wgsl-analyzer", "hx-lsp" ]
+language-servers = ["wgsl-analyzer", "hx-lsp"]
 
-# [[language]]
-# name = "wgsl"
-# grammar = "wgsl_bevy"
-
-# [[grammar]]
-# name = "wgsl_bevy"
-# source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-wgsl-bevy", rev = "47c1818d245a6156a488c4c4d06e9336714bae9b" }
-
+# ==================== Cangjie ====================
 [[language]]
 name = "cangjie"
 scope = "source.cangjie"
@@ -710,9 +608,9 @@ indent = { tab-width = 4, unit = "    " }
 
 [[grammar]]
 name = "cangjie"
-source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8b2e5adfc6fa5c6c36998d1" }
-# source = { git = "https://gitcode.com/OpenCangjieCommunity/tree-sitter-cangjie", rev = "8640e9a0d55b52b1b8bcd0b7ce9632a40f188905" }
+source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8adfc6fa5c6cb2e536998d1" }
 
+# ==================== Env ====================
 [[language]]
 name = "env"
 file-types = [
@@ -723,6 +621,7 @@ file-types = [
   { glob = ".envrc.*" },
 ]
 
+# ==================== Hexdump ====================
 [[language]]
 name = "hexdump"
 scope = "source.hexdump"
@@ -737,11 +636,12 @@ indent = { tab-width = 2, unit = "  " }
 name = "hexdump"
 source = { git = "https://github.com/rush-rs/tree-sitter-hexdump", rev = "09eaf4fcfed00be93928d7d3d82b490cd1343b80"}
 
+# ==================== Ruby ====================
 [[language]]
 name = "ruby"
-language-servers = [ "ruby-lsp", "solargraph", "hx-lsp" ]
+language-servers = ["ruby-lsp", "solargraph", "hx-lsp"]
 
-
+# ==================== Goctl ====================
 [[language]]
 name = "goctl"
 scope = "source.goctl"
@@ -755,4 +655,18 @@ indent = { tab-width = 4, unit = "    " }
 
 [[grammar]]
 name = "goctl"
-source = { git = "https://github.com/chaozwn/tree-sitter-goctl", rev = "49c43532689fe1f53e8b9e009d0521cab02c432b"}
+source = { git = "https://github.com/chaoswn/tree-sitter-goctl", rev = "49c43532689fe1f53e8b9e009d0521cab02c432b"}
+
+# ==================== 模板语言 (已禁用) ====================
+# [[language]]
+# name = "tpl5"
+# scope = "source.tpl5"
+# injection-regex = "tpl5"
+# file-types = ["tpl5", { glob = "views/*.thml" }]
+# comment-token = "{//"
+# block-comment-tokens = { start = "{/*", end = "*/}" }
+# indent = { tab-width = 2, unit = "  " }
+
+# [[grammar]]
+# name = "tpl5"
+# source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }

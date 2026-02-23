@@ -18,7 +18,11 @@ inherits = "onelight"
 "ui.statusline.position-percentage" = { fg = "white", bg = "light-blue"}
 # "ui.statusline.file-type" = { fg = "", bg = ""}
 
+"markup.strikethrough" = { fg = "grey", modifiers = ["crossed_out"] }
+
 "ui.virtual.inline-blame" = { fg = "grey" }
+
+"ui.selection.primary" = { bg = "blue-sel" }
 
 "attribute" = { fg = "pink" }
 "special" = { fg = "blue" }
@@ -30,3 +34,5 @@ inherits = "onelight"
 "markup.list.checked" = { fg = "green", modifiers = ["bold"]}
 "markup.list.unchecked" = { fg = "blue", modifiers = ["bold"]}
 
+[palette]
+blue-sel =  "#d4dbf4"

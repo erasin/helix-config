@@ -1,4 +1,14 @@
 {
+	"biome-ignore": {
+		"prefix": "biome-ignore",
+		"body": "// biome-ignore lint:style/useArrowFunction",
+		"description": "保留普通函数写法,或者在配置 biome.json"
+	},
+	"eslint-ignore": {
+		"prefix": "esline-disable-enable",
+		"body": "/* eslint-disable prefer-arrow-callback */",
+		"description": "esline-disable|enable "
+	},
 	"define module": {
 		"prefix": "define",
 		"body": [

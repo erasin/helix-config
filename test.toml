@@ -13,3 +13,19 @@ idle-timeout = 40
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[icons.vcs]
+enabled = true
+
+[icons.kind]
+enabled = true
+number = ""
+string = ""
+function = "󰊕"
+color = "󰌁"
+
+[icons.fs]
+enabled = true
+php = { glyph = "", color = "#1976D2" }
+godot = { glyph = "", color = "#2196F3" }
+gd = { glyph = "", color = "#2196F3" }

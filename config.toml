@@ -1,137 +1,144 @@
-# 使用 自定义发布版本
-# https://github.com/erasin/helix
+# Helix 编辑器配置文件
+# https://docs.helix-editor.com/
 
+# 使用自定义发布版本
+# https://github.com/erasin/helix
 theme = "onedark_local"
 
 [editor]
-# 真彩支持
-# tty export COLORTERM=truecolor
+# ==================== 基础显示 ====================
+# 真彩支持 (需终端支持: export COLORTERM=truecolor)
 true-color = true
+# 下划线支持 (需终端支持)
 undercurl = true
+
+# ==================== 自动补全 ====================
 auto-completion = true
-# auto-save = false
 auto-info = true
-# cursorcolumn = true # 光标列高亮
-cursorline = true  # 光标 行高亮
-color-modes = true
-idle-timeout = 40
-# mouse = true
-# scrolloff = 5 # 滚动时上下边缘填充行数
-# scroll-lines = 3
-line-number = "relative" # 行号类型 absolute / relative 
-end-of-line-diagnostics = "hint" # 关联 editor.inline-diagnostics
-# rulers = [81, 121]   # 标尺
-# text-width = 80  # reflow 自动分割换行, 支持软换行
-# popup-border = "all"
-# bufferline = "multiple"  # always | multiple | nerver
 
+# ==================== 光标与高亮 ====================
+cursorline = true  # 光标所在行高亮
+color-modes = true # 多光标模式着色
 
-# commandline {{{ ---------------------------------------------
-# [#11223] [branch:commandline] commandline hide
+# ==================== 超时与滚动 ====================
+idle-timeout = 40  # 空闲超时时间(秒)
+# scrolloff = 5    # 滚动时上下边缘保留行数
+# scroll-lines = 3 # 滚动行数
+
+# ==================== 行号与标尺 ====================
+line-number = "relative" # absolute(绝对行号) / relative(相对行号)
+# rulers = [81, 121]     # 标尺线列位置
+
+# ==================== 文本宽度 ====================
+# text-width = 80        # 文本宽度，用于自动换行
+# wrap-at-text-width = true # 在 text-width 处换行
+
+# ==================== 行尾诊断 ====================
+end-of-line-diagnostics = "hint" # none/hint/info/warning/error
+
+# ==================== 命令行 ====================
+# [#11223] 隐藏底部命令行
 commandline = false
-# commandline }}} ---------------------------------------------
 
-rainbow-brackets = true #[#13530] 彩色括号
+# ==================== 括号彩虹 ====================
+# [#13530] 彩色括号配对显示
+rainbow-brackets = true
 
-# [editor.gutters]
-# layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+# ==================== 自动保存 ====================
+# auto-save = false      # 自动保存
+# bufferline = "multiple" # always | multiple | never
 
+# ==================== 软换行 ====================
+[editor.soft-wrap]
+enable = true
+# max-wrap = 20          # 最大换行次数
+# max-indent-retain = 40 # 保持缩进的最大列
+# wrap-indicator = "↪ " # 换行指示符
+
+# ==================== 单词补全 ====================
 [editor.word-completion]
 enable = true
 trigger-length = 4
 
-# git blame {{{ ---------------------------------------------
-# [Inline Git Blame #13133]
+# ==================== 行内 Git Blame ====================
+# [#13133] 行内 Git  blame 显示
 [editor.inline-blame]
-show = "cursor-line"
-auto-fetch = true
-# git blame }}} ---------------------------------------------
+show = "cursor-line"   # none/hover/cursor-line
+auto-fetch = true     # 自动获取 blame 信息
 
-[editor.soft-wrap]
-enable = true
-# max-wrap = 20 
-# max-indent-retain = 40
-# wrap-indicator = "↪ "
-# wrap-at-text-width = true # zen-mode center View.inner_area
-
+# ==================== 光标形状 ====================
 [editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
+insert = "bar"        # 插入模式: bar/beam/block
+normal = "block"      # 普通模式: block
+select = "underline"  # 选择模式: underline/block
 
+# ==================== LSP 配置 ====================
 [editor.lsp]
-display-messages = true
-display-progress-messages = true
-display-inlay-hints = true
-# inlay-hints-length-limit = 40
+display-messages = true      # 显示 LSP 消息
+display-progress-messages = true  # 显示进度消息
+display-inlay-hints = true   # 显示内联提示
+# inlay-hints-length-limit = 40 # 内联提示长度限制
 
-# inline diagnostic
+# ==================== 行内诊断 ====================
 [editor.inline-diagnostics]
-cursor-line = "hint"
-# DiagnosticFilter : disable, hint, info, waring, error
+cursor-line = "hint"  # none/hint/info/warning/error
 
-# all / none
+# ====================空白字符渲染 ====================
 [editor.whitespace.render]
-# space = "all"
-tab = "all"
-# newline = "all"
+# space = "all"  # 显示空格
+tab = "all"      # 显示制表符
+# newline = "all" # 显示换行符
 
+# ==================== 缩进 guides ====================
 [editor.indent-guides]
-render = true
-character = "╎" # Some characters that work well: "▏", "╎", "┆", "┊"
-skip-levels = 0
+render = true          # 渲染缩进 guides
+character = "╎"        # 缩进字符 (可选: ▏, ╎, ┆, ┊)
+skip-levels = 0        # 跳过的缩进级别
 
-# 状态栏定义
+# ==================== 状态栏 ====================
 [editor.statusline]
 left = [
-  "mode",
-  "version-control",
-  "read-only-indicator",
-  "file-name",
-  "file-modification-indicator",
+  "mode",                        # 编辑模式
+  "version-control",             # Git 状态
+  "read-only-indicator",         # 只读标识
+  "file-name",                   # 文件名
+  "file-modification-indicator", # 修改状态
 ]
-# center = ["diagnostics", "workspace-diagnostics"]
-center = ["diagnostics"]
+center = ["diagnostics"]         # 诊断信息
 right = [
-  "register",
-  "position",
-  "primary-selection-length",
-  "selections",
-  'word-count', # [branch:statusline-word-count]
-  "file-encoding",
-  "file-indent-style",
-  "file-line-ending",
-  "position-percentage",
-  "file-type",
-  "spacer"
+  "register",                    # 寄存器
+  "position",                    # 光标位置
+  "primary-selection-length",   # 主选区长度
+  "selections",                  # 选区数量
+  'word-count',                  # 字数统计
+  "file-encoding",               # 文件编码
+  "file-indent-style",           # 缩进风格
+  "file-line-ending",            # 行尾符号
+  "position-percentage",         # 文件位置百分比
+  "file-type",                   # 文件类型
+  "spacer"                       # 空白分隔
 ]
-separator = "│"
+# separator = "│"                # 分隔符
 
+# 模式指示符图标
 mode.normal = " "
 mode.insert = " "
 mode.select = " "
 
+# 诊断信息过滤
 diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
 
-# explorer {{{ ---------------------------------------------
-# [#5768]
-# space e 显示
+# ==================== 文件浏览器 (Explorer) ====================
+# [#5768] 文件目录树
+# 快捷键: Space + e 打开
 [editor.explorer]
-position = "left"
-column-width = 22
-# explorer }}} ---------------------------------------------
+position = "left"    # left/right
+column-width = 22    # 列宽度
 
-# sticky {{{ ---------------------------------------------
-# [#6118]
-# [editor.sticky-context]
-# enable = true
-# # indicator = true
-# max-lines = 10
-# sticky }}} ---------------------------------------------
-
-# icons {{{ ---------------------------------------------
-# [#12369] icons v2
+# ==================== 图标配置 ====================
+# [#12369] Icons v2
+# 需要 Nerd Fonts 字体支持
 [icons.vcs]
 enabled = true
 
@@ -142,6 +149,7 @@ string = ""
 function = "󰊕"
 color = "󰌁"
 
+# 文件类型图标
 [icons.fs]
 enabled = true
 php = { glyph = "", color = "#1976D2" }
@@ -153,8 +161,8 @@ wesl = { glyph = "", color = "#E06C75" }
 cj = ""
 yml = ""
 yaml = ""
-conf= ""
-kdl= ""
+conf = ""
+kdl = ""
 Makefile = ""
 ron = "󰔘"
 db = ""
@@ -167,86 +175,119 @@ json5 = ""
 "env" = ""
 "hurl" = { glyph = "", color = "#DE3163" }
 
+# 诊断图标
 [icons.diagnostic]
-error = " " 
+error = " "
 warning = " "
 info = ""
 hint = "󰮥 "
-# icon }}}---------------------------------------------
 
+# ==================== 键盘快捷键 ====================
 [keys.normal]
-# W = "@miw"
-# smart tab
+# Tab 智能缩进
 tab = "move_parent_node_end"
 S-tab = "move_parent_node_start"
 
-"\\" = ":reflow" # |
-"X" = "extend_line_above"
+# ==================== 常用操作 ====================
+"\\" = ":reflow"         # 重新格式化段落
 
-"C-s" = ":write"
-"C-j" = "save_selection"
-"A-/" = "toggle_comments"
+# 大写 X 选择整行
+"X" = ["extend_line_up", "extend_to_line_bounds"]
 
-"Z" = { "Z" = [":quit"] }
+# 保存相关
+"C-s" = ":write"          # 保存
+"C-j" = "save_selection"  # 保存选区
+
+"A-/" = "toggle_comments"  # 切换注释
+
+# 退出与软换行
+"Z" = { "Z" = [":quit"] } # 保存退出
 "z" = { "o" = [":toggle soft-wrap.wrap-at-text-width"] }
 
-# 输入法切换
+# ==================== 输入法切换 ====================
+# Esc 退出插入模式时切换到英文
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
-# 插入模式，恢复输入法
+
+# 插入模式进入时切换到英文
 i = ["insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
-I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1" ]
-# a = "@li" or remap `after insert`
-a = ["move_char_right", "insert_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1" ]
+I = ["insert_at_line_start", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+
+# a/A 保持进入插入模式时切换英文
+a = [
+  "move_char_right",
+  "insert_mode",
+  ":pipe-to bash ~/.config/helix/scripts/ime-switch 1",
+]
 A = ["insert_at_line_end", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
+
+# o/O 打开新行时切换英文
 o = ["open_below", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 
-# space mode
+# ==================== Space 模式 ====================
 [keys.normal.space]
-"x" = ":buffer-close"
-"w" = { r = ":reload", c = ":config-reload" }
-"." = "file_picker_in_current_buffer_directory"
-"n" = "signature_help"
+"x" = ":buffer-close"     # 关闭当前缓冲区
+"w" = { r = ":reload", c = ":config-reload" }  # 重新加载
+"." = "file_picker_in_current_buffer_directory" # 当前目录文件选择
+"n" = "signature_help"    # 函数签名帮助
 
-# 打开 yazi 文件浏览器
+# ==================== 外部程序集成 ====================
 [keys.normal.space.o]
-# yazi 文件 picker
-"e" = ":open %sh{ ~/.config/helix/scripts/yazi-picker.sh }"
-# scooter 搜索
-"s" = ":sh bash ~/.config/helix/scripts/scooter-picker.sh"
-"g" = ":sh bash ~/.config/helix/scripts/lazygit-picker.sh"
 
+# Scooter 全局搜索
+# 需要安装: https://github.com/thomasschafer/scooter
+s = [
+  ":write-all",
+  ":insert-output scooter --no-stdin >/dev/tty",
+  ":redraw",
+  ":reload-all",
+  ':set mouse false',
+  ':set mouse true',
+]
 
-# BUG:  
-# https://github.com/sxyazi/yazi/pull/2461
-# e = [
-#   ':sh rm -f /tmp/yazi-file',
-#   ':insert-output yazi %{buffer_name} --chooser-file=/tmp/yazi-file',
-#   ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-#   ':open %sh{cat /tmp/yazi-file}',
-#   ':redraw',
-# ]
-# 全局搜索
-# https://github.com/thomasschafer/scooter?tab=readme-ov-file#helix
-# s = [
-#     # ":write-all",
-#     ":insert-output scooter >/dev/tty",
-#     ":redraw",
-#     ":reload-all"
-# ]
+# LazyGit
+# 需要安装: https://github.com/jesseduffield/lazygit
+g = [
+  ":new",
+  ":insert-output lazygit >/dev/tty",
+  ":buffer-close!",
+  ":redraw",
+  ':set mouse false',
+  ':set mouse true',
+]
 
+# Yazi 文件浏览器
+# 需要安装: https://github.com/sxyazi/yazi
+e = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+  ':set mouse false',
+  ':set mouse true',
+]
+
+# ==================== 插入模式快捷键 ====================
 [keys.insert]
-# smart tab
+# Tab 智能缩进
 S-tab = "move_parent_node_start"
+
+# Esc 退出时切换英文
 "esc" = ["normal_mode", ":pipe-to bash ~/.config/helix/scripts/ime-switch"]
 
-# tab 默认为 "tab" = smart_tab
-# tab 输入 \t 为 "S-tab" = insert_tab
-
-# Return/Enter keep insert at center with zen mode
-# 保持插入模式下书写的时候保持在屏幕中间, 可以设定在项目中 for markdown
+# 保持插入时在屏幕中间 (用于 zen mode)
 # "ret" = ["insert_newline", 'align_view_center']
 
+# ==================== 选择模式快捷键 ====================
 [keys.select]
 tab = "extend_parent_node_end"
 S-tab = "extend_parent_node_start"
+
+# ==================== 其他可选配置 ====================
+# [editor.sticky-context]
+# enable = true
+# max-lines = 10
+
+# [editor.gutters]
+# layout = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
