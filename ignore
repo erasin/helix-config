@@ -10,3 +10,6 @@
 *.zip
 *.epub
 *.mp4
+*.doc
+*.docx
+!AGENTS.md

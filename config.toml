@@ -50,7 +50,7 @@ rainbow-brackets = true
 
 # ==================== 软换行 ====================
 [editor.soft-wrap]
-enable = true
+# enable = true
 # max-wrap = 20          # 最大换行次数
 # max-indent-retain = 40 # 保持缩进的最大列
 # wrap-indicator = "↪ " # 换行指示符
@@ -65,6 +65,7 @@ trigger-length = 4
 [editor.inline-blame]
 show = "cursor-line"   # none/hover/cursor-line
 auto-fetch = true     # 自动获取 blame 信息
+format = "{author} • {date} • {title} • {commit}"
 
 # ==================== 光标形状 ====================
 [editor.cursor-shape]
@@ -134,7 +135,7 @@ workspace-diagnostics = ["warning", "error"]
 # 快捷键: Space + e 打开
 [editor.explorer]
 position = "left"    # left/right
-column-width = 22    # 列宽度
+column-width = 25    # 列宽度
 
 # ==================== 图标配置 ====================
 # [#12369] Icons v2
@@ -152,28 +153,40 @@ color = "󰌁"
 # 文件类型图标
 [icons.fs]
 enabled = true
-php = { glyph = "", color = "#1976D2" }
-godot = { glyph = "", color = "#2196F3" }
+".ignore" = "󰈉"
+"Makefile" = { glyph = "", color = "#2196F3" }
+"README.md" = { glyph = "󰂺", color = "#A3C448" }
+
+bak = { glyph = "", color = "#757575" }
+bsn = { glyph = "", color = "#2196F3" }
+cj = ""
+cjs = { glyph = "", color = "#6CA8D8" }
+conf = ""
+cts = { glyph = "", color = "#6CA8D8" }
+db = ""
+env = ""
 gd = { glyph = "", color = "#2196F3" }
 gdshader = { glyph = "󰘷", color = "#9C27B0" }
-wgsl = { glyph = "", color = "#E06C75" }
-wesl = { glyph = "", color = "#E06C75" }
-cj = ""
-yml = ""
-yaml = ""
-conf = ""
-kdl = ""
-Makefile = ""
-ron = "󰔘"
-db = ""
-sql = "󰆼"
-jsonc = ""
+godot = { glyph = "", color = "#2196F3" }
+hurl = { glyph = "", color = "#DE3163" }
+ignore = "󰈉"
 json5 = ""
-"ignore" = "󰈉"
-".ignore" = "󰈉"
-"lrc" = "󰨖"
-"env" = ""
-"hurl" = { glyph = "", color = "#DE3163" }
+jsonc = { glyph = "", color = "#E06C75" }
+kdl = { glyph = "", color = "#E3971D" }
+lrc = "󰨖"
+md = { glyph = "", color = "#6CA8D8" }
+mjs = { glyph = "", color = "#6CA8D8" }
+php = { glyph = "", color = "#1976D2" }
+qml = { glyph = "", color = "#A3C448" }
+ron = { glyph = "󰔘", color = "#6CA8D8" }
+session = { glyph = "󰛤", color = "#E06C75" }
+sh = { glyph = "󱆃", color = "#2196F3" }
+sql = "󰆼"
+wesl = { glyph = "", color = "#E06C75" }
+wgsl = { glyph = "", color = "#E06C75" }
+yaml = ""
+yml = ""
+yuck = { glyph = "󰇥", color = "#E3971D" }
 
 # 诊断图标
 [icons.diagnostic]
@@ -230,43 +243,50 @@ O = ["open_above", ":pipe-to bash ~/.config/helix/scripts/ime-switch 1"]
 "w" = { r = ":reload", c = ":config-reload" }  # 重新加载
 "." = "file_picker_in_current_buffer_directory" # 当前目录文件选择
 "n" = "signature_help"    # 函数签名帮助
+"E" = "file_explorer"
 
 # ==================== 外部程序集成 ====================
 [keys.normal.space.o]
 
 # Scooter 全局搜索
 # 需要安装: https://github.com/thomasschafer/scooter
-s = [
-  ":write-all",
-  ":insert-output scooter --no-stdin >/dev/tty",
-  ":redraw",
-  ":reload-all",
-  ':set mouse false',
-  ':set mouse true',
-]
+# s = [
+#   ":write-all",
+#   ":insert-output scooter --no-stdin >/dev/tty",
+#   ":redraw",
+#   ":reload-all",
+#   ':set mouse false',
+#   ':set mouse true',
+# ]
+"s" = [":write-all", ":sh bash ~/.config/helix/scripts/scooter-picker.sh"]
+
 
 # LazyGit
 # 需要安装: https://github.com/jesseduffield/lazygit
-g = [
-  ":new",
-  ":insert-output lazygit >/dev/tty",
-  ":buffer-close!",
-  ":redraw",
-  ':set mouse false',
-  ':set mouse true',
-]
+# g = [
+#   ":new",
+#   ":insert-output lazygit >/dev/tty",
+#   ":buffer-close!",
+#   ":redraw",
+#   ':set mouse false',
+#   ':set mouse true',
+# ]
+"g" = [":write-all", ":sh bash ~/.config/helix/scripts/lazygit-picker.sh"]
 
 # Yazi 文件浏览器
 # 需要安装: https://github.com/sxyazi/yazi
-e = [
-  ':sh rm -f /tmp/unique-file',
-  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
-  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  ':open %sh{cat /tmp/unique-file}',
-  ':redraw',
-  ':set mouse false',
-  ':set mouse true',
-]
+# e = [
+#   ':sh rm -f /tmp/unique-file',
+#   ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+#   ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+#   ':open %sh{cat /tmp/unique-file}',
+#   ':redraw',
+#   ':set mouse false',
+#   ':set mouse true',
+# ]
+"e" = ":sh bash ~/.config/helix/scripts/yazi-picker.sh"
+
+"t" = ":sh bash ~/.config/helix/scripts/hx-sh"
 
 # ==================== 插入模式快捷键 ====================
 [keys.insert]

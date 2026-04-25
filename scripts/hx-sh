@@ -1,10 +1,102 @@
 #!/usr/bin/env bash
+#
+# hx-sh - 在 tmux 新 pane 中执行 shell 命令
+#
+# 使用场景：Helix 编辑器中通过 :sh 命令调用此脚本，
+#          在 tmux 拆分的新 pane 中执行交互式命令
+#
+# 智能拆分逻辑：
+#   1. 查找当前运行 hx 的窗口
+#   2. 在该窗口查找空闲的 shell pane (zsh/bash/sh)
+#   3. 有则复用，无则创建新 pane
+#   4. 拆分方向根据窗口布局自动选择（避免同方向叠加）
+#
+# 参数：
+#   命令        要执行的命令（可选），默认为交互式 shell
+#
+# 示例：
+#   hx-sh                    # 打开交互式 shell
+#   hx-sh ls -la            # 执行命令并退出
+#   hx-sh htop              # 打开交互式程序
 
-has_pane=$(tmux list-panes -F "#{window_index} #{pane_index} #{pane_current_command}" | grep "tmux" | head -n 1|awk '{print $2}')
+# 判断是否为 shell（只有 shell 才复用）
+is_shell() {
+  local cmd="$1"
+  [ "$cmd" = "zsh" ] || [ "$cmd" = "bash" ] || [ "$cmd" = "sh" ]
+}
 
-if [ -n "$has_pane" ] && [ "$has_pane" -gt 0 ]; then
-    tmux send -t $has_pane "$1" Enter
+# 查找运行 hx 的窗口 ID
+find_hx_window() {
+  local caller_window
+  caller_window=$(tmux display-message -p '#{window_id}')
+
+  # 检查该窗口是否包含 hx pane
+  if tmux list-panes -t "$caller_window" -F "#{pane_current_command}" 2>/dev/null | grep -q "^hx$"; then
+    echo "$caller_window"
+    return
+  fi
+
+  # 如果调用者窗口没有 hx，查找任意包含 hx 的窗口
+  tmux list-windows -F "#{window_id}" | while read -r win_id; do
+    if tmux list-panes -t "$win_id" -F "#{pane_current_command}" 2>/dev/null | grep -q "^hx$"; then
+      echo "$win_id"
+      break
+    fi
+  done
+}
+
+# 在指定窗口中查找空闲的 shell pane
+find_idle_shell_pane() {
+  local win="$1"
+  tmux list-panes -t "$win" -F "#{pane_id} #{pane_current_command}" 2>/dev/null | \
+    while read -r pane_id cmd; do
+      if is_shell "$cmd"; then
+        echo "$pane_id"
+        break
+      fi
+    done
+}
+
+# 根据窗口布局智能选择拆分方向
+get_split_direction() {
+  local win="$1"
+  local pane_count layout
+  pane_count=$(tmux list-panes -t "$win" 2>/dev/null | wc -l)
+  layout=$(tmux display-message -t "$win" -p '#{window_layout}' 2>/dev/null)
+
+  if [ "$pane_count" -le 1 ]; then
+    echo "-h"
+    return
+  fi
+
+  case "$layout" in
+    *\{*)
+      echo "-v"
+      ;;
+    *\[*)
+      echo "-h"
+      ;;
+    *)
+      echo "-h"
+      ;;
+  esac
+}
+
+# 查找 hx 窗口
+hx_window=$(find_hx_window)
+
+if [ -z "$hx_window" ]; then
+  echo "错误：未找到运行中的 Helix 编辑器" >&2
+  exit 1
+fi
+
+# 在 hx 窗口中查找空闲 pane
+idle_pane=$(find_idle_shell_pane "$hx_window")
+
+if [ -n "$idle_pane" ]; then
+  tmux send -t "$idle_pane" "$@" Enter
 else
-    tmux split-window -h
-    tmux send "$@" Enter
+  split_direction=$(get_split_direction "$hx_window")
+  tmux split-window $split_direction -t "$hx_window"
+  tmux send "$@" Enter
 fi

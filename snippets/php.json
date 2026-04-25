@@ -4,6 +4,11 @@
 		"body": ["<?php", "", "$0"],
 		"description": "Insert PHP opening tag"
 	},
+	"PHP Comment array": {
+		"prefix": "docarray",
+		"body": ["/** @var array */"],
+		"description": "lsp PHP array"
+	},
 	"PHP Comment": {
 		"prefix": "doc",
 		"body": ["/**", "* $0", "*/"],

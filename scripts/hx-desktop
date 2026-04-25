@@ -1,17 +1,39 @@
 #!/usr/bin/env bash
+#
+# hx-desktop - Linux desktop entry 调用 helix
+#
+# 使用场景：通过桌面文件关联，在文件管理器中用 helix 打开文件
+#
+# 安装：
+#   cp ~/dotfiles/helix/helix.desktop ~/.local/share/applications/
+#
+# desktop 文件配置：
+#   Exec=/path/to/hx-desktop %f
+#
+# 参数：
+#   文件路径    要打开的文件路径
 
-# linux desktop entry
-# 默认情况
-# exec alacritty -e hx %f
-
-## 这里使用 
-# Exec=/__path__/.config/helix/scripts/hx-desktop %f
-# 接收参数 %f 
 selected_path=$1
-selected_folder=$(dirname "$selected_path")
-selected_file=$(basename "$selected_path")
+[ -z "$selected_path" ] && { echo "错误：必须提供文件路径" >&2; exit 1; }
 
-# Run Alacritty with Vim, passing folder and file paths as arguments
-alacritty -T ${PWD##*/} --config-file=${HOME}/.config/alacritty/hx.toml -e hx -w $selected_folder $selected_path
-# kitty -T ${PWD##*/} -e hx -w $selected_folder $selected_path
+# 向上查找 .git 目录作为项目根目录
+find_project_root() {
+  local file="$1"
+  local dir="$(dirname "$file")"
 
+  for i in {0..5}; do
+    if [ -d "$dir/.git" ]; then
+      realpath "$dir"
+      return 0
+    fi
+    dir="$(dirname "$dir")"
+  done
+
+  realpath "$(dirname "$file")"
+}
+
+# 查找项目根目录
+project_root=$(find_project_root "$selected_path")
+
+# 调用 hx-open 打开文件
+exec hx-open "$project_root" "$selected_path"

@@ -1,82 +1,136 @@
 #!/bin/bash
-
-# tmux
+#
+# hx-open - 在 tmux 中的 Helix 编辑器中打开文件
+#
+# 使用场景：Godot 等外部编辑器调用此脚本在 helix 中打开文件
+#
+# ln -s ~/dotfiles/helix/scripts/hx-open ~/.local/bin/
+#
+# hx-open {project} {file}:{line}:{col}
+#
 # 参数：
-# -v : 竖直拆分 (可选)
-# -p : 项目路径 {project}
-# 文件: 要打开的文件路径（支持行号和列号）{file}:{line}:{col}
-# 检查 tmux 当前窗口是否有 helix(hx) 编辑器执行，并且项目路径相同，
-# 如果项目路径相同则发送命令 `:o $file`，
-# 如果项目路径不同则新建窗口，然后发送命令 `hx -w $project $file`
+#   项目路径    项目根目录路径 {project} （Godot 调用时必传）
+#   文件路径    要打开的文件，格式：{file}[:{line}[:{col}]]
+#   -v          竖直拆分 pane（默认水平拆分）
+#
+# 示例：
+#   hx-open /path/to/project scene.tscn:10:5
+#   hx-open scene.tscn:20        # 无项目路径时向上查找 .git
+#   hx-open -v /project file.gd  # 竖直拆分
 
 vertical=false
 project_path=""
 file_arg=""
 
-# 解析参数
-while getopts "vp:" opt; do
-  case $opt in
-    v) vertical=true ;;
-    p) project_path="$OPTARG" ;;
-    *) echo "用法: $0 [-v] -p 项目路径 文件路径[:行号[:列号]]" >&2
-       exit 1 ;;
-  esac
-done
-shift $((OPTIND - 1))
+# 从文件所在目录向上查找 .git 目录（最多 5 层），返回项目根目录
+find_project_root() {
+  local file="$1"
+  local dir="$(dirname "$file")"
 
-[ $# -eq 0 ] && { echo "错误：必须提供文件路径" >&2; exit 1; }
-file_arg="$1"
+  for i in {0..5}; do
+    if [ -d "$dir/.git" ]; then
+      realpath "$dir"
+      return 0
+    fi
+    dir="$(dirname "$dir")"
+  done
+
+  realpath "$(dirname "$file")"
+}
+
+# 收集所有非选项参数
+args=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -v)
+      vertical=true
+      ;;
+    -*)
+      echo "用法: $0 [-v] [项目路径] 文件路径[:行号[:列号]]" >&2
+      exit 1
+      ;;
+    *)
+      args+=("$1")
+      ;;
+  esac
+  shift
+done
+
+# 解析参数：单个参数且不含冒号，视为文件路径
+case ${#args[@]} in
+  1)
+    file_arg="${args[0]}"
+    ;;
+  2)
+    project_path="${args[0]}"
+    file_arg="${args[1]}"
+    ;;
+  *)
+    echo "错误：参数过多或缺少文件路径" >&2
+    exit 1
+    ;;
+esac
+
+[ -z "$file_arg" ] && { echo "错误：必须提供文件路径" >&2; exit 1; }
 
 # 解析文件路径和行列号
-IFS=':' read -r file line col <<< "$file_arg"
-file_spec="$file"
-[ -n "$line" ] && file_spec="$file_spec:$line"
-[ -n "$col" ] && file_spec="$file_spec:$col"
+IFS=':' read -r file_path line col <<< "$file_arg"
 
-# 检查 tmux 会话
-# if [ -z "$TMUX" ]; then
-#   echo "错误：必须在 tmux 会话中运行" >&2
-#   exit 1
-# fi
+# 构建 helix 打开文件规格
+file_spec="$file_path"
+[ -n "$line" ] && file_spec="${file_spec}:${line}"
+[ -n "$col" ] && file_spec="${file_spec}:${col}"
 
-# 验证项目路径
-project_path=$(realpath "$project_path")
-[ ! -d "$project_path" ] && { echo "错误：无效项目路径 '$project_path'" >&2; exit 1; }
+# 如果未提供项目路径，向上查找 .git 目录
+if [ -z "$project_path" ]; then
+  project_path=$(find_project_root "$file_path")
+else
+  project_path=$(realpath "$project_path")
+fi
 
-echo $project_path
+# 检查 tmux 是否存在
+if ! tmux list-sessions 2>/dev/null | grep -q .; then
+  # tmux 不存在，创建新 Alacritty 并在其中启动 tmux 会话
+  session_name=$(basename "$project_path")
+  alacritty -T "hx-$session_name" -e tmux new-session -A -s "$session_name" "hx -w '$project_path' '$file_spec'" &
+  exit 0
+fi
 
-# 查找匹配的 helix pane
+# 查找项目中已运行的 helix 实例
+# 优先查找项目根目录完全匹配的 hx，其次是子目录中的 hx
 find_hx_pane() {
-  tmux list-panes -F "#{pane_id} #{pane_current_command} #{pane_current_path}" | \
-    awk -v project="$project_path" \
-    '$2 == "hx" && $3 == project {print $1; exit}'
+  local root_pane sub_pane
+
+  root_pane=$(tmux list-panes -a -F "#{pane_id} #{pane_current_command} #{pane_current_path}" 2>/dev/null | \
+    awk -v project="$project_path" '
+      $2 == "hx" && $3 == project { print $1; exit }
+    ')
+
+  if [ -n "$root_pane" ]; then
+    echo "$root_pane"
+    return
+  fi
+
+  sub_pane=$(tmux list-panes -a -F "#{pane_id} #{pane_current_command} #{pane_current_path}" 2>/dev/null | \
+    awk -v project="$project_path" '
+      $2 == "hx" && index($3, project) == 1 && $3 != project { print $1; exit }
+    ')
+
+  echo "$sub_pane"
 }
 
 target_pane=$(find_hx_pane)
 
-# 执行逻辑
 if [ -n "$target_pane" ]; then
-  # 向现有 hx 实例发送打开命令
+  # 找到已存在的 helix，发送打开命令
   tmux send -t "$target_pane" ":o $file_spec" Enter
+  # 切换到目标 pane 所在的窗口
+  tmux select-window -t "$(tmux display-message -p -t "$target_pane" '#{window_id}')"
 else
-  # 检查当前窗口是否有相同项目路径的 pane
-  same_project=$(tmux list-panes -F "#{pane_current_path}" | \
-    while read path; do
-      [ "$(realpath "$path")" = "$project_path" ] && { echo 1; break; }
-    done)
-
-  # 根据情况创建新 pane 或窗口
-  if [ -n "$same_project" ]; then
-    # 在当前窗口拆分
-    split_direction="-h"
-    $vertical && split_direction="-v"
-    tmux split-window $split_direction -c "$project_path" hx -w "$project_path" "$file_spec"
-  else
-    # 创建新窗口
-    tmux new-window -c "$project_path" hx -w "$project_path" "$file_spec"
-
-  fi
-
-  # 聚焦到新创建的 pane/窗口
-  tmux select-pane -l 2>/dev/null || tmux select-window -t :-
+  # 未找到 helix，创建新窗口并启动 hx
+  # hx 在 shell 中运行，退出后保持 shell
+  new_win=$(tmux new-window -c "$project_path" -P -F '#{window_id}')
+  tmux send-keys -t "$new_win" "hx -w '$project_path' '$file_spec'; exec bash" Enter
+  # 聚焦到新窗口
+  tmux select-window -t "$new_win"
 fi

@@ -1,10 +1,10 @@
 # Helix 语言服务器与语言配置
-# https://docs.helix-editor.com/language-configuration.html
+# https://docs.helix-editor.com/languages.html
 # 参考: https://github.com/helix-editor/helix/blob/master/languages.toml
 
 # ==================== 语法高亮 Grammar ====================
 # [use-grammars]
-# only = []  # 只加载指定语言 grammar
+# only = ["lua"]  # 只加载指定语言 grammar
 
 # ==================== AI 语言服务器 ====================
 # lsp-ai: https://github.com/SilasMarvin/lsp-ai
@@ -31,6 +31,11 @@
 # 提供 snippets 和 action 功能
 [language-server.hx-lsp]
 command = "hx-lsp"
+
+# =================================================
+# merge-ls https://github.com/shaleh/merge-conflict-assistant
+[language-server.merge-ls]
+command = "merge-conflict-assistant"
 
 # ==================== 拼写检查 ====================
 # Harper: https://github.com/Automattic/harper
@@ -183,12 +188,13 @@ locale = "zh-CN"
 
 [language-server.typescript-language-server.config.typescript.inlayHints]
 includeInlayEnumMemberValueHints = true
-includeInlayFunctionLikeReturnTypeHints = false
+includeInlayFunctionLikeReturnTypeHints = true
 includeInlayFunctionParameterTypeHints = true
 includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = false
-includeInlayPropertyDeclarationTypeHints = true
-includeInlayVariableTypeHints = true
+includeInlayPropertyDeclarationTypeHints = false
+includeInlayVariableTypeHints = false
+includeInlayVariableTypes.filter = {"regex" = "^(Promise)$", "action" = "hide"}
 
 [language-server.typescript-language-server.config.javascript.inlayHints]
 includeInlayEnumMemberValueHints = true
@@ -196,8 +202,8 @@ includeInlayFunctionLikeReturnTypeHints = false
 includeInlayFunctionParameterTypeHints = true
 includeInlayParameterNameHints = "all"
 includeInlayParameterNameHintsWhenArgumentMatchesName = false
-includeInlayPropertyDeclarationTypeHints = true
-includeInlayVariableTypeHints = true
+includeInlayPropertyDeclarationTypeHints = false
+includeInlayVariableTypeHints = false
 
 # Svelte
 [[language]]
@@ -253,7 +259,7 @@ language-servers = [
   "vscode-html-language-server",
   "emmet-language-server",
   "tailwindcss-ls",
-  "hx-lsp",
+  { name = "hx-lsp", except-features = ["document-colors"] },
   "harper-ls",
   "lsp-ai",
 ]
@@ -327,7 +333,7 @@ language-servers = ["hx-lsp"]
 
 # ==================== PHP ====================
 [language-server.intelephense.config]
-licenceKey = "/home/erasin/dotfile/tokens/intelephenser"
+licenceKey = "/home/erasin/dotfiles/tokens/intelephenser"
 globalStoragePath = "/home/erasin/.config/php/"
 
 [language-server.intelephense.config.intelephense]
@@ -411,9 +417,9 @@ nonstandardSymbol = ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|
 special = { "import" = "require" }
 
 # 自定义 Lua Grammar (支持更多语法)
-[[grammar]]
-name = "lua"
-source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769a3fcf7f40dcaaa94509023ff7fea6" }
+# [[grammar]]
+# name = "lua"
+# source = { git = "https://github.com/erasin/tree-sitter-lua", rev = "0158ad30769a3fcf7f40dcaaa94509023ff7fea6" }
 
 # ==================== Git ====================
 [[language]]
@@ -447,11 +453,12 @@ formatter = { command = "prettier", args = ["--parser", "markdown"] }
 language-servers = [
   "markdown-oxide",
   "hx-lsp",
-  "harper-ls",
+  # "harper-ls",
 ]
 # auto-format = true
 # text-width = 80
 # soft-wrap = { enable = true, wrap-at-text-width = true }
+soft-wrap = { enable = true }
 
 # ==================== LaTeX ====================
 [[language]]
@@ -606,9 +613,9 @@ comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
 indent = { tab-width = 4, unit = "    " }
 
-[[grammar]]
-name = "cangjie"
-source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8adfc6fa5c6cb2e536998d1" }
+# [[grammar]]
+# name = "cangjie"
+# source = { git = "https://gitcode.com/vchuoshen6/tree-sitter-cangjie", rev = "4a47b8790c88f079c8adfc6fa5c6cb2e536998d1" }
 
 # ==================== Env ====================
 [[language]]
@@ -670,3 +677,19 @@ source = { git = "https://github.com/chaoswn/tree-sitter-goctl", rev = "49c43532
 # [[grammar]]
 # name = "tpl5"
 # source = { git = "https://github.com/erasin/tree-sitter-tpl5", rev = "185cef710b24211f8fe45455ad47e2e653dd224e" }
+
+# ==================== BSN (Bevy Scene Notation) ====================
+[[language]]
+name = "bsn"
+scope = "source.bsn"
+injection-regex = "bsn"
+file-types = ["bsn"]
+roots = []
+auto-format = false
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+indent = { tab-width = 2, unit = "  " }
+
+[[grammar]]
+name = "bsn"
+source = { git = "https://github.com/erasin/tree-sitter-bsn/", rev = "7393b4fce0816eb366123b41e08fc200b5e003a9" }

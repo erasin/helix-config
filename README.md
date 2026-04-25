@@ -29,6 +29,7 @@ cargo install --path helix-term
 | [#13206](https://github.com/helix-editor/helix/pull/13206) | 单词补全 |
 | [#12275](https://github.com/helix-editor/helix/pull/12275) | 语法符号选择器 |
 | [#5768](https://github.com/helix-editor/helix/pull/5768) | 文件目录树 |
+| [#14544](https://github.com/helix-editor/helix/pull/14544) | 文件变动 |
 
 ### 自定义功能
 
@@ -118,6 +119,74 @@ cargo install --path helix-term
 | `hx-open` | Tmux 中打开文件 |
 | `hx-sh` | Tmux 执行命令 |
 
+### hx-open
+
+在 tmux 中的 Helix 编辑器中打开文件，适用于 Godot 等外部编辑器集成。
+
+**参数：**
+
+```
+hx-open [项目路径] 文件路径[:行号[:列号]]
+```
+
+- `项目路径`：项目根目录（Godot 调用时必传）
+- `文件路径`：要打开的文件，支持行号和列号
+- `-v`：竖直拆分 pane（默认水平拆分）
+
+**示例：**
+
+```bash
+# 完整参数
+hx-open /path/to/project scene.tscn:10:5
+
+# 无项目路径时，自动向上查找 .git 目录
+hx-open scene.tscn:20
+
+# Godot 配置（External Editor）
+hx-open {project} {file}:{line}:{col}
+```
+
+**功能：**
+
+- 优先使用项目根目录的 hx 实例
+- 已有 hx 时发送 `:o` 命令打开文件
+- 无 hx 时创建新窗口
+- 自动切换 tmux 焦点到目标窗口
+
+### hx-sh
+
+在 tmux 新 pane 中执行 shell 命令，适用于 Helix 编辑器 `:sh` 调用。
+
+**参数：**
+
+```
+hx-sh [命令]
+```
+
+- `命令`：要执行的命令（可选），默认为交互式 shell
+
+**示例：**
+
+```bash
+# 打开交互式 shell
+hx-sh
+
+# 执行命令并退出
+hx-sh ls -la
+
+# 打开交互式程序
+hx-sh htop
+```
+
+**功能：**
+
+- 自动查找当前 hx 所在窗口
+- 复用窗口中空闲的 shell pane (zsh/bash/sh)
+- 智能选择拆分方向（避免同方向叠加）
+  - 1 pane：水平拆分
+  - 已有水平 pane：竖直拆分
+  - 已有竖直 pane：水平拆分
+
 ---
 
 ## 语言支持
@@ -149,7 +218,7 @@ cargo install --path helix-term
 
 ### 推荐终端
 
-- **Linux/MacOS**: [Alacritty](https://github.com/alacritty/alacritty), [Kitty](https://github.com/kovidgoyal/kitty) 
+- **Linux/MacOS**: [Alacritty](https://github.com/alacritty/alacritty), [Ghostty](https://ghostty.org)
 - **Windows**: [Windows Terminal](https://github.com/microsoft/terminal)
 
 ### 真彩支持
