@@ -1,5 +1,5 @@
 # 继承 onedark
-inherits = "onedark"
+# inherits = "onedark"
 
 "ui.statusline.explorer" = { fg = "blue", bg = "light-black", modifiers = ["bold"]}
 # "ui.statusline.inactive" = { fg = "light-gray", bg = "light-black" }
@@ -141,8 +141,8 @@ inherits = "onedark"
 "diff.delta.moved" = { fg = "gold" }
 "diff.delta.conflict" = {fg = "blue"}
 
-# "ui.background" = { bg = "black" }
-"ui.background" = { } # 使用终端色彩，支持透明
+"ui.background" = { bg = "black" }
+# "ui.background" = { } # 使用终端色彩，支持透明
 "ui.background.separator" = { bg = "black" }
 
 "ui.cursor" = { fg = "black", bg = "grey-600" }

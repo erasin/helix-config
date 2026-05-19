@@ -1,0 +1,216 @@
+#!/usr/bin/env bash
+#
+# https://github.com/erasin/helix/tree/local-socket-listening
+#
+# hx-sock-open - 通过 socket 发送命令给 helix 打开文件
+#
+# 使用场景：外部编辑器或工具调用此脚本在 helix 中打开文件
+#
+# ln -s ~/dotfiles/helix/scripts/hx-sock-open ~/.local/bin/
+#
+# hx-sock-open [-V] [project] file[:line[:col]]
+#
+# 参数：
+#   -V              显示详细信息（默认静默模式）
+#   project         项目根目录路径
+#   file[:line[:col]]  要打开的文件，可选指定行号和列号
+#
+# 示例：
+#   hx-sock-open README.md:10:5
+#   hx-sock-open /path/to/project scene.tscn:10:5
+#   hx-sock-open -V /path/to/project scene.tscn:10:5
+
+# set -euo pipefail
+IFS=$'\n\t'
+
+readonly HELIX_SOCK_DIR=".helix"
+readonly HELIX_SOCK_NAME="helix.sock"
+
+verbose=false
+project_path=""
+file_arg=""
+
+err() {
+    if [[ "$verbose" == "true" ]]; then
+        echo "[错误] $*" >&2
+    else
+        echo "$*" >&2
+    fi
+}
+info() { [[ "$verbose" == "true" ]] && echo "[信息] $*" >&2; }
+
+show_help() {
+    cat <<EOF
+用法: hx-sock-open [-V] [项目路径] 文件路径[:行号[:列号]]
+
+通过 Unix socket 向 helix 发送命令打开文件。
+
+参数:
+  -V                      显示详细信息（默认静默模式）
+  项目路径                 项目根目录路径（可省略，向上查找）
+  文件路径[:行号[:列号]]   要打开的文件及位置
+
+示例:
+  hx-sock-open README.md:10:5
+  hx-sock-open /path/to/project README.md:10:5
+  hx-sock-open -V /path/to/project scene.tscn:10:5
+EOF
+}
+
+find_project_root() {
+    local file="$1"
+    local dir
+    dir=$(dirname "$file")
+
+    for i in {0..5}; do
+        if [[ -d "$dir/.git" ]]; then
+            realpath "$dir"
+            return 0
+        fi
+        dir=$(dirname "$dir")
+    done
+
+    realpath "$(dirname "$file")"
+}
+
+find_socket() {
+    local dir="$1"
+    local sock="$dir/$HELIX_SOCK_DIR/$HELIX_SOCK_NAME"
+    if [[ -S "$sock" ]]; then
+        echo "$sock"
+        return 0
+    fi
+    return 1
+}
+
+find_workspace() {
+    local target="$1"
+    local cur="$target"
+
+    while [[ "$cur" != "/" && "$cur" != "." ]]; do
+        if sock=$(find_socket "$cur") && [[ -n "$sock" ]]; then
+            echo "$sock"
+            return 0
+        fi
+        cur=$(dirname "$cur")
+    done
+
+    if sock=$(find_socket "$target") && [[ -n "$sock" ]]; then
+        echo "$sock"
+        return 0
+    fi
+
+    return 1
+}
+
+parse_file_arg() {
+    local arg="$1"
+    local file="${arg%%:*}"
+    local rest="${arg#*:}"
+    local line=""
+    local col=""
+
+    if [[ "$rest" != "$file" ]]; then
+        if [[ "$rest" == *:* ]]; then
+            line="${rest%%:*}"
+            col="${rest#*:}"
+        else
+            line="$rest"
+        fi
+    fi
+
+    echo "$file|$line|$col"
+}
+
+build_open_cmd() {
+    local file="$1"
+    local line="${2:-}"
+    local col="${3:-}"
+
+    local cmd=":open $file"
+    [[ -n "$line" ]] && cmd="${cmd}:${line}"
+    [[ -n "$col" ]] && cmd="${cmd}:${col}"
+
+    echo "$cmd"
+}
+
+resolve_file_path() {
+    local file="$1"
+    local project="$2"
+
+    if [[ -f "$project/$file" ]]; then
+        echo "$project/$file"
+    elif [[ -f "$file" ]]; then
+        echo "$file"
+    else
+        echo "$project/$file"
+    fi
+}
+
+main() {
+    local opt
+
+    while getopts "Vh" opt; do
+        case "$opt" in
+            V) verbose=true ;;
+            h) show_help; exit 0 ;;
+            *) show_help; exit 1 ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
+    case $# in
+        1)
+            file_arg="${1:-}"
+            ;;
+        2)
+            project_path="${1}"
+            file_arg="${2:-}"
+            ;;
+        *)
+            err "参数过多或缺少文件路径"
+            show_help
+            exit 1
+            ;;
+    esac
+
+    [[ -z "$file_arg" ]] && { err "必须提供文件路径"; exit 1; }
+
+    local parsed
+    parsed=$(parse_file_arg "$file_arg")
+    local file="${parsed%%|*}"
+    local line="${parsed#*|}"; line="${line%|*}"
+    local col="${parsed##*|}"
+
+    if [[ -z "$project_path" ]]; then
+        project_path=$(find_project_root "$file")
+    else
+        project_path=$(realpath "$project_path")
+    fi
+
+    local socket
+    if ! socket=$(find_workspace "$project_path" 2>/dev/null); then
+        err "项目 $project_path 中没有找到 helix socket"
+        alacritty -T "hx" -e hx -w "$project_path" "$file" &
+        exit 1
+    fi
+
+    local full_path
+    full_path=$(resolve_file_path "$file" "$project_path")
+    local cmd
+    cmd=$(build_open_cmd "$full_path" "$line" "$col")
+
+    printf '%s' "$cmd" | socat - UNIX-CONNECT:"$socket" 2>/dev/null
+    local ret=$?
+
+    if [[ $ret -eq 0 ]]; then
+        info "已发送: $cmd"
+        exit 0
+    else
+        err "socket 通信失败 (code: $ret): $socket"
+        alacritty -T "hx" -e hx -w "$project_path" "$file" &
+        exit 1
+    fi
+}
+
+main "$@"

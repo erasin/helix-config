@@ -36,4 +36,5 @@ find_project_root() {
 project_root=$(find_project_root "$selected_path")
 
 # 调用 hx-open 打开文件
-exec hx-open "$project_root" "$selected_path"
+exec hx-sock-open "$project_root" "$selected_path"
+# exec hx-open "$project_root" "$selected_path"

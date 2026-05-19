@@ -32,6 +32,10 @@
 [language-server.hx-lsp]
 command = "hx-lsp"
 
+[language-server.hx-lsp.config]
+markdown = true
+
+
 # =================================================
 # merge-ls https://github.com/shaleh/merge-conflict-assistant
 [language-server.merge-ls]
@@ -97,34 +101,13 @@ rangeVariableTypes = true
 
 # ==================== Godot 4 / GDScript ====================
 [language-server.godot]
-command = "nc"
-args = ["127.0.0.1", "6005"]
+command = "socat"
+args = ["STDIO","TCP:127.0.0.1:6005"]
 
 [[language]]
 name = "gdscript"
 language-servers = ["godot", "hx-lsp", "harper-ls", "lsp-ai"]
-
-# GDScript 调试器
-[language.debugger]
-name = "lldb-vscode"
-transport = "stdio"
-command = "lldb-vscode"
-
-# GDB Server 附加调试
-[[language.debugger.templates]]
-name = "gdbserver attach"
-request = "attach"
-completion = [
-  { name = "lldb connect url", default = "connect://127.0.0.1:6007" },
-  { name = "file", completion = "filename" },
-  "pid",
-]
-args = { attachCommands = [
-  "platform select remote-gdb-server",
-  "platform connect {0}",
-  "file {1}",
-  "attach {2}",
-] }
+# debugger = { name = "godot-debug", transport = "tcp", port = 6006 }
 
 # Godot 资源文件
 [[language]]

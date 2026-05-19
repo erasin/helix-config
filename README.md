@@ -42,6 +42,7 @@ cargo install --path helix-term
 | inline-blame | 行内 Git Blame |
 | word-completion | 单词补全 |
 | zen-mode | 写作专注模式 |
+| [socket-listening]https://github.com/erasin/helix/tree/local-socket-listening | from pr#[13896](https://github.com/helix-editor/helix/pull/13896) |
 
 ---
 
